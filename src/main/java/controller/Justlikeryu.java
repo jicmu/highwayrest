@@ -7,22 +7,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class Hello implements Handler {
-
-    public Hello() {
-        System.out.println("Hello 생성!");
-    }
+public class Justlikeryu implements Handler {
+    @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("안녕하세요!");
-
-        return "/test2.jsp";
+        return null;
     }
 
+    @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return "";
+        return "/justlikeryu.jsp";
     }
 
+    @Override
     public String getPath() {
-        return "/highwayrest/test2";
+        return "/highwayrest/justlikeryu";
     }
 }
