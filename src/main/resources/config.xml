@@ -7,9 +7,9 @@
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
-				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-				<property name="username" value="hr" />
-				<property name="password" value="hr" />
+				<property name="url" value="jdbc:oracle:thin:@139.150.69.95:1521:xe" />
+				<property name="username" value="highway" />
+				<property name="password" value="1234" />
 			</dataSource>
 		</environment>
 	</environments>
