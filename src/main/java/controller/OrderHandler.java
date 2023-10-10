@@ -8,12 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class OrderHandler implements Handler {
-
-    public OrderHandler() {
-        System.out.println("Order 생성!");
-    }
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return "/order.jsp";
+
+        return "/index.jsp";
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,6 +18,6 @@ public class OrderHandler implements Handler {
     }
 
     public String getPath() {
-        return "/orders";
+        return "/highwayrest";
     }
 }
