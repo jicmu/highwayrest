@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class OrderHandler implements Handler {
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         return "/index.jsp";
     }
 
