@@ -152,7 +152,7 @@
 
             payByKakao.addEventListener("click", () => {
                 let form = document.forms["form-payment"];
-                form.action = "/payment/kakao";
+                form.action = "${pageContext.request.contextPath}" + "/payment/kakao";
 
                 form.submit();
             });

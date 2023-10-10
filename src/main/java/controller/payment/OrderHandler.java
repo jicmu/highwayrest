@@ -1,4 +1,4 @@
-package controller;
+package controller.payment;
 
 import common.Handler;
 
@@ -8,9 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class OrderHandler implements Handler {
-    public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        return "/index.jsp";
+    public OrderHandler() {
+        System.out.println("Order 생성!");
+    }
+    public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        return "/payment/order.jsp";
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -18,6 +21,6 @@ public class OrderHandler implements Handler {
     }
 
     public String getPath() {
-        return "/highwayrest";
+        return path + "/order";
     }
 }

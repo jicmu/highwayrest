@@ -1,4 +1,4 @@
-package controller;
+package controller.payment;
 
 import common.Handler;
 import org.json.simple.JSONObject;
@@ -55,7 +55,6 @@ public class PaymentKakaoApprove implements Handler {
             Map<String, String> approveParamMap = new HashMap<>();
 
             approveParamMap.put("cid", "TC0ONETIME");
-            approveParamMap.put("tid", request.getParameter("tid"));
             approveParamMap.put("tid", (String) request.getSession().getAttribute("tid"));
 
             request.getSession().removeAttribute("tid");
@@ -77,7 +76,9 @@ public class PaymentKakaoApprove implements Handler {
 
             JSONObject parsedApproved = (JSONObject) jsonParser.parse(approveBr);
 
-            return "redirect/payment/success";
+            request.getSession().setAttribute("paymentResult", parsedApproved.toJSONString());
+
+            return "redirect/" + path + "/payment/success";
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -86,7 +87,7 @@ public class PaymentKakaoApprove implements Handler {
             e.printStackTrace();
         }
 
-        return "/";
+        return path;
     }
 
     @Override
@@ -96,6 +97,6 @@ public class PaymentKakaoApprove implements Handler {
 
     @Override
     public String getPath() {
-        return "/payment/kakao/approve";
+        return path + "/payment/kakao/approve";
     }
 }
