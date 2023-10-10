@@ -7,9 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class Hello implements Handler {
+public class OrderHandler implements Handler {
+
+    public OrderHandler() {
+        System.out.println("Order 생성!");
+    }
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return "/index.jsp";
+        return "/order.jsp";
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -17,6 +21,6 @@ public class Hello implements Handler {
     }
 
     public String getPath() {
-        return "/highwayrest";
+        return "/orders";
     }
 }
