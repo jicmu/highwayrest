@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: RYU
-  Date: 2023-10-06
-  Time: 오후 12:12
+  User: jeonggukyoo
+  Date: 2023/10/06
+  Time: 18:15
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>justlikeryu</h1>
+    <h1>Master HomePage</h1>
 </body>
 </html>
