@@ -25,13 +25,15 @@ public class PaymentKakao implements Handler {
 
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String kakaoKey = "";
+
         try {
             URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
 
             HttpURLConnection huc = (HttpURLConnection) url.openConnection();
 
             huc.setRequestMethod("POST");
-            huc.setRequestProperty("Authorization", "KakaoAK ");
+            huc.setRequestProperty("Authorization", "KakaoAK " + kakaoKey);
             huc.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
             huc.setDoInput(true);
@@ -41,7 +43,7 @@ public class PaymentKakao implements Handler {
 
             params.put("cid", "TC0ONETIME");
             params.put("partner_order_id", "2"); // TODO Order 번호를 받아와서 수정
-//            params.put("partner_user_id", request.getSession().getId());
+//            params.put("partner_user_id", (String) request.getSession().getAttribute("user_id"));;
             params.put("partner_user_id", "testId");
 
             String[] items = request.getParameterValues("items");
