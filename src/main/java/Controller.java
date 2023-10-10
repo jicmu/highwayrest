@@ -80,7 +80,7 @@ public class Controller extends HttpServlet {
             go = handler.doGet(request, response);
 
             if(go.startsWith("redirect")) {
-                String path = go.split("/")[1];
+                String path = go.replace("redirect/", "");
                 response.sendRedirect(path);
             } else {
                 RequestDispatcher dis = request.getRequestDispatcher(go);
@@ -97,7 +97,7 @@ public class Controller extends HttpServlet {
             go = handler.doPost(request, response);
 
             if(go.startsWith("redirect")) {
-                String path = go.split("/")[1];
+                String path = go.replace("redirect/", "");
                 response.sendRedirect(path);
             } else {
                 RequestDispatcher dis = request.getRequestDispatcher(go);
