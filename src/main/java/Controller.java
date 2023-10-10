@@ -18,13 +18,12 @@ import java.util.Map;
 public class Controller extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    private final Map<String, Handler> pathList = new HashMap<>();
+    private final Map<String, Handler> pathList = new HashMap<String, Handler>();
 
     private Handler handler = null;
 
     public Controller() {
         super();
-        System.out.println("Controller 생성 완료!");
     }
 
     @Override
@@ -34,7 +33,6 @@ public class Controller extends HttpServlet {
         String packageName = "controller";
 
         String packageNameSlash = "./" + packageName.replace(".", "/");
-        System.out.println("packageName: " + packageNameSlash);
 
         URL directoryURL = Thread.currentThread().getContextClassLoader().getResource(packageNameSlash);
 
@@ -47,7 +45,6 @@ public class Controller extends HttpServlet {
     }
 
     public void list(File[] fileList, String packageName) {
-        System.out.println("list[packageName]: " + packageName);
         for(File f : fileList) {
             if(f.getName().endsWith(".class")) {
                 String fileName = f.getName();
@@ -58,8 +55,6 @@ public class Controller extends HttpServlet {
                     try {
                         Handler obj = (Handler)constructor.newInstance();
                         pathList.put(obj.getPath(), obj);
-                        System.out.println("obj: " + obj);
-                        System.out.println("getPath: " + pathList.get(obj.getPath()));
                     } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         throw new RuntimeException(e);
                     }
@@ -78,25 +73,15 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doGet 실행됨");
-        String uri = request.getRequestURI();
-        handler = pathList.get(uri);
+        handler = pathList.get(request.getRequestURI());
         String go = "";
         if(handler != null) {
-            go = handler.doGet(request, response);
-            System.out.println("go: " + go);
+            go = handler.doPost(request, response);
 
             if(go.startsWith("redirect")) {
                 String path = go.split("/")[1];
-
-                path = go.replace("redirect/", "/");
-
                 response.sendRedirect(path);
-            } else if (go.startsWith("responsebody")) {
-                String[] path = go.split("/");
-                response.getWriter().append(path[1]);
             } else {
-                System.out.println("실행됨");
                 RequestDispatcher dis = request.getRequestDispatcher(go);
                 dis.forward(request, response);
             }
@@ -105,22 +90,15 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doPost 실행됨");
-        String uri = request.getRequestURI();
-        handler = pathList.get(uri);
+        handler = pathList.get(request.getRequestURI());
         String go = "";
         if(handler != null) {
             go = handler.doPost(request, response);
-            System.out.println("go: " + go);
 
             if(go.startsWith("redirect")) {
                 String path = go.split("/")[1];
                 response.sendRedirect(path);
-            } else if (go.startsWith("responsebody")) {
-                String[] path = go.split("/");
-                response.getWriter().append(path[1]);
             } else {
-                System.out.println("실행됨");
                 RequestDispatcher dis = request.getRequestDispatcher(go);
                 dis.forward(request, response);
             }
