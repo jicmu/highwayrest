@@ -30,6 +30,7 @@ public class Controller extends HttpServlet {
     public void init() throws ServletException {
         super.init();
 
+
         String packageName = "controller";
 
         String packageNameSlash = "./" + packageName.replace(".", "/");
@@ -76,7 +77,7 @@ public class Controller extends HttpServlet {
         handler = pathList.get(request.getRequestURI());
         String go = "";
         if(handler != null) {
-            go = handler.doPost(request, response);
+            go = handler.doGet(request, response);
 
             if(go.startsWith("redirect")) {
                 String path = go.split("/")[1];
