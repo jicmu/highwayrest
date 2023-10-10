@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public class PaymentKakao implements Handler {
     private static final long serialVersionUID = 1L;
@@ -25,7 +26,13 @@ public class PaymentKakao implements Handler {
 
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String kakaoKey = "";
+        URL credentialUrl = Thread.currentThread().getContextClassLoader().getResource("../../WEB-INF/credential.properties");
+
+        Properties properties = new Properties();
+
+        properties.load(new FileReader(credentialUrl.getPath()));
+
+        String kakaoKey = properties.getProperty("kakaoKey");
 
         try {
             URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
@@ -39,12 +46,15 @@ public class PaymentKakao implements Handler {
             huc.setDoInput(true);
             huc.setDoOutput(true);
 
+            String partnerOrderId = "2";
+            String partnerUserId = "testId";
+
             Map<String, String> params = new HashMap<>();
 
             params.put("cid", "TC0ONETIME");
-            params.put("partner_order_id", "2"); // TODO Order 번호를 받아와서 수정
+            params.put("partner_order_id", partnerOrderId); // TODO Order 번호를 받아와서 수정
 //            params.put("partner_user_id", (String) request.getSession().getAttribute("user_id"));;
-            params.put("partner_user_id", "testId");
+            params.put("partner_user_id", partnerUserId);
 
             String[] items = request.getParameterValues("items");
 
@@ -54,7 +64,7 @@ public class PaymentKakao implements Handler {
             params.put("total_amount", request.getParameter("total"));
             params.put("tax_free_amount", "0");
 
-            params.put("approval_url", "http://localhost/payment/success");
+            params.put("approval_url", "http://localhost/payment/kakao/approve");
             params.put("cancel_url", "http://localhost/payment/cancel");
             params.put("fail_url", "http://localhost/payment/fail");
 
@@ -66,13 +76,12 @@ public class PaymentKakao implements Handler {
 
             huc.getOutputStream().write(param.getBytes("utf-8"));
 
-            System.out.println(param);
-
             BufferedReader br = new BufferedReader(new InputStreamReader(huc.getInputStream()));
 
             JSONParser jsonParser = new JSONParser();
             JSONObject parsed = (JSONObject) jsonParser.parse(br);
 
+            request.getSession().setAttribute("tid", parsed.get("tid"));
             return "redirect/" + (String) parsed.get("next_redirect_pc_url");
         } catch (MalformedURLException e) {
             e.printStackTrace();
