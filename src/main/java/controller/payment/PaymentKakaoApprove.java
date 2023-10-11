@@ -98,7 +98,7 @@ public class PaymentKakaoApprove implements Handler {
                         .restNo(1)
                         .pay(Integer.parseInt(totalAmount))
                         .memberNo(1) // session에서 가져와야함
-                        .ordersNo(nextOrdersNo)
+                        .ordersNo((String) parsedApproved.get("tid"))
                         .build()
                 );
             }
