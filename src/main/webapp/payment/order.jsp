@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,80 +25,45 @@
         <h1 class="p-1 pb-2 border-bottom border-muted">주문</h1>
         <section id="orders" class="row">
             <form action="" method="get" name="form-payment">
-                <article class="card p-0 mb-3">
-                    <div class="card-header">
-                        상품명<input type="hidden" name="items" value="상품명1">
-                        <div id="cancel-1" class="float-end text-muted" style="cursor: pointer;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                            </svg>
+                <c:forEach items="${foodList}" var="f">
+                    <article class="card p-0 mb-3">
+                        <div class="card-header">
+                            ${f.foodNm}<input type="hidden" name="items" value="${f.foodNm}">
+                            <div id="cancel-1" class="float-end text-muted" style="cursor: pointer;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="col-3 m-3 d-inline-block">
-                            <label for="quantity-1">수량</label>
-                            <select name="quantity" id="quantity-1" class="form-select form-select-sm">
-                                <option value="0">0</option>
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
+                        <div>
+                            <div class="col-3 m-3 d-inline-block">
+                                <label for="quantity-1">수량</label>
+                                <select name="quantity" id="quantity-1" class="form-select form-select-sm">
+                                    <option value="0">0</option>
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                            <div class="col-3 m-3 d-inline-block">
+                                <label for="unit-1">단가</label>
+                                <input class="form-control form-control-sm" type="number" name="unit" id="unit-1" value="${f.foodCost}" readonly>
+                            </div>
+                            <div class="col-3 m-3 d-inline-block">
+                                <label for="price-1">가격</label>
+                                <input class="form-control form-control-sm" type="number" name="price" id="price-1" readonly>
+                            </div>
                         </div>
-                        <div class="col-3 m-3 d-inline-block">
-                            <label for="unit-1">단가</label>
-                            <input class="form-control form-control-sm" type="number" name="unit" id="unit-1" value="1000" readonly>
-                        </div>
-                        <div class="col-3 m-3 d-inline-block">
-                            <label for="price-1">가격</label>
-                            <input class="form-control form-control-sm" type="number" name="price" id="price-1" readonly>
-                        </div>
-                    </div>
-                </article>
+                    </article>
+                </c:forEach>
 
-                <article class="card p-0 mb-3">
-                    <div class="card-header">
-                        상품명<input type="hidden" name="items" value="상품명2">
-                        <div id="cancel-2" class="float-end text-muted" style="cursor: pointer;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="col-3 m-3 d-inline-block">
-                            <label for="quantity-2">수량</label>
-                            <select name="quantity" id="quantity-2" class="form-select form-select-sm">
-                                <option value="0">0</option>
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-                        <div class="col-3 m-3 d-inline-block">
-                            <label for="unit-2">단가</label>
-                            <input class="form-control form-control-sm" type="number" name="unit" id="unit-2" value="2500" readonly>
-                        </div>
-                        <div class="col-3 m-3 d-inline-block">
-                            <label for="price-2">가격</label>
-                            <input class="form-control form-control-sm" type="number" name="price" id="price-2" readonly>
-                        </div>
-                    </div>
-                </article>
-            
                 <div class="clearfix">
                     <span class="d-inline-block">
                         <label for="total">총액</label>
@@ -146,6 +112,10 @@
 
         window.onload = () => {
             document.querySelector("#total").value = parseInt( setTotalPrice() );
+
+            if (document.querySelector("#total").value == 0) {
+                document.querySelector("#pay-by-kakao").disabled = true;
+            }
 
             // kakao
             let payByKakao = document.querySelector("#pay-by-kakao");

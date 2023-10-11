@@ -59,6 +59,15 @@ public class PaymentKakao implements Handler {
             String[] items = request.getParameterValues("items");
 
             params.put("item_name", "'" + items[0] + " 외 " + (items.length - 1) + "개'");
+
+            Map<Integer, String> itemMap = new HashMap<>();
+            for (int i = 0; i < items.length; i++) {
+                itemMap.put(i, items[i]);
+            }
+
+            JSONObject itemJson = new JSONObject(itemMap);
+            request.getSession().setAttribute("items", itemJson.toJSONString());
+
             params.put("quantity", String.valueOf(items.length));
 
             params.put("total_amount", request.getParameter("total"));

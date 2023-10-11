@@ -1,6 +1,8 @@
 package controller.payment;
 
 import common.Handler;
+import orders.Order;
+import orders.OrderService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -12,7 +14,6 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -77,6 +78,29 @@ public class PaymentKakaoApprove implements Handler {
             JSONObject parsedApproved = (JSONObject) jsonParser.parse(approveBr);
 
             request.getSession().setAttribute("paymentResult", parsedApproved.toJSONString());
+
+            // DB 등록
+            String items = (String) request.getSession().getAttribute("items");
+            request.getSession().removeAttribute("items");
+
+            JSONObject parsedItems = (JSONObject) jsonParser.parse(items);
+
+            OrderService orderService = new OrderService();
+
+            int nextOrdersNo = orderService.getNextOrdersNo();
+
+            for (Object o : parsedItems.values()) {
+                String item = (String) o;
+
+                orderService.order(Order.builder()
+                        .menu(item)
+                        .restNo(1)
+                        .pay(true)
+                        .memberNo(1) // session에서 가져와야함
+                        .ordersNo(nextOrdersNo)
+                        .build()
+                );
+            }
 
             return "redirect/" + path + "/payment/success";
         } catch (MalformedURLException e) {
