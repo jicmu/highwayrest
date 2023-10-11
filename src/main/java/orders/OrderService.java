@@ -1,5 +1,6 @@
 package orders;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import sql.Factory;
@@ -50,6 +51,18 @@ public class OrderService {
         sqlSession.close();
 
         return ordersNo;
+    }
+
+    public List<Order> findByRestNo(@Param("restNo") int restNo) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrderDao dao = sqlSession.getMapper(OrderDao.class);
+
+        List<Order> orderList = dao.findByRestNo(restNo);
+
+        sqlSession.close();
+
+        return orderList;
     }
 
 }

@@ -28,4 +28,7 @@ public interface OrderDao {
     @Update("UPDATE orders SET pay = #{pay} WHERE orderNo = #{orderNo}")
     int setPay(Order order);
 
+    @Select("SELECT * FROM orders WHERE restno = #{restNo} ORDER BY odate DESC")
+    List<Order> findByRestNo(@Param("restNo") int restNo);
+
 }
