@@ -7,8 +7,10 @@ import org.apache.commons.io.FileUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 
 public class ImageFile {
 
@@ -74,10 +76,51 @@ public class ImageFile {
         if(file.isDirectory()) {
             MultipartRequest request = new MultipartRequest(req, path, size, entType, new DefaultFileRenamePolicy());
             File[] files = {request.getFile("file1"), request.getFile("file2"), request.getFile("file3")};
-            for(File fName : files)
+
+            // 파일이 추가된 날짜를 파일명 앞에 추가
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            String fileDate = sdf.format(date);
+
+            int cnt = 0;
+            for(File fName : files) {
                 System.out.println("fName: " + fName);
+
+                File oFile = new File(path + File.separator + fName.getName());
+                File nFile = new File(path + File.separator + cnt + "_" + fileDate + "_" + fName.getName());
+                if(oFile.renameTo(nFile)) {
+                    System.out.println("이름 변경 성공!");
+                    cnt++;
+                } else {
+                    System.out.println("이름 변경 실패!");
+                }
+            }
         } else {
             System.err.println("파일 업로드 실패!");
+        }
+    }
+
+    public static void fileUpdate(String path, Size uploadSize, HttpServletRequest req) throws IOException {
+        int size = uploadSize.getValue();
+        String entType = "UTF-8";
+
+        File file = new File(path + File.separator);
+
+        if(file.isDirectory()) {
+            MultipartRequest request = new MultipartRequest(req, path, size, entType, new DefaultFileRenamePolicy());
+            File[] files = {request.getFile("file1"), request.getFile("file2"), request.getFile("file3")};
+
+            for(int i = 0; i < 3; i++) {
+                if(files[i].exists()) {
+                    File oldFile = new File(path + File.separator);
+
+                    for(File f : oldFile.listFiles()) {
+
+                    }
+                } else {
+
+                }
+            }
         }
     }
 

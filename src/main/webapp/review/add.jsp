@@ -28,7 +28,8 @@
         </tr>
         <tr>
             <th>사진</th>
-            <td><input type="file" name="img1"></td>
+            <!-- TODO 다수 파일 업로드 할 수 있게 할 것-->
+            <td><input type="file" name="file1"></td>
         </tr>
         <tr><th>작성하기</th>
             <td><input type="submit" value="작성"></td>

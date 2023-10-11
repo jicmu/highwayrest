@@ -17,7 +17,7 @@ public class Review {
     private String content;
     private int star;
     private int orderNo;
-    //TODO img 추가?
+    //TODO File 추가?
     public Review(int reviewNo, int star, Date wDate, String content) {
         this.reviewNo = reviewNo;
         this.star = star;

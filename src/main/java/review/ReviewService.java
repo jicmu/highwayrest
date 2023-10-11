@@ -24,7 +24,7 @@ public class ReviewService {
     public ArrayList<Review> getAll(){//모든 리뷰 조회
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
-        ArrayList<Review> list = dao.selectAll();
+        ArrayList<Review> list = dao.selectAllByDate();
         session.close();
         return list;
     }
@@ -45,10 +45,18 @@ public class ReviewService {
         return list;
     }
 
-    public Review getReviewByMember(int memberNo) {//멤버별 리뷰 조회 => 내 후기 조회
+    public ArrayList<Review> getReviewByMember(int memberNo) {//멤버별 리뷰 조회 => 내 후기 조회
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
-        Review r = dao.selectByMember(memberNo);
+        ArrayList<Review> list = dao.selectByMember(memberNo);
+        session.close();
+        return list;
+    }
+
+    public Review getReviewByReviewNo(int reviewNo) {//멤버별 리뷰 조회 => 내 후기 조회
+        SqlSession session = sqlSessionFactory.openSession();
+        ReviewDao dao = session.getMapper(ReviewDao.class);
+        Review r = dao.selectByReviewNo(reviewNo);
         session.close();
         return r;
     }
