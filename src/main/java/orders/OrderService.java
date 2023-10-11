@@ -28,12 +28,12 @@ public class OrderService {
         return inserted;
     }
 
-    public List<Order> getMyOrders(Order order) {
+    public List<Order> getMyOrders(int memberId) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         OrderDao dao = sqlSession.getMapper(OrderDao.class);
 
-        List<Order> orders = dao.findMyOrders(order);
+        List<Order> orders = dao.findByMember(memberId);
 
         sqlSession.close();
 
