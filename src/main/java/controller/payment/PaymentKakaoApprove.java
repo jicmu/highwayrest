@@ -1,6 +1,8 @@
-package controller;
+package controller.payment;
 
 import common.Handler;
+import orders.Order;
+import orders.OrderService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -12,7 +14,6 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -55,7 +56,6 @@ public class PaymentKakaoApprove implements Handler {
             Map<String, String> approveParamMap = new HashMap<>();
 
             approveParamMap.put("cid", "TC0ONETIME");
-            approveParamMap.put("tid", request.getParameter("tid"));
             approveParamMap.put("tid", (String) request.getSession().getAttribute("tid"));
 
             request.getSession().removeAttribute("tid");
@@ -77,7 +77,33 @@ public class PaymentKakaoApprove implements Handler {
 
             JSONObject parsedApproved = (JSONObject) jsonParser.parse(approveBr);
 
-            return "redirect/payment/success";
+            request.getSession().setAttribute("paymentResult", parsedApproved.toJSONString());
+
+            // DB 등록
+            String items = (String) request.getSession().getAttribute("items");
+            request.getSession().removeAttribute("items");
+
+            JSONObject parsedItems = (JSONObject) jsonParser.parse(items);
+
+            OrderService orderService = new OrderService();
+
+            int nextOrdersNo = orderService.getNextOrdersNo();
+
+            for (Object o : parsedItems.values()) {
+                String item = (String) o;
+                String totalAmount = (String) parsedItems.get("total_amount");
+
+                orderService.order(Order.builder()
+                        .menu(item)
+                        .restNo(1)
+                        .pay(Integer.parseInt(totalAmount))
+                        .memberNo(1) // session에서 가져와야함
+                        .ordersNo(nextOrdersNo)
+                        .build()
+                );
+            }
+
+            return "redirect/" + path + "/payment/success";
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -86,7 +112,7 @@ public class PaymentKakaoApprove implements Handler {
             e.printStackTrace();
         }
 
-        return "/";
+        return path;
     }
 
     @Override
@@ -96,6 +122,6 @@ public class PaymentKakaoApprove implements Handler {
 
     @Override
     public String getPath() {
-        return "/payment/kakao/approve";
+        return path + "/payment/kakao/approve";
     }
 }
