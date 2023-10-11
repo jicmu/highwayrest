@@ -328,9 +328,6 @@ $RECYCLE.BIN/
 # Test File Folder
 src/main/java/controller/master/*.java
 src/main/webapp/master/*.jsp
-src/main/java/controller/test/**
 
-# my ignore package list
-src/main/java/controller/ex/**
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,intellij,eclipse,visualstudiocode,java
