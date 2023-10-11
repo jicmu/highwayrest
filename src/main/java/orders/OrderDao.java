@@ -13,19 +13,19 @@ public interface OrderDao {
     @Select("SELECT seq_orders.NEXTVAL FROM dual")
     int getSeqOrders();
 
-    @Select("SELECT * FROM order WHERE member = #{member}")
-    List<Order> findByMember(@Param("member") int member);
+    @Select("SELECT * FROM orders WHERE memberno = #{memberNo} ORDER BY odate DESC")
+    List<Order> findByMember(@Param("memberNo") int memberNo);
 
-    @Select("SELECT * FROM order WHERE rest LIKE '%#{rest}%'")
+    @Select("SELECT * FROM orders WHERE rest LIKE '%#{rest}%'")
     List<Order> findByRest(@Param("rest") String rest);
 
-    @Select("SELECT * FROM order WHERE member = #{member} AND ordersNo = #{ordersNo}")
+    @Select("SELECT * FROM orders WHERE memberno = #{memberno} AND ordersNo = #{ordersNo}")
     List<Order> findMyOrders(Order order);
 
-    @Update("UPDATE order SET status = #{status} WHERE orderNo = #{orderNo}")
+    @Update("UPDATE orders SET status = #{status} WHERE orderNo = #{orderNo}")
     int setStatus(Order order);
 
-    @Update("UPDATE pay SET pay = #{pay} WHERE orderNo = #{orderNo}")
+    @Update("UPDATE orders SET pay = #{pay} WHERE orderNo = #{orderNo}")
     int setPay(Order order);
 
 }
