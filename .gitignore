@@ -325,6 +325,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,intellij,eclipse,visualstudiocode,java
+# Test File Folder
+src/main/java/controller/master/*.java
+src/main/webapp/master/*.jsp
 
-!/src/main/webapp/WEB-INF/credential.properties
+
+# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,intellij,eclipse,visualstudiocode,java
