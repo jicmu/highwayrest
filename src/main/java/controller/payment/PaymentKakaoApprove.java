@@ -91,11 +91,12 @@ public class PaymentKakaoApprove implements Handler {
 
             for (Object o : parsedItems.values()) {
                 String item = (String) o;
+                String totalAmount = (String) parsedItems.get("total_amount");
 
                 orderService.order(Order.builder()
                         .menu(item)
                         .restNo(1)
-                        .pay(true)
+                        .pay(Integer.parseInt(totalAmount))
                         .memberNo(1) // session에서 가져와야함
                         .ordersNo(nextOrdersNo)
                         .build()

@@ -14,7 +14,7 @@ public class Order {
     private Integer orderNo;
     private String menu;
     private Integer restNo;
-    private Boolean pay;
+    private Integer pay;
     private Integer memberNo;
     private Integer ordersNo;
     private Integer status;
