@@ -22,7 +22,7 @@ create table orders (
     pay             number          default 0,                                      -- 결제 여부 0: 결제안됨 / 1: 결제됨
     quantity        number          default 1,                                      -- 주문한 수량
     memberNo        number          references member(memberNo)on delete cascade,   -- 회원번호
-    ordersNo        number          not null,                                       -- 주문 묶음 번호
+    ordersNo        varchar2(21)    not null,                                       -- 결제 번호
     status          number          check(status BETWEEN 0 AND 3),                  -- 0: 결제 완료  / 1: 수락 / 2: 거부 / 3: 취소
     oDate           date            default sysdate                                 -- 주문 날짜
 );
@@ -55,3 +55,4 @@ create table member (
    tel              varchar(50)     unique          -- 전화번호
 );
 
+create sequence seq_order;
