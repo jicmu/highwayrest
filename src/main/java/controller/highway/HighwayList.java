@@ -1,4 +1,4 @@
-package controller.search;
+package controller.highway;
 
 import common.Handler;
 
@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SearchHandler implements Handler {
+public class HighwayList implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return null;
+        return "/highway/highwaylist.jsp";
     }
 
     @Override
@@ -19,28 +19,11 @@ public class SearchHandler implements Handler {
         int memberNum = Integer.parseInt(request.getParameter("memberNum"));
         String searchWord = request.getParameter("searchWord");
 
-        String view = "";
-
-        if(searchType == 1){
-
-            view = "";
-        } else if (searchType == 2) {
-
-            view = "";
-        } else if (searchType == 3) {
-
-            view = "";
-        }
-
-//        SearchService searchService = new SearchService;
-//        searchService.addSearch(new Search(0, searchType, memberNum, null, searchWord));
-
-        request.setAttribute("view", view);
-        return "/index.jsp";
+        return null;
     }
 
     @Override
     public String getPath() {
-        return null;
+        return path + "/highwaylist";
     }
 }
