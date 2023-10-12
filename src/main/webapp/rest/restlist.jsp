@@ -34,11 +34,11 @@
             </div>
         </div>
         <div class="mt-3">
-            <h2>OO고속도로 휴게소 목록</h2>
+            <h2>${r.routeCd } 휴게소 목록</h2>
         </div>
         <div class="mt-3">
-            <!-- <c:forEach var="h" items="${list }"> -->
-                <a href="#" class="list-group-item list-group-item-action">휴게소 a</a>
+            <!-- <c:forEach var="r" items="${list }"> -->
+                <a href="#?restCd=${r.restCd }" class="list-group-item list-group-item-action">${r.restNm }</a>
             <!-- </c:forEach> -->
         </div>
         <nav class="mt-3" aria-label="Page navigation">

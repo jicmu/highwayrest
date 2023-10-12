@@ -1,5 +1,7 @@
 package sql;
 
+import dao.HighwayDAO;
+import dao.RestDAO;
 import lombok.Getter;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -24,7 +26,7 @@ public class Factory {
 				sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 
 				//구현할 맵퍼 등록
-				Class<?>[] mapper = { };
+				Class<?>[] mapper = { HighwayDAO.class, RestDAO.class };
 				for (Class<?> m : mapper) {
 					//sqlSessionFactory에 맵퍼를 등록
 					sqlSessionFactory.getConfiguration().addMapper(m);
