@@ -22,11 +22,8 @@ public interface OrderDao {
     @Select("SELECT * FROM orders WHERE memberno = #{memberno} AND ordersNo = #{ordersNo}")
     List<Order> findMyOrders(Order order);
 
-    @Update("UPDATE orders SET status = #{status} WHERE orderNo = #{orderNo}")
+    @Update("UPDATE orders SET status = #{status} WHERE ordersNo = #{ordersNo}")
     int setStatus(Order order);
-
-    @Update("UPDATE orders SET pay = #{pay} WHERE orderNo = #{orderNo}")
-    int setPay(Order order);
 
     @Select("SELECT * FROM orders WHERE restno = #{restNo} ORDER BY odate DESC")
     List<Order> findByRestNo(@Param("restNo") int restNo);
