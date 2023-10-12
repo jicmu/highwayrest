@@ -1,4 +1,4 @@
-package controller;
+package controller.payment;
 
 import common.Handler;
 
@@ -7,10 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class OrderHandler implements Handler {
-    public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public class FailHandler implements Handler {
 
-        return "/index.jsp";
+    public FailHandler() {
+        System.out.println("FailHandler 생성!");
+    }
+
+    public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        return "/payment/fail.jsp";
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -18,6 +22,6 @@ public class OrderHandler implements Handler {
     }
 
     public String getPath() {
-        return "/highwayrest";
+        return path + "/payment/fail";
     }
 }

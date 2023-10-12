@@ -1,4 +1,4 @@
-package controller;
+package controller.payment;
 
 import common.Handler;
 import org.json.simple.JSONObject;
@@ -58,15 +58,26 @@ public class PaymentKakao implements Handler {
 
             String[] items = request.getParameterValues("items");
 
-            params.put("item_name",  "'" + items[0] + " 외 " + (items.length - 1) + "개'");
+            params.put("item_name", "'" + items[0] + " 외 " + (items.length - 1) + "개'");
+
+            Map<Integer, String> itemMap = new HashMap<>();
+            for (int i = 0; i < items.length; i++) {
+                itemMap.put(i, items[i]);
+            }
+
+            JSONObject itemJson = new JSONObject(itemMap);
+            request.getSession().setAttribute("items", itemJson.toJSONString());
+
             params.put("quantity", String.valueOf(items.length));
 
             params.put("total_amount", request.getParameter("total"));
             params.put("tax_free_amount", "0");
 
-            params.put("approval_url", "http://localhost/payment/kakao/approve");
-            params.put("cancel_url", "http://localhost/payment/cancel");
-            params.put("fail_url", "http://localhost/payment/fail");
+            String baseUrl = "http://" + request.getServerName() + path;
+
+            params.put("approval_url", baseUrl + "/payment/kakao/approve");
+            params.put("cancel_url", baseUrl + "/payment/cancel");
+            params.put("fail_url", baseUrl + "/payment/fail");
 
             String param = "";
 
@@ -82,6 +93,9 @@ public class PaymentKakao implements Handler {
             JSONObject parsed = (JSONObject) jsonParser.parse(br);
 
             request.getSession().setAttribute("tid", parsed.get("tid"));
+
+            System.out.println((String) parsed.get("next_redirect_pc_url"));
+
             return "redirect/" + (String) parsed.get("next_redirect_pc_url");
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -91,7 +105,7 @@ public class PaymentKakao implements Handler {
             e.printStackTrace();
         }
 
-        return "/";
+        return path;
     }
 
     @Override
@@ -101,6 +115,6 @@ public class PaymentKakao implements Handler {
 
     @Override
     public String getPath() {
-        return "/payment/kakao";
+        return path + "/payment/kakao";
     }
 }
