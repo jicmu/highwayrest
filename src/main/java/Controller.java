@@ -92,15 +92,11 @@ public class Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         handler = pathList.get(request.getRequestURI());
-        System.out.println("dopost");
         String go = "";
         if(handler != null) {
             go = handler.doPost(request, response);
-            System.out.println("inner");
             if(go.startsWith("redirect")) {
-                System.out.println("redirect");
                 String path = go.replace("redirect/", "");
-                System.out.println("path=" + path);
                 response.sendRedirect(request.getContextPath() + "/" + path);
             } else {
                 RequestDispatcher dis = request.getRequestDispatcher(go);

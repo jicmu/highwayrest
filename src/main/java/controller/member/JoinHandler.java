@@ -31,7 +31,7 @@ public class JoinHandler implements Handler {
 		JSONObject obj = new JSONObject();
 		obj.put("id", id);
 
-		return "redirect/index.jsp";
+		return "redirect/member/login.jsp";
 	}
 
 	@Override
