@@ -56,7 +56,7 @@
                             <span id="status-container-${o.ordersNo}">
                                 <c:choose>
                                     <c:when test="${o.status eq 0}">
-                                        <span class="status-dot bg-primary" id="status-${o.ordersNo}"></span> 결제 완료
+                                        <span class="status-dot bg-primary" id="status-${o.ordersNo}"></span> 수락 대기
                                     </c:when>
                                     <c:when test="${o.status eq 1}">
                                         <span class="status-dot bg-success" id="status-${o.ordersNo}"></span> 수락
@@ -66,6 +66,9 @@
                                     </c:when>
                                     <c:when test="${o.status eq 3}">
                                         <span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소
+                                    </c:when>
+                                    <c:when test="${o.status eq 4}">
+                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료
                                     </c:when>
                                     <c:otherwise>
                                         <span>알 수 없음</span>

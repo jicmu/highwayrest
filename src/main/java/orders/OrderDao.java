@@ -16,7 +16,7 @@ public interface OrderDao {
     @Select("SELECT * FROM orders WHERE memberno = #{memberNo} ORDER BY odate DESC")
     List<Order> findByMember(@Param("memberNo") int memberNo);
 
-    @Select("SELECT * FROM orders WHERE rest LIKE '%#{rest}%'")
+    @Select("SELECT * FROM orders WHERE rest LIKE '%#{rest}%' ORDER BY odate DESC")
     List<Order> findByRest(@Param("rest") String rest);
 
     @Select("SELECT * FROM orders WHERE memberno = #{memberno} AND ordersNo = #{ordersNo}")

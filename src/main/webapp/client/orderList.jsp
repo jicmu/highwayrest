@@ -67,23 +67,15 @@
                                     <c:when test="${o.status eq 3}">
                                         <span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소
                                     </c:when>
-                                    <c:when test="${o.status eq 4}">
-                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료
-                                    </c:when>
                                     <c:otherwise>
                                         <span>알 수 없음</span>
                                     </c:otherwise>
                                 </c:choose>
                             </span>
                         </div>
-                        <c:choose>
-                            <c:when test="${o.status eq 0}">
-                                <button class="btn btn-danger btn-cancel" id="btn-cancel-${o.ordersNo}">주문 취소</button>
-                            </c:when>
-                            <c:when test="${o.status eq 1}">
-                                <button class="btn btn-info btn-done" id="btn-done-${o.ordersNo}">수령</button>
-                            </c:when>
-                        </c:choose>
+                        <c:if test="${o.status eq 0}">
+                            <button class="btn btn-danger btn-cancel" id="btn-cancel-${o.ordersNo}">주문 취소</button>
+                        </c:if>
                     </article>
                 </c:forEach>
             </section>
@@ -111,33 +103,6 @@
                             let status = document.querySelector("#status-container-" + index);
 
                             status.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
-                        }
-                    }
-                })
-            });
-
-            document.querySelectorAll(".btn-done").forEach((element) => {
-                element.addEventListener("click", () => {
-                    let xhr = new XMLHttpRequest();
-
-                    xhr.open("post", "${pageContext.request.contextPath}/api/done");
-                    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-                    let index = element.id.replace("btn-done-", "");
-
-                    let parameter = {
-                        ordersNo: index
-                    };
-
-                    xhr.send(JSON.stringify(parameter));
-
-                    xhr.onload = () => {
-                        if (xhr.status == 200) {
-                            document.querySelector("#btn-done-" + index).remove();
-
-                            let status = document.querySelector("#status-container-" + index);
-
-                            status.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료'
                         }
                     }
                 })
