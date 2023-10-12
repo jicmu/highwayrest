@@ -22,7 +22,7 @@
             <hr>
         </div>
         <div class="row mt-3">
-            <h2>OO휴게소 상세 정보</h2>
+            <h2>${restNm } 상세 정보</h2>
         </div>
         <div class="row mt-3">
             <div class="col">

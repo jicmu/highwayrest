@@ -334,6 +334,9 @@ src/main/java/controller/yeonann/**
 src/main/webapp/master/**
 src/test/**
 src/main/resources/**
+src/main/java/data/testentity/**
+src/main/java/controller/test/**
+src/main/java/data/testdto/**
 
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,intellij,eclipse,visualstudiocode,java
