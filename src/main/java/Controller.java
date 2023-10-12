@@ -1,3 +1,4 @@
+import common.FileSearch;
 import common.Handler;
 
 import javax.servlet.RequestDispatcher;
@@ -6,11 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,47 +26,7 @@ public class Controller extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-
-
-        String packageName = "controller";
-
-        String packageNameSlash = "./" + packageName.replace(".", "/");
-
-        URL directoryURL = Thread.currentThread().getContextClassLoader().getResource(packageNameSlash);
-
-        String directoryString = directoryURL.getFile();
-
-        File file = new File(directoryString);
-        if(file.exists()) {
-            list(file.listFiles(), packageName);
-        }
-    }
-
-    public void list(File[] fileList, String packageName) {
-        for(File f : fileList) {
-            if(f.getName().endsWith(".class")) {
-                String fileName = f.getName();
-                fileName = fileName.substring(0, fileName.length() - 6);
-                try{
-                    Class c = Class.forName(packageName + "." + fileName);
-                    Constructor<?> constructor = c.getConstructor(null);
-                    try {
-                        Handler obj = (Handler)constructor.newInstance();
-                        pathList.put(obj.getPath(), obj);
-                    } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-                        throw new RuntimeException(e);
-                    }
-                } catch (ClassNotFoundException | NoSuchMethodException e){
-                    System.err.println(packageName + "." + fileName + " does not appear to be a valid class");
-                    System.out.println(e.getMessage());
-                }
-            }
-            else {
-                String oPackageName = packageName;
-                oPackageName += "." +f.getName();
-                list(f.listFiles(), oPackageName);
-            }
-        }
+        FileSearch.fileSearchAndConstructor("controller", pathList);
     }
 
     @Override
@@ -82,6 +39,9 @@ public class Controller extends HttpServlet {
             if(go.startsWith("redirect")) {
                 String path = go.replace("redirect/", "");
                 response.sendRedirect(path);
+            } else if (go.startsWith("responsebody")) {
+                String[] path = go.split("/");
+                response.getWriter().append(path[1]);//{flag:true}
             } else {
                 RequestDispatcher dis = request.getRequestDispatcher(go);
                 dis.forward(request, response);
@@ -95,10 +55,12 @@ public class Controller extends HttpServlet {
         String go = "";
         if(handler != null) {
             go = handler.doPost(request, response);
-
             if(go.startsWith("redirect")) {
                 String path = go.replace("redirect/", "");
-                response.sendRedirect(path);
+                response.sendRedirect(request.getContextPath() + "/" + path);
+            } else if (go.startsWith("responsebody")) {
+                String[] path = go.split("/");
+                response.getWriter().append(path[1]);//{flag:true}
             } else {
                 RequestDispatcher dis = request.getRequestDispatcher(go);
                 dis.forward(request, response);

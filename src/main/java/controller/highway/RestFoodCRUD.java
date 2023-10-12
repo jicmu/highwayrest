@@ -32,7 +32,7 @@ public class RestFoodCRUD implements Handler {
         ArrayList<RestFood> list = new ArrayList<>();
         for(String food : foodList) {
             String[] item = food.split("/");
-            list.add(new RestFood(0, item[0], 0, item[1]));
+            list.add(new RestFood(0, item[0], 0, item[1], Integer.parseInt(item[2])));
         }
 
         service.addFood(list);

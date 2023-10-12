@@ -28,12 +28,12 @@ public class HighwayCRUD implements Handler {
         // 도로
         String[] highway = request.getParameter("highway").split("/");
         HighwayService service1 = new HighwayService();
-        service1.addHighway(new Highway(0, Integer.parseInt(highway[0]), highway[1], highway[2] ));
+        service1.addHighway(new Highway(0, Integer.parseInt(highway[0]), highway[1], highway[2]));
 
         // 휴게소
         String[] highwayrest = request.getParameter("highwayrest").split("/");
         HighwayRestService service2 = new HighwayRestService();
-        service2.addaddHighwayRest(new HighwayRest(0, highwayrest[0], highwayrest[1], Integer.parseInt(highwayrest[2]), highwayrest[3], highwayrest[4]));
+        service2.addaddHighwayRest(new HighwayRest(0, highwayrest[0], highwayrest[1], Integer.parseInt(highwayrest[2]), highwayrest[3], highwayrest[4], highwayrest[5]));
         return "/index.jsp";
     }
 

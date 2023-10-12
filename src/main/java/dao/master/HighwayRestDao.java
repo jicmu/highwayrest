@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @Mapper
 public interface HighwayRestDao {
-    @Insert("insert into highwayrest values(seq_highwayrest_no.nextval, #{svarCd}, #{svarNm}, #{gudClssCd}, #{rprsTelNo}, #{routeCd})")
+    @Insert("insert into highwayrest values(seq_highwayrest_no.nextval, #{svarCd}, #{svarNm}, #{gudClssCd}, #{rprsTelNo}, #{routeCd}, #{svarAddr})")
     void insert(HighwayRest item);
 
     @Select("select svarCd from highwayrest where svarCd = #{svarCd}")
