@@ -55,10 +55,9 @@ public class Controller extends HttpServlet {
         String go = "";
         if(handler != null) {
             go = handler.doPost(request, response);
-
             if(go.startsWith("redirect")) {
                 String path = go.replace("redirect/", "");
-                response.sendRedirect(path);
+                response.sendRedirect(request.getContextPath() + "/" + path);
             } else if (go.startsWith("responsebody")) {
                 String[] path = go.split("/");
                 response.getWriter().append(path[1]);//{flag:true}

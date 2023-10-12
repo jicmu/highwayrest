@@ -23,7 +23,7 @@
     </div>
     <div class="col-4 mt-3">
         <!-- <c:forEach var="h" items="${list }"> -->
-            <a href="#" class="list-group-item list-group-item-action">고속도로 a</a>
+            <a href="#?routeCd=${h.routeCd }" class="list-group-item list-group-item-action">${h.routeNm}</a>
         <!-- </c:forEach> -->
     </div>
     <nav class="mt-3" aria-label="Page navigation">
