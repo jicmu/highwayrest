@@ -28,9 +28,9 @@ public interface OrderDao {
     @Select("SELECT * FROM orders WHERE restno = #{restNo} ORDER BY odate DESC")
     List<Order> findByRestNo(@Param("restNo") int restNo);
 
-    @Select("SELECT * FROM orders WHERE ordersNo = ${ordersNo}")
+    @Select("SELECT * FROM orders WHERE ordersNo = #{ordersNo}")
     List<Order> findByOrdersNo(@Param("orderNo") String ordersNo);
 
-    @Select("SELECT * FROM orders WHERE ordersNo = ${ordersNo} GROUP BY ordersNo")
-    int findTotalPrice(@Param("orderNo") String ordersNo);
+    @Select("SELECT SUM(pay) FROM orders WHERE ordersNo = #{ordersNo} GROUP BY ordersNo")
+    int findTotalPrice(@Param("ordersNo") String ordersNo);
 }
