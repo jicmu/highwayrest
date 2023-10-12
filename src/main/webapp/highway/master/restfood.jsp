@@ -28,7 +28,7 @@
                         foodlist.innerHTML = txt;
                         for (let item of list) {
                             txt += "<div class='form-check form-check-inline'>";
-                            txt += "    <input name='food' class='form-check-input' type='checkbox' id='inlineCheckbox" + cnt + "' value='" + item.foodNm + "/" + item.stdRestCd + "'>";
+                            txt += "    <input name='food' class='form-check-input' type='checkbox' id='inlineCheckbox" + cnt + "' value='" + item.foodNm + "/" + item.stdRestCd + "/" + item.foodCost + "'>";
                             txt += "    <label class='form-check-label' for='inlineCheckbox" + cnt + "'>" + cnt + "/" + item.foodNm + "</label>";
                             txt += "</div>"
                             cnt++;
@@ -67,18 +67,6 @@
                 </div>
                 <input type="submit" name="선택완료">
             </form>
-        </div>
-    </div>
-
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <img src="..." class="rounded me-2" alt="...">
-            <strong class="me-auto">Bootstrap</strong>
-            <small>11 mins ago</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            Hello, world! This is a toast message.
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" />

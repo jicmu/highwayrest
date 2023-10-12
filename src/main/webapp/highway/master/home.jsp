@@ -69,7 +69,7 @@
                         let restloc = item.svarNm;
                         if(restloc.indexOf("쉼터") == -1){
                             console.log(item);
-                            let value = item.svarCd + "/" + item.svarNm + "/" +item.gudClssCd + "/" + item.rprsTelNo + "/" + item.routeCd;
+                            let value = item.svarCd + "/" + item.svarNm + "/" +item.gudClssCd + "/" + item.rprsTelNo + "/" + item.routeCd + "/" + item.svarAddr;
                             console.log("value: " + value);
                             txt += "<option value=" + value +">" + item.svarNm + "</option>";
                         }

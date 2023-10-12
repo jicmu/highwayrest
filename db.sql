@@ -8,7 +8,7 @@ create table restMaster (
     status          number(1)       default 0           -- 0: 휴업 / 1: 영업 / 2: 쉬는시간
 );
 
-create table food (
+create table restFood (
     foodNo          number          primary key,        -- 고유번호
     menu            varchar2(40)    not null,           -- 음식 이름
     accVol          number          default 0,          -- 누적판매량(default 0)

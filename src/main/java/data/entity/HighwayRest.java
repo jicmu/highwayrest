@@ -14,4 +14,5 @@ public class HighwayRest {
     private int gudClssCd;
     private String rprsTelNo;
     private String routeCd;
+    private String svarAddr;
 }
