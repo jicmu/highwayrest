@@ -1,5 +1,6 @@
 package sql;
 
+import common.FileSearch;
 import lombok.Getter;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -7,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 
 public class Factory {
 	@Getter
@@ -24,9 +26,13 @@ public class Factory {
 				sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 
 				//구현할 맵퍼 등록
-				Class<?>[] mapper = { member.MemberDao.class };
-				for (Class<?> m : mapper) {
+//				Class<?>[] mapper = { HighwayDao.class, HighwayRestDao.class, FoodDao.class };
+//				Class<?>[] mapper =
+				ArrayList<Class<?>> list = new ArrayList<>();
+				FileSearch.fileSearchAndMapperReturn("dao", list);
+				for (Class<?> m : list) {
 					//sqlSessionFactory에 맵퍼를 등록
+					System.out.println("m: " + m);
 					sqlSessionFactory.getConfiguration().addMapper(m);
 				}
 			}

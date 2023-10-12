@@ -12,4 +12,5 @@ public class RestFood {
     private String name;
     private int accVol;
     private String stdRestCd;
+    private int foodCost;
 }
