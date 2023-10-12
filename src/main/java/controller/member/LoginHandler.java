@@ -32,7 +32,7 @@ public class LoginHandler implements Handler {
 			return "redirect/memberindex.jsp";
 		}
 
-		request.setAttribute("msg", "로그인에 실패하였습니다. 다시 시도해주세요.");
+		request.setAttribute("msg", "아이디 또는 비밀번호를 확인해주세요.");
 		return "/member/login.jsp";
 	}
 
