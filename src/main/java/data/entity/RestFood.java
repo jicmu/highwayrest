@@ -7,9 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Food {
-    private int foodNo;
-    private String menu;
+public class RestFood {
+    private int no;
+    private String name;
     private int accVol;
-    private int restNo;
+    private String stdRestCd;
 }
