@@ -9,6 +9,11 @@
 </head>
 <body>
 <h3>로그인</h3>
+<div>
+    <c:if test="${not empty msg}">
+        <div style="color: red">${msg}</div>
+    </c:if>
+</div>
 <form action="${pageContext.request.contextPath }/member/login" method="post">
 id:<input type="text" name="id"><br/>
 password:<input type="password" name="password"><br/>
