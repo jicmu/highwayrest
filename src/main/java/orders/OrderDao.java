@@ -7,7 +7,7 @@ import java.util.List;
 @Mapper
 public interface OrderDao {
 
-    @Insert("INSERT INTO orders VALUES(seq_order.NEXTVAL, #{menu}, #{restNo}, #{pay}, #{memberNo}, #{ordersNo}, 0, sysdate)")
+    @Insert("INSERT INTO orders VALUES(seq_order.NEXTVAL, #{menu}, #{restNo}, #{pay}, #{quantity}, #{memberNo}, #{ordersNo}, 0, sysdate)")
     int insert(Order order);
 
     @Select("SELECT seq_orders.NEXTVAL FROM dual")
@@ -28,4 +28,9 @@ public interface OrderDao {
     @Select("SELECT * FROM orders WHERE restno = #{restNo} ORDER BY odate DESC")
     List<Order> findByRestNo(@Param("restNo") int restNo);
 
+    @Select("SELECT * FROM orders WHERE ordersNo = ${ordersNo}")
+    List<Order> findByOrdersNo(@Param("orderNo") String ordersNo);
+
+    @Select("SELECT * FROM orders WHERE ordersNo = ${ordersNo} GROUP BY ordersNo")
+    int findTotalPrice(@Param("orderNo") String ordersNo);
 }

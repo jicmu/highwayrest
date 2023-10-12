@@ -77,7 +77,7 @@
                             </span>
                         </div>
                         <c:if test="${o.status eq 0}">
-                            <div class="btn-group" id="btn-group--${o.ordersNo}">
+                            <div class="btn-group" id="btn-group-${o.ordersNo}">
                                 <button class="btn btn-danger btn-deny" id="btn-deny-${o.ordersNo}">거절</button>
                                 <button class="btn btn-primary btn-accept" id="btn-accept-${o.ordersNo}">수락</button>
                             </div>

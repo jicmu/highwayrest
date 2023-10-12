@@ -141,4 +141,27 @@ public class OrderService {
         return count;
     }
 
+    public List<Order> findByOrdersNo(String ordersNo) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrderDao dao = sqlSession.getMapper(OrderDao.class);
+
+        List<Order> orders = dao.findByOrdersNo(ordersNo);
+
+        sqlSession.close();
+
+        return orders;
+    }
+
+    public int findTotalPrice(String ordersNo) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrderDao dao = sqlSession.getMapper(OrderDao.class);
+
+        int totalPrice = dao.findTotalPrice(ordersNo);
+
+        sqlSession.close();
+
+        return totalPrice;
+    }
 }

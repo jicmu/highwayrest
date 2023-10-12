@@ -57,16 +57,23 @@ public class PaymentKakao implements Handler {
             params.put("partner_user_id", partnerUserId);
 
             String[] items = request.getParameterValues("items");
+            String[] prices = request.getParameterValues("price");
+            String[] quantities = request.getParameterValues("quantity");
 
             params.put("item_name", "'" + items[0] + " 외 " + (items.length - 1) + "개'");
 
-            Map<Integer, String> itemMap = new HashMap<>();
+            Map<String, String> itemMap = new HashMap<>();
+            Map<String, String> quantityMap = new HashMap<>();
             for (int i = 0; i < items.length; i++) {
-                itemMap.put(i, items[i]);
+                itemMap.put(items[i], prices[i]);
+                quantityMap.put(items[i], quantities[i]);
             }
 
+            // redirect로 이동하기 때문에 필요한 정보 세션에 저장
             JSONObject itemJson = new JSONObject(itemMap);
             request.getSession().setAttribute("items", itemJson.toJSONString());
+            JSONObject quantityJson = new JSONObject(quantityMap);
+            request.getSession().setAttribute("quantities", quantityJson.toJSONString());
 
             params.put("quantity", String.valueOf(items.length));
 
@@ -93,8 +100,6 @@ public class PaymentKakao implements Handler {
             JSONObject parsed = (JSONObject) jsonParser.parse(br);
 
             request.getSession().setAttribute("tid", parsed.get("tid"));
-
-            System.out.println((String) parsed.get("next_redirect_pc_url"));
 
             return "redirect/" + (String) parsed.get("next_redirect_pc_url");
         } catch (MalformedURLException e) {
