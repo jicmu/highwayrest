@@ -328,6 +328,8 @@ $RECYCLE.BIN/
 # Test File Folder
 src/main/java/controller/master/**
 src/main/java/example/**
+src/main/java/dao/example/**
+src/main/java/service/example/**
 src/main/webapp/master/**
 src/test/**
 src/main/resources/**
