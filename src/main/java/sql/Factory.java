@@ -1,7 +1,5 @@
 package sql;
 
-import dao.HighwayDAO;
-import dao.RestDAO;
 import lombok.Getter;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
