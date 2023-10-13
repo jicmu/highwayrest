@@ -76,14 +76,14 @@
             </div>
             <hr>
         </div>
-        <form action="/highwayrest/order" method="get">
+        <form action="${pageContext.request.contextPath }/order" method="get">
             <input type="hidden" name="stdRestCd" value="${stdRestCd }">
             <div class="row">
                 <table class="text-center" id="food-table">
                     <tr><th>메뉴</th><th>가격</th><th>수량</th></tr>
                     <c:forEach var="m" items="${list }">
                     <tr>
-                        <td>${m.name }<input type="hidden" id="${m.no }_name" name="foodNm" value="${m.name }"></td>
+                        <td>${m.name }<input type="hidden" id="${m.no }_name" name="foodNo" value="${m.no }"></td>
                         <td>${m.foodCost }<input type="hidden" id="${m.no }_price" name="foodCost" value="${m.foodCost }"></td>
                         <td><input type="number" id="${m.no }_amount" name="amount"></td>
                     </tr>
