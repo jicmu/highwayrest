@@ -11,6 +11,7 @@ public class OrderParamDTO {
 
     private String stdRestCd;
     private String foodNm;
+    private int foodNo;
     private int foodCost;
     private int amount;
 

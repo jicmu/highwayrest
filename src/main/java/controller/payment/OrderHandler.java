@@ -28,7 +28,7 @@ public class OrderHandler implements Handler {
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String stdRestCd = request.getParameter("stdRestCd");
-        String[] foodNms = request.getParameterValues("foodNm");
+        String[] foodNos = request.getParameterValues("foodNos");
         String[] foodCosts = request.getParameterValues("foodCost");
         String[] amounts = request.getParameterValues("amount");
 
@@ -45,16 +45,17 @@ public class OrderHandler implements Handler {
 
         request.setAttribute("max", max);
 
-        if (foodNms == null || foodCosts == null || amounts == null
-                || foodNms.length == 0 || foodCosts.length == 0 || amounts.length == 0) {
+        if (foodNos == null || foodCosts == null || amounts == null
+                || foodNos.length == 0 || foodCosts.length == 0 || amounts.length == 0) {
             return "/payment/order.jsp";
         }
 
         List<OrderParamDTO> dtos = new ArrayList<>();
-        for (int i = 0; i < foodNms.length; i++) {
+        for (int i = 0; i < foodNos.length; i++) {
             OrderParamDTO orderParamDTO = OrderParamDTO.builder()
                     .stdRestCd(stdRestCd)
-                    .foodNm(foodNms[i])
+                    .foodNo(Integer.parseInt(foodNos[i]))
+                    .foodNm(service.getMenuByFoodNo(Integer.parseInt(foodNos[i])))
                     .foodCost(Integer.parseInt(foodCosts[i]))
                     .amount(Integer.parseInt(amounts[i]))
                     .build();
