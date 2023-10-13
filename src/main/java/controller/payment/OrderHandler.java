@@ -25,16 +25,18 @@ public class OrderHandler implements Handler {
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String[] stdRestCds = request.getParameterValues("stdRestCd");
+        String stdRestCd = request.getParameter("stdRestCd");
         String[] foodNms = request.getParameterValues("foodNm");
         String[] foodCosts = request.getParameterValues("foodCost");
+        String[] amounts = request.getParameterValues("amount");
 
         List<OrderParamDTO> dtos = new ArrayList<>();
         for (int i = 0; i < foodNms.length; i++) {
             OrderParamDTO orderParamDTO = OrderParamDTO.builder()
-                    .stdRestCd(stdRestCds[i])
+                    .stdRestCd(stdRestCd)
                     .foodNm(foodNms[i])
                     .foodCost(Integer.parseInt(foodCosts[i]))
+                    .amount(Integer.parseInt(amounts[i]))
                     .build();
 
             dtos.add(orderParamDTO);
