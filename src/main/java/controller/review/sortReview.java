@@ -16,12 +16,12 @@ public class sortReview implements Handler {
 
         ArrayList<Review> list = new ArrayList<>();
 
-//        if(sort.equals("sortHighRate")){
-//            list = service.getAllByHighRate();
-//        }else if(sort.equals("sortLowRate")){
-//            list = service.getAllByLowRate();
-//        }
-//        request.setAttribute("list", list);
+        if(sort.equals("sortHighRate")){
+            list = service.getAllByHighRate();
+        }else if(sort.equals("sortLowRate")){
+            list = service.getAllByLowRate();
+        }
+        equest.setAttribute("list", list);
         request.setAttribute("view", "/review/review.jsp");
 
         return go;

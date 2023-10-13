@@ -5,11 +5,7 @@
 <head>
     <title>Edit</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-    <style rel="stylesheet">
-        a {
-            margin-right: 30px;
-        }
-    </style>
+    <link rel="stylesheet" href="../common/css/common.css" type="text/css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script type="text/javascript">
         let routeCd = "";
@@ -85,40 +81,45 @@
 </head>
 
 <body>
-    <div class="container" style="border: 1px solid black">
-        <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
-                    <span class="navbar-brand mb-0 h1">
-                        <a href="#">도로 추가하기</a> <a href="#">휴게소 추가하기</a>
-                    </span>
-            </div>
-        </nav>
-    </div>
+<%--    <div class="container" style="border: 1px solid black">--%>
+<%--        <nav class="navbar bg-body-tertiary">--%>
+<%--            <div class="container-fluid">--%>
+<%--                    <span class="navbar-brand mb-0 h1">--%>
+<%--                        <a href="#">도로 추가하기</a> <a href="#">휴게소 추가하기</a>--%>
+<%--                    </span>--%>
+<%--            </div>--%>
+<%--        </nav>--%>
+<%--    </div>--%>
+    <div id="wrapper">
+        <%@ include file="../../common/header.jsp"%>
 
-    <div class="container">
-        <form action="${pageContext.request.contextPath}/master/home" method="post">
-            <div class="row">
-                <div class="col">
-                    <select id="road" name="highway" class="form-select" aria-label="Default select example" onchange="roadMove(this.options[this.selectedIndex].value)">
-                        <option value="-1" selected>고속도로 선택</option>
-                    </select>
+        <div class="container">
+            <form action="${pageContext.request.contextPath}/master/home" method="post">
+                <div class="row">
+                    <div class="col">
+                        <select id="road" name="highway" class="form-select" aria-label="Default select example" onchange="roadMove(this.options[this.selectedIndex].value)">
+                            <option value="-1" selected>고속도로 선택</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select disabled id="upDown" class="form-select" aria-label="Default select example" onchange="going(this.options[this.selectedIndex].value)">
+                            <option value="-1">상행, 하행 선택</option>
+                            <option value="0">상행</option>
+                            <option value="1">하행</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select name="highwayrest" disabled id="rest" class="form-select" aria-label="Default select example">
+                            <option value="-1">휴게소 선택</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col">
-                    <select disabled id="upDown" class="form-select" aria-label="Default select example" onchange="going(this.options[this.selectedIndex].value)">
-                        <option value="-1">상행, 하행 선택</option>
-                        <option value="0">상행</option>
-                        <option value="1">하행</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <select name="highwayrest" disabled id="rest" class="form-select" aria-label="Default select example">
-                        <option value="-1">휴게소 선택</option>
-                    </select>
-                </div>
-            </div>
-            <input type="submit" value="버튼">
-        </form>
+                <input type="submit" value="버튼">
+            </form>
+        </div>
     </div>
+    <%@ include file="../../common/footer.jsp" %>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" />
 </body>
 

@@ -97,6 +97,8 @@ public class ImageFile {
                     System.out.println("이름 변경 실패!");
                 }
             }
+
+            return request;
         } else {
             System.err.println("파일 업로드 실패!");
         }

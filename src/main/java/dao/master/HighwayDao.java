@@ -1,5 +1,6 @@
 package dao.master;
 
+import data.dto.HighwayRestDTO;
 import data.entity.Highway;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -16,6 +17,9 @@ public interface HighwayDao {
     @Select("select routeCd from highway where routeCd = #{no}")
     String select(@Param("no") String no);
 
+    @Select("select distinct road.routenm roadName, rest.svarnm restName from highway road, highwayrest rest where road.routecd = rest.routecd and road.routeCd = #{no}")
+    ArrayList<HighwayRestDTO> joinCheck(@Param("no") String no);
+    
     @Select("select * from highway where routeCd = #{routeCd}")
     Highway selectByCd(@Param("routeCd") String routeCd);
 

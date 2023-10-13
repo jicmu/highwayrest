@@ -1,6 +1,7 @@
 package controller.highway;
 
 import common.Handler;
+import common.ImageFile;
 import data.entity.Highway;
 import data.entity.HighwayRest;
 import service.master.HighwayRestService;
@@ -15,6 +16,10 @@ public class HighwayCRUD implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println(request.getContextPath());
+
+        String data = ImageFile.getImageFile("free-icon-call-order-6425539", "/Users/jeonggukyoo/icons");
+
+        request.setAttribute("data", data);
 
         return "/highway/master/home.jsp";
     }
