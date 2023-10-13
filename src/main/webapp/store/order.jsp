@@ -53,7 +53,7 @@
                                 <input class="form-control form-control-sm" type="number" name="price"
                                     id="price-${o.ordersNo}" value="${o.pay}" readonly>
                             </div>
-                            <span id="status-container-${o.ordersNo}">
+                            <span id="status-container-${o.ordersNo}" ident="status-container-${o.ordersNo}">
                                 <c:choose>
                                     <c:when test="${o.status eq 0}">
                                         <span class="status-dot bg-primary" id="status-${o.ordersNo}"></span> 수락 대기
@@ -77,7 +77,7 @@
                             </span>
                         </div>
                         <c:if test="${o.status eq 0}">
-                            <div class="btn-group" id="btn-group-${o.ordersNo}">
+                            <div class="btn-group" id="btn-group-${o.ordersNo}" ident="btn-group-${o.ordersNo}">
                                 <button class="btn btn-danger btn-deny" id="btn-deny-${o.ordersNo}">거절</button>
                                 <button class="btn btn-primary btn-accept" id="btn-accept-${o.ordersNo}">수락</button>
                             </div>
@@ -104,11 +104,15 @@
 
                         xhr.onload = () => {
                             if (xhr.status == 200) {
-                                document.querySelector("#btn-group-" + index).remove();
+                                document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
+                                    elem.remove();
+                                });
 
-                                let status = document.querySelector("#status-container-" + index);
+                                let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
-                                status.innerHTML = '<span class="status-dot bg-danger" id="status-${o.ordersNo}"></span> 거부';
+                                status.forEach((statusElem) => {
+                                    statusElem.innerHTML = '<span class="status-dot bg-danger" id="status-${o.ordersNo}"></span> 거부';
+                                });
                             }
                         }
                     })
@@ -131,11 +135,15 @@
 
                         xhr.onload = () => {
                             if (xhr.status == 200) {
-                                document.querySelector("#btn-group-" + index).remove();
+                                document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
+                                    elem.remove();
+                                });
 
-                                let status = document.querySelector("#status-container-" + index);
+                                let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
-                                status.innerHTML = '<span class="status-dot bg-success" id="status-${o.ordersNo}"></span> 수락'
+                                status.forEach((statusElem) => {
+                                    statusElem.innerHTML = '<span class="status-dot bg-success" id="status-${o.ordersNo}"></span> 수락'
+                                });
                             }
                         }
                     })
