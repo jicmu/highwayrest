@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.ArrayList;
 @Mapper
 public interface ReviewDao {
-    @Insert("INSERT INTO review VALUES (seq_review.nextval, #{memberNo}, sysdate, #{content}, #{star}, #{orderNo}, #{img1}, #{img2}, #{img3})")
+    @Insert("INSERT INTO review VALUES (#{reviewNo}, #{memberNo}, sysdate, #{content}, #{star}, #{orderNo}, #{img1}, #{img2}, #{img3})")
     void insert(Review r);//후기 작성
 
     @Select("SELECT * FROM review ORDER BY wDate DESC")
@@ -29,4 +29,7 @@ public interface ReviewDao {
 
     @Delete("DELETE FROM review WHERE reviewNo=#{reviewNo}")
     void delete(@Param("reviewNo") int reviewNo);//후기 삭제
+
+    @Select("SELECT seq_review.nextval FROM dual")
+    int getSeq();
 }
