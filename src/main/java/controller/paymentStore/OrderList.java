@@ -1,4 +1,4 @@
-package controller.payment;
+package controller.paymentStore;
 
 import common.Handler;
 import orders.Order;
@@ -10,24 +10,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class OrderListHandler implements Handler {
+public class OrderList implements Handler {
 
-    public OrderListHandler() {
-        System.out.println("OrderListHandler 생성!");
+    public OrderList() {
+        System.out.println("OrderList 생성!");
     }
 
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrderService orderService = new OrderService();
 
-        // TODO 세션에 저장할 정보 결정 후 수정
-        String loginNum = (String) request.getSession().getAttribute("loginNum");
-//        loginNum = "1";
+        // TODO 세션으로 변경
+        String loginStore = (String) request.getSession().getAttribute("loginStore");
+        loginStore = "1";
 
-        List<Order> orderList = orderService.getMyOrders(Integer.parseInt(loginNum));
+        List<Order> orderList = orderService.findByRestNo(Integer.parseInt(loginStore));
 
         request.setAttribute("orderList", orderList);
 
-        return "/payment/orderList.jsp";
+        return "/store/order.jsp";
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,6 +35,6 @@ public class OrderListHandler implements Handler {
     }
 
     public String getPath() {
-        return path + "/orders";
+        return path + "/store/orders";
     }
 }

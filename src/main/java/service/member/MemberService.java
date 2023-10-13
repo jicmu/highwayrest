@@ -1,5 +1,6 @@
-package member;
+package service.member;
 
+import dao.member.MemberDao;
 import data.entity.Member;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -62,4 +63,3 @@ public class MemberService {
 		return list;
 	}
 }
-

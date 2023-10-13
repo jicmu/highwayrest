@@ -14,15 +14,14 @@ public class sortReview implements Handler {
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ReviewService service = new ReviewService();
 
-//        String sort = request.getParameter("sort");
-//        ArrayList<Review> list = null;
+        ArrayList<Review> list = new ArrayList<>();
 
-//        if(sort.equals("sortHighRate")){
-//            list = service.getAllByHighRate();
-//        }else if(sort.equals("sortLowRate")){
-//            list = service.getAllByLowRate();
-//        }
-//        request.setAttribute("list", list);
+        if(sort.equals("sortHighRate")){
+            list = service.getAllByHighRate();
+        }else if(sort.equals("sortLowRate")){
+            list = service.getAllByLowRate();
+        }
+        request.setAttribute("list", list);
         request.setAttribute("view", "/review/review.jsp");
 
         return go;

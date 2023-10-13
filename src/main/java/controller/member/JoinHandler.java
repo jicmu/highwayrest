@@ -2,7 +2,7 @@ package controller.member;
 
 import common.Handler;
 import data.entity.Member;
-import member.MemberService;
+import service.member.MemberService;
 import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;
@@ -14,7 +14,8 @@ public class JoinHandler implements Handler {
 
 	@Override
 	public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		return "/member/join.jsp";
+		request.setAttribute("view", "/member/join.jsp");
+		return "/index.jsp";
 	}
 
 	@Override
@@ -31,7 +32,8 @@ public class JoinHandler implements Handler {
 		JSONObject obj = new JSONObject();
 		obj.put("id", id);
 
-		return "redirect/member/login.jsp";
+		request.setAttribute("view", "/member/login.jsp");
+		return "redirect/index.jsp";
 	}
 
 	@Override
