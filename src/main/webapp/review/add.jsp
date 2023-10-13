@@ -16,7 +16,7 @@
     </script>
 </head>
 <body>
-<form action="/highwayrest/addReview" method="post" enctype="multipart/form-data">
+<form action="${pageContext.request.contextPath}/addReview" method="post" enctype="multipart/form-data">
     <table border="1">
         <input type="hidden" name="memberNo" value="2">
         <input type="hidden" name="orderNo" value="1">
@@ -39,8 +39,12 @@
             <td><textarea rows="30" cols="50" name="content"></textarea></td>
         </tr>
         <tr>
-            <th>사진</th> <!--미리보기 기능..?-->
-            <td><input type="file" name="file" accept="image/*" multiple></td>
+            <th>사진</th> <!--TODO 미리보기-->
+            <td><input type="file" name="file" id="file" accept="image/*" multiple></td>
+        </tr>
+        <tr>
+            <th>미리보기</th>
+            <td id="preview"></td>
         </tr>
         <tr>
             <th>작성하기</th>
