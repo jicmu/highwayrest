@@ -2,7 +2,7 @@ package controller.member;
 
 import common.Handler;
 import data.entity.Member;
-import member.MemberService;
+import service.member.MemberService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +18,8 @@ public class EditHandler implements Handler {
 		String id = request.getParameter("id");
 		Member m = service.getMember(id);
 		request.setAttribute("m", m);
-
-		return "/member/edit.jsp";
+		request.setAttribute("view", "/member/edit.jsp");
+		return "/index.jsp";
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class EditHandler implements Handler {
 		HttpSession session = request.getSession();
 		session.setAttribute("nickname", nickname);
 
-		return "redirect/memberindex.jsp";
+		return "redirect/index.jsp";
 	}
 
 	@Override

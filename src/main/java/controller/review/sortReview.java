@@ -18,7 +18,7 @@ public class sortReview implements Handler {
 
         String sort = request.getParameter("sort");
 
-        ArrayList<Review> list;
+        ArrayList<Review> list = new ArrayList<>();
 
         if(sort.equals("sortHighRate")){
             list = service.getAllByHighRate();

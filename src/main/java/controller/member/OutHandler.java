@@ -1,7 +1,7 @@
 package controller.member;
 
 import common.Handler;
-import member.MemberService;
+import service.member.MemberService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +17,7 @@ public class OutHandler implements Handler {
 		HttpSession session = request.getSession(false);
 		session.invalidate();
 
-		return "/memberindex.jsp";
+		return "/index.jsp";
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class OutHandler implements Handler {
 		HttpSession session = request.getSession(false);
 		session.invalidate();
 
-		return "/memberindex.jsp";
+		return "/index.jsp";
 	}
 
 	@Override

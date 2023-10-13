@@ -16,7 +16,7 @@ nickname:<input type="text" name="nickname" value="${m.nickname}"><br/>
 email:<input type="text" name="email" value="${m.email}" readonly><br/>
 tel:<input type="text" name="tel" value="${m.tel}" readonly><br/>
 <input type="submit" value="수정">
-<a href="${pageContext.request.contextPath }/memberindex.jsp">취소</a>
+<a href="${pageContext.request.contextPath }/controller/yeonann/memberindex.jsp">취소</a>
 </form>
 </body>
 </html>

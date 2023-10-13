@@ -1,4 +1,4 @@
-package member;
+package dao.member;
 
 import data.entity.Member;
 import org.apache.ibatis.annotations.*;
