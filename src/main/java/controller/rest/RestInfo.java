@@ -1,6 +1,8 @@
 package controller.rest;
 
 import common.Handler;
+import data.entity.HighwayRest;
+import service.master.HighwayRestService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,11 @@ import java.io.IOException;
 public class RestInfo implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String svarCd = request.getParameter("svarCd");
+        HighwayRestService highwayRestService = new HighwayRestService();
+        HighwayRest highwayrest = highwayRestService.getBySCd(svarCd);
+
+        request.setAttribute("highwayrest", highwayrest);
         return "/rest/restinfo.jsp";
     }
 

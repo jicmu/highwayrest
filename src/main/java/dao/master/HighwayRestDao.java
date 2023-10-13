@@ -16,6 +16,15 @@ public interface HighwayRestDao {
     @Select("select svarCd from highwayrest where svarCd = #{svarCd}")
     String select(@Param("svarCd") String svarCd);
 
+    @Select("select * from highwayrest where svarCd = #{svarCd}")
+    HighwayRest selectBySCd(@Param("svarCd") String svarCd);
+
+    @Select("select * from highwayrest where routeCd = #{routeCd}")
+    ArrayList<HighwayRest> selectByRCd(@Param("routeCd") String routeCd);
+
+    @Select("select * from highwayrest where svarNm like #{svarNm}")
+    ArrayList<HighwayRest> selectByNm(@Param("svarNm") String svarNm);
+
     @Select("select * from highwayrest")
     ArrayList<HighwayRest> selectAll();
 }
