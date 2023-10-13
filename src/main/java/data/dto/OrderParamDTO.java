@@ -14,5 +14,6 @@ public class OrderParamDTO {
     private int foodNo;
     private int foodCost;
     private int amount;
+    private int restNo;
 
 }
