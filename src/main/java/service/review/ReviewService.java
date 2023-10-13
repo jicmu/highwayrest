@@ -79,4 +79,13 @@ public class ReviewService {
         session.commit();
         session.close();
     }
+
+    public int getSeq(){//시퀀스
+        SqlSession session = sqlSessionFactory.openSession();
+        ReviewDao dao = session.getMapper(ReviewDao.class);
+        int no = dao.getSeq();
+        session.close();
+
+        return no;
+    }
 }

@@ -61,23 +61,22 @@
             <th>별점</th>
             <td>${r.star}</td>
         </tr>
-        <!-- TODO 업로드한 사진을 모두 출력할 수 있게 한다.-->
         <c:if test="${r.img1}!=null">
             <tr>
                 <th>사진</th>
-                <td id="img"><img src="/highwayrest/${r.img1}"></td>
+                <td><img src="/highwayrest/${r.img1}"></td>
             </tr>
         </c:if>
         <c:if test="${r.img2}!=null">
             <tr>
                 <th>사진</th>
-                <td id="img"><img src="/highwayrest/${r.img2}"></td>
+                <td><img src="/highwayrest/${r.img2}"></td>
             </tr>
         </c:if>
         <c:if test="${r.img3}!=null">
             <tr>
                 <th>사진</th>
-                <td id="img"><img src="/highwayrest/${r.img3}"></td>
+                <td><img src="/highwayrest/${r.img3}"></td>
             </tr>
         </c:if>
         <tr>
