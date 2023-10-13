@@ -14,13 +14,12 @@ public class delReview implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-        int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 
         ReviewService service = new ReviewService();
         Review r = service.getReviewByReviewNo(reviewNo);
 
         //TODO File 속성, 리뷰 삭제 시 사진 및 폴더 삭제도 같이. path 구하는 방법?
-        String nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + r.getWDate() + "\\" + reviewNo;
+        String nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + r.getMemberNo() + "\\" + r.getWDate() + "\\" + r.getReviewNo();
         //사진 삭제
         String[] imgs = {r.getImg1(), r.getImg2(), r.getImg3()};
 
