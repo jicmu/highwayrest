@@ -4,6 +4,8 @@ import dao.master.HighwayDao;
 import data.entity.Highway;
 import service.Service;
 
+import java.util.ArrayList;
+
 public class HighwayService extends Service {
     public void addHighway(Highway item) {
         sqlSession = sqlSessionFactory.openSession();
@@ -17,5 +19,35 @@ public class HighwayService extends Service {
 
         sqlSession.commit();
         sqlSession.close();
+    }
+
+    public Highway getByCd(String routeCd){
+        sqlSession = sqlSessionFactory.openSession();
+        HighwayDao dao = sqlSession.getMapper(HighwayDao.class);
+        Highway highway = dao.selectByCd(routeCd);
+
+        sqlSession.close();
+
+        return highway;
+    }
+
+    public ArrayList<Highway> getByNm(String routeNm){
+        sqlSession = sqlSessionFactory.openSession();
+        HighwayDao dao = sqlSession.getMapper(HighwayDao.class);
+        ArrayList<Highway> list = dao.selectByNm("%" + routeNm + "%");
+
+        sqlSession.close();
+
+        return list;
+    }
+
+    public ArrayList<Highway> getAll(){
+        sqlSession = sqlSessionFactory.openSession();
+        HighwayDao dao = sqlSession.getMapper(HighwayDao.class);
+        ArrayList<Highway> list = dao.selectAll();
+
+        sqlSession.close();
+
+        return list;
     }
 }
