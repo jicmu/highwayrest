@@ -26,6 +26,7 @@ public class HighwaySearch implements Handler {
         System.out.println(memberNo);
         System.out.println(searchType);
         System.out.println(routeNm);
+        System.out.println(searchWord);
 
         HighwayService highwayService = new HighwayService();
         ArrayList<Highway> list = highwayService.getByNm(routeNm);
