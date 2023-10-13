@@ -1,6 +1,7 @@
 package controller.payment;
 
 import common.Handler;
+import orders.OrderService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -56,9 +57,16 @@ public class PaymentKakao implements Handler {
 //            params.put("partner_user_id", (String) request.getSession().getAttribute("user_id"));;
             params.put("partner_user_id", partnerUserId);
 
-            String[] items = request.getParameterValues("items");
+            String[] itemNo = request.getParameterValues("items");
             String[] prices = request.getParameterValues("price");
             String[] quantities = request.getParameterValues("quantity");
+
+            OrderService orderService = new OrderService();
+
+            String[] items = new String[itemNo.length];
+            for (int i = 0; i < items.length; i++) {
+                items[i] = orderService.getMenuByFoodNo(Integer.parseInt(itemNo[i]));
+            }
 
             if (items.length > 1) {
                 params.put("item_name", "'" + items[0] + " 외 " + (items.length - 1) + "개'");

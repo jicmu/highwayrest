@@ -3,15 +3,18 @@ package orders;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Date;
 
 @Getter
 @AllArgsConstructor
 @Builder
+@Setter
 public class Order {
 
     private Integer orderNo;
+    private Integer foodNo;
     private String menu;
     private Integer restNo;
     private Integer pay;

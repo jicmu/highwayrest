@@ -46,6 +46,7 @@ public class OrderService {
         OrderDao dao = sqlSession.getMapper(OrderDao.class);
 
         List<Order> orders = dao.findByMember(memberId);
+        getMenuByFoodNo(orders);
 
         sqlSession.close();
 
@@ -70,6 +71,7 @@ public class OrderService {
         OrderDao dao = sqlSession.getMapper(OrderDao.class);
 
         List<Order> orderList = dao.findByRestNo(restNo);
+        getMenuByFoodNo(orderList);
 
         sqlSession.close();
 
@@ -228,5 +230,33 @@ public class OrderService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Order> getMenuByFoodNo(List<Order> orders) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrderDao dao = sqlSession.getMapper(OrderDao.class);
+
+        for (Order o : orders) {
+            String menu = dao.findMenuByFoodNo(o.getFoodNo());
+
+            o.setMenu(menu);
+        }
+
+        sqlSession.close();
+
+        return orders;
+    }
+
+    public String getMenuByFoodNo(int foodNo) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrderDao dao = sqlSession.getMapper(OrderDao.class);
+
+        String menu = dao.findMenuByFoodNo(foodNo);
+
+        sqlSession.close();
+
+        return menu;
     }
 }
