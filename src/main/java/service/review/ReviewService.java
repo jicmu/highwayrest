@@ -1,5 +1,7 @@
-package review;
+package service.review;
 
+import dao.review.ReviewDao;
+import data.entity.Review;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import sql.Factory;
@@ -17,6 +19,7 @@ public class ReviewService {
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
         dao.insert(r);
+        System.out.println("service : " + r);
         session.commit();
         session.close();
     }

@@ -16,4 +16,7 @@ public class Review {
     private String content;
     private int star;
     private int orderNo;
+    private String img1;
+    private String img2;
+    private String img3;
 }

@@ -1,8 +1,8 @@
 package controller.review;
 
 import common.Handler;
-import review.Review;
-import review.ReviewService;
+import data.entity.Review;
+import service.review.ReviewService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

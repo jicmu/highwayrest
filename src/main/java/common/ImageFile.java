@@ -62,12 +62,14 @@ public class ImageFile {
     /**
      * 파일 업로드를 위한 메소드. 파일 크기는 Size클래스를 이용해 설정
      * file name은 file1, 2, 3로 지정
-     * @param path 파일을 업로드할 디렉토리
+     *
+     * @param path       파일을 업로드할 디렉토리
      * @param uploadSize 파일 업로드 최대 크기
-     * @param req 파일을 받기 위한 request
+     * @param req        파일을 받기 위한 request
+     * @return
      * @throws IOException
      */
-    public static void fileUpload(String path, Size uploadSize, HttpServletRequest req) throws IOException {
+    public static MultipartRequest fileUpload(String path, Size uploadSize, HttpServletRequest req) throws IOException {
         int size = uploadSize.getValue();
         String entType = "UTF-8";
 
@@ -98,6 +100,7 @@ public class ImageFile {
         } else {
             System.err.println("파일 업로드 실패!");
         }
+        return null;
     }
 
     public static void fileUpdate(String path, Size uploadSize, HttpServletRequest req) throws IOException {
