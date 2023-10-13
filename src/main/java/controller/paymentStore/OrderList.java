@@ -21,7 +21,7 @@ public class OrderList implements Handler {
 
         // TODO 세션으로 변경
         String loginStore = (String) request.getSession().getAttribute("loginStore");
-        loginStore = "1";
+        loginStore = "0";
 
         List<Order> orderList = orderService.findByRestNo(Integer.parseInt(loginStore));
 

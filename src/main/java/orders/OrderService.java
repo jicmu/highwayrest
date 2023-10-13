@@ -238,9 +238,7 @@ public class OrderService {
         OrderDao dao = sqlSession.getMapper(OrderDao.class);
 
         for (Order o : orders) {
-            String menu = dao.findMenuByFoodNo(o.getFoodNo());
-
-            o.setMenu(menu);
+            o.setMenu(dao.findMenuByFoodNo(o.getFoodNo()));
         }
 
         sqlSession.close();
