@@ -60,7 +60,13 @@ public class PaymentKakao implements Handler {
             String[] prices = request.getParameterValues("price");
             String[] quantities = request.getParameterValues("quantity");
 
-            params.put("item_name", "'" + items[0] + " 외 " + (items.length - 1) + "개'");
+            if (items.length > 1) {
+                params.put("item_name", "'" + items[0] + " 외 " + (items.length - 1) + "개'");
+            } else if (items.length == 1){
+                params.put("item_name", "'" + items[0]);
+            } else {
+                return "redirect/" + path + "/orders";
+            }
 
             Map<String, String> itemMap = new HashMap<>();
             Map<String, String> quantityMap = new HashMap<>();
