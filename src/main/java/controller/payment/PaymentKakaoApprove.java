@@ -106,7 +106,7 @@ public class PaymentKakaoApprove implements Handler {
                 );
             }
 
-            return "redirect/" + path + "/payment/success";
+            return "redirect/" + path + "/orders";
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
