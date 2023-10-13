@@ -1,8 +1,11 @@
 package service.master;
 
 import dao.master.HighwayDao;
+import data.dto.HighwayRestDTO;
 import data.entity.Highway;
 import service.Service;
+
+import java.util.ArrayList;
 
 public class HighwayService extends Service {
     public void addHighway(Highway item) {
@@ -17,5 +20,17 @@ public class HighwayService extends Service {
 
         sqlSession.commit();
         sqlSession.close();
+    }
+
+    public void rest(String no) {
+        sqlSession = sqlSessionFactory.openSession();
+        HighwayDao dao = sqlSession.getMapper(HighwayDao.class);
+        ArrayList<HighwayRestDTO> list = dao.joinCheck(no);
+
+        sqlSession.close();
+
+        for(HighwayRestDTO item : list) {
+            System.out.println("item: " + item);
+        }
     }
 }

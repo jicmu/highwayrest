@@ -67,7 +67,7 @@ public class ImageFile {
      * @param req 파일을 받기 위한 request
      * @throws IOException
      */
-    public static void fileUpload(String path, Size uploadSize, HttpServletRequest req) throws IOException {
+    public static MultipartRequest fileUpload(String path, Size uploadSize, HttpServletRequest req) throws IOException {
         int size = uploadSize.getValue();
         String entType = "UTF-8";
 
@@ -95,9 +95,13 @@ public class ImageFile {
                     System.out.println("이름 변경 실패!");
                 }
             }
+
+            return request;
         } else {
             System.err.println("파일 업로드 실패!");
         }
+
+        return null;
     }
 
     public static void fileUpdate(String path, Size uploadSize, HttpServletRequest req) throws IOException {

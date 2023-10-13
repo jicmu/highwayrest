@@ -79,6 +79,7 @@ public class FileSearch {
                 System.out.println("className: " + packageName + "." + f.getName());
                 try{
                     Class<?> cl = Class.forName(packageName + "." + fileName);
+                    System.out.println("cl: " + cl);
                     list.add(cl);
                 } catch (ClassNotFoundException e){
                     System.err.println(packageName + "." + fileName + " does not appear to be a valid class");

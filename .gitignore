@@ -333,7 +333,7 @@ src/main/java/service/example/**
 src/main/java/controller/yeonann/**
 src/main/webapp/master/**
 src/test/**
-src/main/resources/**
+src/main/resources/mf/**
 src/main/java/data/testentity/**
 src/main/java/controller/test/**
 src/main/java/data/testdto/**

@@ -25,7 +25,7 @@ public class sortReview implements Handler {
         }else if(sort.equals("sortLowRate")){
             list = service.getAllByLowRate();
         }
-        request.setAttribute("list", list);
+//        request.setAttribute("list", list);
         request.setAttribute("view", "/review/review.jsp");
 
         return go;
