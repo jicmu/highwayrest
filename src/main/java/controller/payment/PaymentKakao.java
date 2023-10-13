@@ -47,22 +47,26 @@ public class PaymentKakao implements Handler {
             huc.setDoInput(true);
             huc.setDoOutput(true);
 
-            String partnerOrderId = "2";
-            String partnerUserId = "testId";
+            OrderService orderService = new OrderService();
+            String partnerOrderId = String.valueOf(orderService.getNextOrdersNo());
+            String partnerUserId = "testId"; // TODO 추후 삭제 후 세션으로 변경 예정
 
             Map<String, String> params = new HashMap<>();
 
             params.put("cid", "TC0ONETIME");
-            params.put("partner_order_id", partnerOrderId); // TODO Order 번호를 받아와서 수정
-//            params.put("partner_user_id", (String) request.getSession().getAttribute("user_id"));;
+            params.put("partner_order_id", partnerOrderId);
+
+            request.getSession().setAttribute("partnerOrderId", partnerOrderId);
+
+//            params.put("partner_user_id", (String) request.getSession().getAttribute("loginId"));;
             params.put("partner_user_id", partnerUserId);
 
             String[] itemNo = request.getParameterValues("items");
             String[] prices = request.getParameterValues("price");
             String[] quantities = request.getParameterValues("quantity");
-
-            OrderService orderService = new OrderService();
-
+//
+            request.getSession().setAttribute("stdRestCd", request.getParameter("restNo"));
+//
             String[] items = new String[itemNo.length];
             for (int i = 0; i < items.length; i++) {
                 items[i] = orderService.getMenuByFoodNo(Integer.parseInt(itemNo[i]));
@@ -78,9 +82,11 @@ public class PaymentKakao implements Handler {
 
             Map<String, String> itemMap = new HashMap<>();
             Map<String, String> quantityMap = new HashMap<>();
+            Map<String, String> foodNoMap = new HashMap<>();
             for (int i = 0; i < items.length; i++) {
                 itemMap.put(items[i], prices[i]);
                 quantityMap.put(items[i], quantities[i]);
+                foodNoMap.put(items[i], itemNo[i]);
             }
 
             // redirect로 이동하기 때문에 필요한 정보 세션에 저장
@@ -88,6 +94,8 @@ public class PaymentKakao implements Handler {
             request.getSession().setAttribute("items", itemJson.toJSONString());
             JSONObject quantityJson = new JSONObject(quantityMap);
             request.getSession().setAttribute("quantities", quantityJson.toJSONString());
+            JSONObject foodNoJson = new JSONObject(foodNoMap);
+            request.getSession().setAttribute("foodNos", foodNoJson.toJSONString());
 
             params.put("quantity", String.valueOf(items.length));
 

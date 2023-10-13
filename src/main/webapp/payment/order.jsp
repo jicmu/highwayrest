@@ -30,7 +30,7 @@
                         <div class="card-header">
                             ${f.foodNm}<input type="hidden" name="items" value="${f.foodNo}">
                             <div id="cancel-${status.index}" class="float-end text-muted" style="cursor: pointer;">
-                                ${f.restNo}
+                                ${f.restNo}<input type="hidden" name="restNo" value="${f.restNo}">
                             </div>
                         </div>
                         <div>

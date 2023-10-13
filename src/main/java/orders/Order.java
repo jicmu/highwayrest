@@ -12,10 +12,8 @@ import java.sql.Date;
 @Builder
 @Setter
 public class Order {
-
     private Integer orderNo;
     private Integer foodNo;
-    private String menu;
     private Integer restNo;
     private Integer pay;
     private Integer quantity;
@@ -23,5 +21,5 @@ public class Order {
     private String ordersNo;
     private Integer status;
     private Date oDate;
-
+    private String menu;
 }
