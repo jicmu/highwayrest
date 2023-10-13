@@ -54,54 +54,14 @@ public class CancelApiHandler implements Handler {
         }
 
 
-        // kakao 결제 취소
-        URL credentialUrl = Thread.currentThread().getContextClassLoader().getResource("../../WEB-INF/credential.properties");
-
-        Properties properties = new Properties();
-
-        properties.load(new FileReader(credentialUrl.getPath()));
-
-        String kakaoKey = properties.getProperty("kakaoKey");
-
         try {
-            URL url = new URL("https://kapi.kakao.com/v1/payment/cancel");
-
-            HttpURLConnection huc = (HttpURLConnection) url.openConnection();
-
-            huc.setRequestMethod("POST");
-            huc.setRequestProperty("Authorization", "KakaoAK " + kakaoKey);
-            huc.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-
-            huc.setDoInput(true);
-            huc.setDoOutput(true);
-
-            // TODO 추후 수정
-            String companyId = "1";
-
-            Map<String, String> params = new HashMap<>();
-
-            params.put("cid", "TC0ONETIME");
-            params.put("tid", ordersNo);
-            params.put("cancel_tax_free_amount", "0");
-            params.put("cancel_amount", String.valueOf(orderService.findTotalPrice(ordersNo)));
-
-            String param = "";
-            for (Map.Entry<String, String> entry : params.entrySet()) {
-                param += entry.getKey() + "=" + entry.getValue() + "&";
-            }
-
-            huc.getOutputStream().write(param.getBytes("utf-8"));
-
-            BufferedReader cancelBr = new BufferedReader(new InputStreamReader(huc.getInputStream()));
-
-            JSONParser jsonParser = new JSONParser();
-            JSONObject parsed = (JSONObject) jsonParser.parse(cancelBr);
-
-
-            int cancel = orderService.cancel(ordersNo);
+            orderService.cancelKakaoPay(ordersNo);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+
+        int cancel = orderService.cancel(ordersNo);
 
         return "";
     }
