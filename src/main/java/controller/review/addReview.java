@@ -67,10 +67,13 @@ public class addReview implements Handler {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd"); //20231012 형식으로 출력됨
         String fileDate = sdf.format(date);
 
-        String nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + fileDate + "\\" + orderNo;
+        ReviewService service = new ReviewService();
+        int reviewNo = service.getSeq();
+
+        String nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + fileDate + "\\" + reviewNo;
         String osName1 = System.getProperty("os.name");
         if (osName1.contains("win")) {
-            nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + fileDate + "\\" + orderNo;
+            nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + fileDate + "\\" + reviewNo;
         } else if (osName1.contains("mac")) {
             nPath = "";
         } else if (osName1.contains("nix") || osName1.contains("nux")) {
@@ -108,8 +111,7 @@ public class addReview implements Handler {
             }
         }
 
-        ReviewService service = new ReviewService();
-        service.addReview(new Review(0, memberNo, null, content, star, orderNo, imgs[0], imgs[1], imgs[2]));
+        service.addReview(new Review(reviewNo, memberNo, null, content, star, orderNo, imgs[0], imgs[1], imgs[2]));
         return "redirect/index.jsp";
     }
 
