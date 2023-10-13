@@ -41,12 +41,12 @@
                             <div class="col-3 m-3 d-inline-block">
                                 <label for="menu-${o.ordersNo}">음식</label>
                                 <input class="form-control form-control-sm" type="text" id="menu-${o.ordersNo}"
-                                    name="menu" value="${o.menu}">
+                                    name="menu" value="${o.menu}" readonly>
                             </div>
                             <div class="col-3 m-3 d-inline-block">
                                 <label for="quantity-${o.ordersNo}">수량</label>
                                 <input class="form-control form-control-sm" type="number"
-                                    id="quantity-${o.ordersNo}" name="quantity" value="${o.quantity}">
+                                    id="quantity-${o.ordersNo}" name="quantity" value="${o.quantity}" readonly>
                             </div>
                             <div class="col-3 m-3 d-inline-block">
                                 <label for="price-${o.ordersNo}">총 가격</label>
