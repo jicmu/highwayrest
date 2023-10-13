@@ -35,58 +35,6 @@
 <%--    </script>--%>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <i class="fa-solid fa-road"></i>
-            <i class="fa-solid fa-utensils"></i>
-        </a>
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Road Reserve</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/index.jsp">Home</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                <c:if test="${sessionScope.loginId == null }">
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath }/member/login">로그인</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath }/member/join">회원가입</a>
-                    </li>
-                </c:if>
-                <c:if test="${sessionScope.loginId != null }">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ${sessionScope.nickname}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-lg-end">
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath }/member/edit?id=${sessionScope.loginId}">내정보</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath }/payment/orderList">주문내역</a></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath }/review/list">리뷰관리</a></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath }/member/out">로그아웃</a></li>
-<%--                            <li>--%>
-<%--                                <form action="${pageContext.request.contextPath }/member/out?id=${sessionScope.loginId}" method="post">--%>
-<%--                                    <input type="button" name="b1" value="회원탈퇴" onclick="a()"><br/>--%>
-<%--                                </form>--%>
-<%--                            </li>--%>
-                        </ul>
-                    </li>
-                </c:if>
-            </ul>
-        </div>
-    </div>
-</nav>
-<div style="text-align:center;">
-    <c:if test="${view != null }">
-        <jsp:include page="${view }"/>
-    </c:if>
-</div>
+
 </body>
 </html>
