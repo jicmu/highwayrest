@@ -88,6 +88,10 @@
         <script>
             document.querySelectorAll(".btn-cancel").forEach((element) => {
                 element.addEventListener("click", () => {
+                    if (!confirm("같이 주문했던 음식도 취소됩니다. 취소하시겠습니까?")) {
+                        return;
+                    }
+
                     let xhr = new XMLHttpRequest();
 
                     xhr.open("post", "${pageContext.request.contextPath}/api/cancel");
@@ -139,9 +143,11 @@
                                 elem.remove();
                             });
 
-                            let status = document.querySelector("#status-container-" + index);
+                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
-                            status.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료<span><a href="${pageContext.request.contextPath}/addReview">후기 작성</a></span>'
+                            status.forEach((statusElem) => {
+                                statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료<span><a href="${pageContext.request.contextPath}/addReview">후기 작성</a></span>'
+                            });
                         }
                     }
                 });
