@@ -37,17 +37,9 @@
                             <div class="col-3 m-3 d-inline-block">
                                 <label for="quantity-${status.index}">수량</label>
                                 <select name="quantity" id="quantity-${status.index}" class="form-select form-select-sm">
-                                    <option value="0">0</option>
-                                    <option value="1" selected>1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                    <c:forEach begin="0" end="${max}" var="i">
+                                        <option value="${i}" <c:if test="${i eq f.amount}">selected</c:if>>${i}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <div class="col-3 m-3 d-inline-block">
@@ -75,17 +67,9 @@
                         <div class="col-3 m-3 d-inline-block">
                             <label for="quantity-1">수량</label>
                             <select name="quantity" id="quantity-1" class="form-select form-select-sm">
-                                <option value="0">0</option>
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
+                                <c:forEach begin="0" end="${max}" var="i">
+                                    <option value="${i}" <c:if test="${i eq 1}">selected</c:if>>${i}</option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div class="col-3 m-3 d-inline-block">
@@ -112,17 +96,9 @@
                         <div class="col-3 m-3 d-inline-block">
                             <label for="quantity-2">수량</label>
                             <select name="quantity" id="quantity-2" class="form-select form-select-sm">
-                                <option value="0">0</option>
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
+                                <c:forEach begin="0" end="${max}" var="i">
+                                    <option value="${i}" <c:if test="${i eq 1}">selected</c:if>>${i}</option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div class="col-3 m-3 d-inline-block">
