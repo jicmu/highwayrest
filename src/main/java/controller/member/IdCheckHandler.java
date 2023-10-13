@@ -2,7 +2,7 @@ package controller.member;
 
 import common.Handler;
 import data.entity.Member;
-import member.MemberService;
+import service.member.MemberService;
 import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;

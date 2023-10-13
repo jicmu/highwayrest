@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
         <div class="row">
             <ul class="nav justify-content-center">
               <li class="nav-item">
-                <a class="nav-link" href="#">메뉴</a>
+                <a class="nav-link" href="/highwayrest/foodlist?stdRestCd=${highwayrest.svarCd }">메뉴</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">후기</a>
@@ -22,7 +23,7 @@
             <hr>
         </div>
         <div class="row mt-3">
-            <h2>${restNm } 상세 정보</h2>
+            <h2>${highwayrest.svarNm } 상세 정보</h2>
         </div>
         <div class="row mt-3">
             <div class="col">
@@ -39,13 +40,14 @@
             </div>
         </div>
         <div class="row mt-3">
-            <table>
-                <tr><th>주소</th><td></td></tr>
-                <tr><th>소형차주차대수</th><td></td></tr>
-                <tr><th>대형차주차대수</th><td></td></tr>
-                <tr><th>장애인주차대수</th><td></td></tr>
-                <tr><th>대표전화번호</th><td></td></tr>
-            </table>
+            <div class="col-10">
+                <table>
+                    <tr><th>주소</th><td>${highwayrest.svarAddr }</td></tr>
+                    <tr><th>대표전화번호</th><td>${highwayrest.rprsTelNo }</td></tr>
+                </table>
+                <div class="d-none" id="svarNm">${highwayrest.svarNm }</div>
+                <div class="d-none" id="svarAddr">${highwayrest.svarAddr }</div>
+            </div>
         </div>
     </div>
 </body>

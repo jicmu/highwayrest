@@ -22,47 +22,95 @@
 </head>
 <body>
     <main class="container-sm">
+        <form action="" name="form-payment">
         <h1 class="p-1 pb-2 border-bottom border-muted">주문</h1>
-        <section id="orders" class="row">
-            <form action="" method="get" name="form-payment">
-                <c:forEach items="${foodList}" var="f">
+            <section id="orders" class="row">
+                <c:forEach items="${foodList}" var="f" varStatus="status">
                     <article class="card p-0 mb-3">
                         <div class="card-header">
                             ${f.foodNm}<input type="hidden" name="items" value="${f.foodNm}">
-                            <div id="cancel-1" class="float-end text-muted" style="cursor: pointer;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                </svg>
+                            <div id="cancel-${status.index}" class="float-end text-muted" style="cursor: pointer;">
+                                ${f.restNo}
                             </div>
                         </div>
                         <div>
                             <div class="col-3 m-3 d-inline-block">
-                                <label for="quantity-1">수량</label>
-                                <select name="quantity" id="quantity-1" class="form-select form-select-sm">
-                                    <option value="0">0</option>
-                                    <option value="1" selected>1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                <label for="quantity-${status.index}">수량</label>
+                                <select name="quantity" id="quantity-${status.index}" class="form-select form-select-sm">
+                                    <c:forEach begin="0" end="${max}" var="i">
+                                        <option value="${i}" <c:if test="${i eq f.amount}">selected</c:if>>${i}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <div class="col-3 m-3 d-inline-block">
-                                <label for="unit-1">단가</label>
-                                <input class="form-control form-control-sm" type="number" name="unit" id="unit-1" value="${f.foodCost}" readonly>
+                                <label for="unit-${status.index}">단가</label>
+                                <input class="form-control form-control-sm" type="number" name="unit" id="unit-${status.index}" value="${f.foodCost}" readonly>
                             </div>
                             <div class="col-3 m-3 d-inline-block">
-                                <label for="price-1">가격</label>
-                                <input class="form-control form-control-sm" type="number" name="price" id="price-1" readonly>
+                                <label for="price-${status.index}">가격</label>
+                                <input class="form-control form-control-sm" type="number" name="price" id="price-${status.index}" readonly>
                             </div>
                         </div>
                     </article>
                 </c:forEach>
+
+                <article class="card p-0 mb-3">
+                    <div class="card-header">
+                        음식 1<input type="hidden" name="items" value="음식 1">
+                        <div id="cancel-1" class="float-end text-muted" style="cursor: pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-3 m-3 d-inline-block">
+                            <label for="quantity-1">수량</label>
+                            <select name="quantity" id="quantity-1" class="form-select form-select-sm">
+                                <c:forEach begin="0" end="${max}" var="i">
+                                    <option value="${i}" <c:if test="${i eq 1}">selected</c:if>>${i}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-3 m-3 d-inline-block">
+                            <label for="unit-1">단가</label>
+                            <input class="form-control form-control-sm" type="number" name="unit" id="unit-1" value="1000" readonly>
+                        </div>
+                        <div class="col-3 m-3 d-inline-block">
+                            <label for="price-1">가격</label>
+                            <input class="form-control form-control-sm" type="number" name="price" id="price-1" readonly>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card p-0 mb-3">
+                    <div class="card-header">
+                        음식 2<input type="hidden" name="items" value="음식 2">
+                        <div id="cancel-2" class="float-end text-muted" style="cursor: pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-3 m-3 d-inline-block">
+                            <label for="quantity-2">수량</label>
+                            <select name="quantity" id="quantity-2" class="form-select form-select-sm">
+                                <c:forEach begin="0" end="${max}" var="i">
+                                    <option value="${i}" <c:if test="${i eq 1}">selected</c:if>>${i}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-3 m-3 d-inline-block">
+                            <label for="unit-2">단가</label>
+                            <input class="form-control form-control-sm" type="number" name="unit" id="unit-2" value="1000" readonly>
+                        </div>
+                        <div class="col-3 m-3 d-inline-block">
+                            <label for="price-2">가격</label>
+                            <input class="form-control form-control-sm" type="number" name="price" id="price-2" readonly>
+                        </div>
+                    </div>
+                </article>
 
                 <div class="clearfix">
                     <span class="d-inline-block">
@@ -74,8 +122,8 @@
                         <button type="button" class="btn btn-outline-primary bg-hover-kakao" id="pay-by-kakao" style="border-color: #FFDC00; color: #8A7813">결제</button>
                     </div>
                 </div>
-            </form>
-        </section>
+            </section>
+        </form>
     </main>
     <script>
         let quantityElem = document.querySelectorAll("select[name=quantity]");

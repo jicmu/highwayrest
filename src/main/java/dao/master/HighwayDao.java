@@ -19,4 +19,13 @@ public interface HighwayDao {
 
     @Select("select distinct road.routenm roadName, rest.svarnm restName from highway road, highwayrest rest where road.routecd = rest.routecd and road.routeCd = #{no}")
     ArrayList<HighwayRestDTO> joinCheck(@Param("no") String no);
+    
+    @Select("select * from highway where routeCd = #{routeCd}")
+    Highway selectByCd(@Param("routeCd") String routeCd);
+
+    @Select("select * from highway where routeNm like #{routeNm}")
+    ArrayList<Highway> selectByNm(@Param("routeNm") String routeNm);
+
+    @Select("select * from highway")
+    ArrayList<Highway> selectAll();
 }

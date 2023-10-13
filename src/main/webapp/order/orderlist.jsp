@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script>
+        window.onload = () => {
+            const calc = () => {
+                let amount = document.getElementById("${m.no }_amount").value;
+                let price = document.getElementById("${m.no }_price").value;
 
+                let sum;
+                sum += amount;
+
+                let tamount = document.getElementById("tamount");
+                tamount.innerHTML = "총 주문 수량 : '" + sum + "'";
+
+                let inTamount = document.getElementById("inTamount");
+                inTamount.value = sum;
+
+                let sumtotal;
+                sumtotal += (amount * price);
+
+                let tprice = document.getElementById("tprice");
+                tprice.innerHTML = "총 결제 금액 : '" + sumtotal + "'";
+
+                let inTprice = document.getElementById("inTprice");
+                inTprice.value = sumtotal;
+            }
+
+            const reset = () => {
+                let amount = document.querySelectorAll("input[name='amount']");
+                amount.value = 0;
+            }
+
+            document.getElementById("btn").onclick = function(){
+                let searchWord = document.getElementById("searchWord");
+                let svarNm = document.getElementById("svarNm");
+                searchWord.value = routeNm.value;
+
+                document.getElementById("f").submit();
+                return false;
+            }
+        }
     </script>
 </head>
 <body>
@@ -18,7 +56,7 @@
                 <a class="nav-link" href="#">메뉴</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">후기</a>
+                <a class="nav-link" href="/highwayrest/listReview?svarCd=${svarCd }">후기</a>
               </li>
             </ul>
             <hr>
@@ -28,34 +66,35 @@
                 <h2>주문</h2>
             </div>
             <div class="col-8">
-                <form class="d-flex" role="search" action="#" method="post">
-                    <input type="hidden" name="searchType" val="3">
+                <form class="d-flex" role="search" action="/highwayrest/foodsearch" method="post">
+                    <input type="hidden" name="searchType" value="3">
+                    <input type="hidden" name="memberNo" value="${sessionScope.loginId }">
+                    <input type="hidden" name="searchWord" value="">
                     <input class="form-control me-2" type="search" name="searchWord" placeholder="메뉴명">
                     <button class="btn btn-outline-success" type="submit">검색</button>
                 </form>
             </div>
             <hr>
         </div>
-        <form action="#" method="post">
+        <form action="/highwayrest/order" method="get">
+            <input type="hidden" name="stdRestCd" value="${stdRestCd }">
             <div class="row">
-                <table class="text-center">
-                    <!-- <c:forEach var="m" item="${list }"> -->
+                <table class="text-center" id="food-table">
                     <tr><th>메뉴</th><th>가격</th><th>수량</th></tr>
+                    <c:forEach var="m" items="${list }">
                     <tr>
-                        <input type="hidden" name="menu" val="${m.menuCd }">
-                        <input type="hidden" name="price" val="${m.price }">
-                        <td>${m.menuNm }</td>
-                        <td>${m.price }</td>
-                        <td><input type="number" name="amount"></td>
+                        <td>${m.name }<input type="hidden" id="${m.no }_name" name="foodNm" value="${m.name }"></td>
+                        <td>${m.foodCost }<input type="hidden" id="${m.no }_price" name="foodCost" value="${m.foodCost }"></td>
+                        <td><input type="number" id="${m.no }_amount" name="amount"></td>
                     </tr>
-                    <!-- </c:forEach> -->
+                    </c:forEach>
                 </table>
             </div>
-            <div class="row justify-content-end mt-3 d-flex">
-                <input type="hidden" name="tamount" val="">
-                <input type="hidden" name="tprice" val="">
-                <h5 class="justify-content-end">총 주문 수량 : </h5>
-                <h5 class="justify-content-end">총 결제 금액 : </h5>
+            <div class="row d-flex justify-content-end mt-3">
+                <input type="hidden" id= name="tamount" value="">
+                <input type="hidden" id= name="tprice" value="">
+                <h5 class="d-flex justify-content-end" id="tamount"></h5>
+                <h5 class="d-flex justify-content-end" id="tprice"></h5>
                 <hr>
             </div>
             <div class="row">

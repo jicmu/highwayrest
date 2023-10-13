@@ -16,4 +16,24 @@ public class RestFoodService extends Service {
         sqlSession.commit();
         sqlSession.close();
     }
+
+    public ArrayList<RestFood> getBySCd(String stdRestCd){
+        sqlSession = sqlSessionFactory.openSession();
+        RestFoodDao dao = sqlSession.getMapper(RestFoodDao.class);
+        ArrayList<RestFood> list = dao.selectBySCd(stdRestCd);
+
+        sqlSession.close();
+
+        return list;
+    }
+
+    public ArrayList<RestFood> getByName(String name){
+        sqlSession = sqlSessionFactory.openSession();
+        RestFoodDao dao = sqlSession.getMapper(RestFoodDao.class);
+        ArrayList<RestFood> list = dao.selectByName("%" + name + "%");
+
+        sqlSession.close();
+
+        return list;
+    }
 }

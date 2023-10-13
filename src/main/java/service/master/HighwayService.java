@@ -32,5 +32,34 @@ public class HighwayService extends Service {
         for(HighwayRestDTO item : list) {
             System.out.println("item: " + item);
         }
+  
+    public Highway getByCd(String routeCd){
+        sqlSession = sqlSessionFactory.openSession();
+        HighwayDao dao = sqlSession.getMapper(HighwayDao.class);
+        Highway highway = dao.selectByCd(routeCd);
+
+        sqlSession.close();
+
+        return highway;
+    }
+
+    public ArrayList<Highway> getByNm(String routeNm){
+        sqlSession = sqlSessionFactory.openSession();
+        HighwayDao dao = sqlSession.getMapper(HighwayDao.class);
+        ArrayList<Highway> list = dao.selectByNm("%" + routeNm + "%");
+
+        sqlSession.close();
+
+        return list;
+    }
+
+    public ArrayList<Highway> getAll(){
+        sqlSession = sqlSessionFactory.openSession();
+        HighwayDao dao = sqlSession.getMapper(HighwayDao.class);
+        ArrayList<Highway> list = dao.selectAll();
+
+        sqlSession.close();
+
+        return list;
     }
 }

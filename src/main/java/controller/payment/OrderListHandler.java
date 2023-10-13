@@ -21,7 +21,7 @@ public class OrderListHandler implements Handler {
 
         // TODO 세션에 저장할 정보 결정 후 수정
         String loginNum = (String) request.getSession().getAttribute("loginNum");
-        loginNum = "1";
+//        loginNum = "1";
 
         List<Order> orderList = orderService.getMyOrders(Integer.parseInt(loginNum));
 
