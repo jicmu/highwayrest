@@ -15,8 +15,9 @@ public class Order {
     private String menu;
     private Integer restNo;
     private Integer pay;
+    private Integer quantity;
     private Integer memberNo;
-    private Integer ordersNo;
+    private String ordersNo;
     private Integer status;
     private Date oDate;
 
