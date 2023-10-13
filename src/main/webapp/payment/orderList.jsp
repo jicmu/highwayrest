@@ -65,7 +65,7 @@
                                     </c:when>
                                     <c:when test="${o.status eq 4}">
                                         <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료
-                                        <span><a href="${pageContext.request.contextPath}/addReview">후기 작성</a></span>
+                                        <span><a href="${pageContext.request.contextPath}/addReview?orderNo=${o.ordersNo}">후기 작성</a></span>
                                     </c:when>
                                     <c:otherwise>
                                         <span>알 수 없음</span>
