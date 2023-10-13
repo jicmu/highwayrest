@@ -53,7 +53,7 @@
                                 <input class="form-control form-control-sm" type="number" name="price"
                                     id="price-${o.ordersNo}" value="${o.pay}" readonly>
                             </div>
-                            <span id="status-container-${o.ordersNo}">
+                            <span id="status-container-${o.ordersNo}" ident="status-container-${o.ordersNo}">
                                 <c:choose>
                                     <c:when test="${o.status eq 0}">
                                         <span class="status-dot bg-primary" id="status-${o.ordersNo}"></span> 수락 대기
@@ -78,10 +78,10 @@
                         </div>
                         <c:choose>
                             <c:when test="${o.status eq 0}">
-                                <button class="btn btn-danger btn-cancel" id="btn-cancel-${o.ordersNo}">주문 취소</button>
+                                <button class="btn btn-danger btn-cancel" id="btn-cancel-${o.ordersNo}" ident="btn-cancel-${o.ordersNo}">주문 취소</button>
                             </c:when>
                             <c:when test="${o.status eq 1}">
-                                <button class="btn btn-info btn-done" id="btn-done-${o.ordersNo}">수령</button>
+                                <button class="btn btn-info btn-done" id="btn-done-${o.ordersNo}" ident="btn-done-${o.ordersNo}">수령</button>
                             </c:when>
                         </c:choose>
                     </article>
@@ -96,7 +96,7 @@
                     xhr.open("post", "${pageContext.request.contextPath}/api/cancel");
                     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-                    let index = element.id.replace("btn-cancel-", "");
+                    let index = element.getAttribute("ident").replace("btn-cancel-", "");
 
                     let parameter = {
                         ordersNo: index
@@ -106,11 +106,16 @@
 
                     xhr.onload = () => {
                         if (xhr.status == 200) {
-                            document.querySelector("#btn-cancel-" + index).remove();
+                            document.querySelectorAll("[ident=btn-cancel-" + index + "]").forEach((elem) => {
+                                elem.remove();
+                            });
 
-                            let status = document.querySelector("#status-container-" + index);
+                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
-                            status.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
+                            status.forEach((statusElem) => {
+                                statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
+                            });
+
                         }
                     }
                 })
@@ -123,7 +128,7 @@
                     xhr.open("post", "${pageContext.request.contextPath}/api/done");
                     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-                    let index = element.id.replace("btn-done-", "");
+                    let index = element.getAttribute("ident").replace("btn-done-", "");
 
                     let parameter = {
                         ordersNo: index
@@ -133,14 +138,16 @@
 
                     xhr.onload = () => {
                         if (xhr.status == 200) {
-                            document.querySelector("#btn-done-" + index).remove();
+                            document.querySelectorAll("[ident=btn-done-" + index + "]").forEach((elem) => {
+                                elem.remove();
+                            });
 
                             let status = document.querySelector("#status-container-" + index);
 
                             status.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료'
                         }
                     }
-                })
+                });
             });
         </script>
     </body>
