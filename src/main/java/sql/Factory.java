@@ -16,7 +16,7 @@ public class Factory {
 	// 초기화 블록:멤버 변수 초기화하는 블록
 	static {
 		try {
-			String resource = "/mf/config.xml";
+			String resource = "/config.xml";
 			Reader reader = Resources.getResourceAsReader(resource);
 
 			if (sqlSessionFactory == null) {

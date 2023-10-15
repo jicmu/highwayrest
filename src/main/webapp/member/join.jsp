@@ -8,8 +8,10 @@
         let req = new XMLHttpRequest();
         req.onload = () => {
             let obj = JSON.parse(req.responseText);
+            document.getElementById("res").style.color = "red";
             let txt = "중복된 아이디입니다.";
             if (obj.flag) {
+                document.getElementById("res").style.color = "green";
                 txt = "사용 가능한 아이디입니다.";
             }
             document.getElementById("res").innerHTML = txt;
@@ -45,12 +47,12 @@
             </div>
             <div class="mb-3 text-start">
                 <label for="id" class="form-label ms-2">아이디</label>
-                <div class="d-flex">
+                <div class="d-flex gap-2">
                     <input type="text" id="id" name="id" class="form-control" placeholder="Username" autofocus>
                     <input type="button" value="중복확인" onclick="a()">
                 </div>
-                <div id="res"></div>
             </div>
+            <div id="res"></div>
             <div class="mb-3 text-start">
                 <label for="password" class="form-label ms-2" style="text-align:left;">비밀번호</label>
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password" onkeyup="check();">

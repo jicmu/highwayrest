@@ -1,12 +1,14 @@
 package controller.review;
 
 import common.Handler;
+import data.entity.Review;
 import service.review.ReviewService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class sortReview implements Handler {
     String go = "/review/list.jsp";
@@ -16,13 +18,13 @@ public class sortReview implements Handler {
 
         ArrayList<Review> list = new ArrayList<>();
 
-        if(sort.equals("sortHighRate")){
-            list = service.getAllByHighRate();
-        }else if(sort.equals("sortLowRate")){
-            list = service.getAllByLowRate();
-        }
-        equest.setAttribute("list", list);
-        request.setAttribute("view", "/review/review.jsp");
+//        if(sort.equals("sortHighRate")){
+//            list = service.getAllByHighRate();
+//        }else if(sort.equals("sortLowRate")){
+//            list = service.getAllByLowRate();
+//        }
+//        equest.setAttribute("list", list);
+//        request.setAttribute("view", "/review/review.jsp");
 
         return go;
     }

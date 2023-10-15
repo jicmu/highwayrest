@@ -29,9 +29,10 @@ public class HighwayService extends Service {
 
         sqlSession.close();
 
-        for(HighwayRestDTO item : list) {
+        for (HighwayRestDTO item : list) {
             System.out.println("item: " + item);
         }
+    }
   
     public Highway getByCd(String routeCd){
         sqlSession = sqlSessionFactory.openSession();
