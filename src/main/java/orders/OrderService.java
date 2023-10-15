@@ -160,6 +160,25 @@ public class OrderService {
         return count;
     }
 
+    public int finish(String ordersNum) {
+        Order order = Order.builder()
+                .ordersNo(ordersNum)
+                .status(5)
+                .build();
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrderDao dao = sqlSession.getMapper(OrderDao.class);
+
+        int count = dao.setStatus(order);
+
+        sqlSession.commit();
+
+        sqlSession.close();
+
+        return count;
+    }
+
     public List<Order> findByOrdersNo(String ordersNo) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 

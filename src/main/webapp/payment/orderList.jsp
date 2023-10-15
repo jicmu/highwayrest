@@ -55,8 +55,11 @@
                                         <span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소
                                     </c:when>
                                     <c:when test="${o.status eq 4}">
-                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료
+                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 수령 완료
                                         <span><a href="${pageContext.request.contextPath}/addReview?orderNo=${o.ordersNo}">후기 작성</a></span>
+                                    </c:when>
+                                    <c:when test="${o.status eq 5}">
+                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 조리 완료
                                     </c:when>
                                     <c:otherwise>
                                         <span>알 수 없음</span>
@@ -68,7 +71,7 @@
                             <c:when test="${o.status eq 0}">
                                 <button class="btn btn-danger btn-cancel" id="btn-cancel-${o.ordersNo}" ident="btn-cancel-${o.ordersNo}">주문 취소</button>
                             </c:when>
-                            <c:when test="${o.status eq 1}">
+                            <c:when test="${o.status eq 5 }">
                                 <button class="btn btn-info btn-done" id="btn-done-${o.ordersNo}" ident="btn-done-${o.ordersNo}">수령</button>
                             </c:when>
                         </c:choose>

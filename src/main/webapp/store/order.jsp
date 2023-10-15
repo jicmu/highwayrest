@@ -16,7 +16,7 @@
             <h1 class="p-1 pb-2 border-bottom border-muted">주문 확인</h1>
             <section id="orders" class="row">
                 <c:forEach items="${orderList}" var="o" varStatus="status">
-                    <article class="card p-0 mb-3">
+                    <article class="card p-0 mb-3" id="article-${o.ordersNo}">
                         <div class="card-header">
                             ${o.ordersNo}<input type="hidden" name="items" value="${o.ordersNo}">
                             <div id="cancel-1" class="float-end text-muted" style="cursor: pointer;">
@@ -58,7 +58,10 @@
                                         <span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소
                                     </c:when>
                                     <c:when test="${o.status eq 4}">
-                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료
+                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 수령 완료
+                                    </c:when>
+                                    <c:when test="${o.status eq 5}">
+                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 조리 완료
                                     </c:when>
                                     <c:otherwise>
                                         <span>알 수 없음</span>
@@ -70,6 +73,11 @@
                             <div class="btn-group" id="btn-group-${o.ordersNo}" ident="btn-group-${o.ordersNo}">
                                 <button class="btn btn-danger btn-deny" id="btn-deny-${o.ordersNo}">거절</button>
                                 <button class="btn btn-primary btn-accept" id="btn-accept-${o.ordersNo}">수락</button>
+                            </div>
+                        </c:if>
+                        <c:if test="${o.status eq 1}">
+                            <div class="btn-group" id="btn-group-${o.ordersNo}" ident="btn-group-${o.ordersNo}">
+                                <button class="btn btn-primary btn-finish" id="btn-finish-${o.ordersNo}">조리 완료</button>
                             </div>
                         </c:if>
                     </article>
@@ -112,6 +120,38 @@
                 })
             });
 
+            document.querySelectorAll(".btn-finish").forEach((element) => {
+                element.addEventListener("click", () => {
+                    let xhr = new XMLHttpRequest();
+
+                    xhr.open("post", "${pageContext.request.contextPath}/api/finish");
+
+                    let index = element.id.replace("btn-finish-", "");
+
+                    let parameter = {
+                        ordersNo: index
+                    };
+
+                    xhr.send(JSON.stringify(parameter));
+
+                    xhr.onload = () => {
+                        if (xhr.status == 200) {
+                            document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
+                                elem.remove();
+                            });
+
+                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
+
+                            status.forEach((statusElem) => {
+                                statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 조리 완료';
+                            });
+                        }
+                    }
+                })
+            });
+
+
+
             document.querySelectorAll(".btn-accept").forEach((element) => {
                 element.addEventListener("click", () => {
                     let xhr = new XMLHttpRequest();
@@ -138,6 +178,11 @@
                             status.forEach((statusElem) => {
                                 statusElem.innerHTML = '<span class="status-dot bg-success" id="status-${o.ordersNo}"></span> 수락'
                             });
+                            let successText = `<div class="btn-group" id="btn-group-${o.ordersNo}" ident="btn-group-${o.ordersNo}">
+                                <button class="btn btn-primary btn-accept" id="btn-accept-${o.ordersNo}">조리 완료</button>
+                            </div>`;
+
+                            document.querySelector("article-" + index).append(successText);
                         }
                     }
                 })

@@ -34,7 +34,12 @@ public class OrderHandler implements Handler {
         int max = 10;
         if (amounts != null && amounts.length != 0) {
             for (String a : amounts) {
-                int amount = Integer.parseInt(a);
+                int amount = 0;
+                if (!a.isEmpty()) {
+                    amount = Integer.parseInt(a);
+                } else {
+                    continue;
+                }
 
                 if (max < amount) {
                     max = amount;
