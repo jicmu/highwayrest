@@ -16,7 +16,7 @@ public interface MemberDao {
 	@Select("select * from member where id=#{id}")
 	Member select(@Param("id") String id);
 
-	@Update("update member set password=#{password}, nickname=#{nickname} where id=#{id}")
+	@Update("update member set password=#{password}, nickname=#{nickname}, tel=#{tel} where id=#{id}")
 	void update(Member m);
 
 	@Delete("delete from member where id=#{id}")

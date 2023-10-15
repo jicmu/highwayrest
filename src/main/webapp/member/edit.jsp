@@ -22,7 +22,7 @@ password:<input type="password" name="password" value="${m.password}" id="passwo
 name:<input type="text" name="name" value="${m.name}" readonly><br/>
 nickname:<input type="text" name="nickname" value="${m.nickname}"><br/>
 email:<input type="text" name="email" value="${m.email}" readonly><br/>
-tel:<input type="text" name="tel" value="${m.tel}" readonly><br/>
+tel:<input type="text" name="tel" value="${m.tel}"><br/>
 <input type="submit" value="수정">
 <a href="${pageContext.request.contextPath }/controller/yeonann/memberindex.jsp">취소</a>
 </form>
