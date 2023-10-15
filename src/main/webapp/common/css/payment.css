@@ -41,3 +41,31 @@ body::-webkit-scrollbar {
     background-color: #FFDC00 !important;
     color: #8A7813 !important;
 }
+
+@media (max-width: 990px) {
+    #nav-logo {
+         font-size: 28px;
+    }
+
+    .nav-logo {
+        font-size: 24px;
+    }
+
+    .nav-link {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 770px) {
+    #nav-logo {
+         font-size: 20px;
+    }
+
+    .nav-logo {
+        font-size: 16px;
+    }
+
+    .nav-link {
+        font-size: 16px;
+    }
+}
