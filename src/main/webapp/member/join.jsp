@@ -8,15 +8,15 @@
         let req = new XMLHttpRequest();
         req.onload = () => {
             let obj = JSON.parse(req.responseText);
-            document.getElementById("res").style.color = "red";
-            let txt = "중복된 아이디입니다.";
+            document.getElementById("idmsg").style.color = "red";
+            let txt = obj.msg;
             if (obj.flag) {
-                document.getElementById("res").style.color = "green";
-                txt = "사용 가능한 아이디입니다.";
+                document.getElementById("idmsg").style.color = "green";
+                txt = obj.msg;
             }
-            document.getElementById("res").innerHTML = txt;
+            document.getElementById("idmsg").innerHTML = txt;
         };
-        const a = () => {
+        const idcheck = () => {
             let id = f.id.value;
             req.open("get", "${pageContext.request.contextPath}/member/idcheck?id=" + id);
             req.send();
@@ -24,11 +24,11 @@
 
         const check = function() {
             if (document.getElementById("password").value === document.getElementById('password2').value) {
-                document.getElementById("res2").style.color = "green";
-                document.getElementById("res2").innerHTML = "비밀번호와 비밀번호 확인이 일치합니다.";
+                document.getElementById("passwordmsg").style.color = "green";
+                document.getElementById("passwordmsg").innerHTML = "비밀번호와 비밀번호 확인이 일치합니다.";
             } else {
-                document.getElementById("res2").style.color = "red";
-                document.getElementById("res2").innerHTML = "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
+                document.getElementById("passwordmsg").style.color = "red";
+                document.getElementById("passwordmsg").innerHTML = "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
             }
         }
     </script>
@@ -37,7 +37,7 @@
 <h3>회원가입</h3>
 <div class="row justify-content-center">
     <div class="col-lg-6">
-        <form action="${pageContext.request.contextPath}/member/join" method="post" name="f">
+        <form action="${pageContext.request.contextPath}/member/join" method="post" name="f" id="joinform">
             <div class="mb-3">
                 <c:if test="${not empty msg}">
                     <div class="alert alert-danger" role="alert">
@@ -49,10 +49,10 @@
                 <label for="id" class="form-label ms-2">아이디</label>
                 <div class="d-flex gap-2">
                     <input type="text" id="id" name="id" class="form-control" placeholder="Username" autofocus>
-                    <input type="button" value="중복확인" onclick="a()">
+                    <input type="button" value="중복확인" onclick="idcheck()">
                 </div>
             </div>
-            <div id="res"></div>
+            <div id="idmsg"></div>
             <div class="mb-3 text-start">
                 <label for="password" class="form-label ms-2" style="text-align:left;">비밀번호</label>
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password" onkeyup="check();">
@@ -61,7 +61,7 @@
                 <label for="password2" class="form-label ms-2" style="text-align:left;">비밀번호 확인</label>
                 <input type="password" id="password2" name="password2" class="form-control" placeholder="Password" onkeyup="check();">
             </div>
-            <div id="res2"></div>
+            <div id="passwordmsg"></div>
             <div class="mb-3 text-start">
                 <label for="name" class="form-label ms-2" style="text-align:left;">이름</label>
                 <input type="text" id="name" name="name" class="form-control" placeholder="Name">
@@ -70,10 +70,12 @@
                 <label for="nickname" class="form-label ms-2" style="text-align:left;">닉네임</label>
                 <input type="text" id="nickname" name="nickname" class="form-control" placeholder="Nickname">
             </div>
+            <div id="nicknamemsg"></div>
             <div class="mb-3 text-start">
                 <label for="email" class="form-label ms-2" style="text-align:left;">이메일</label>
                 <input type="email" id="email" name="email" class="form-control" placeholder="email@example.com">
             </div>
+            <div id="emailmsg"></div>
             <div class="mb-3 text-start">
                 <label for="tel" class="form-label ms-2" style="text-align:left;">전화번호</label>
                 <input type="text" id="tel" name="tel" class="form-control" placeholder="01012345678">

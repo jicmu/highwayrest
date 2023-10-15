@@ -19,7 +19,6 @@ public class KakaoLoginHandler implements Handler {
 
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-// TODO: 카카오 로그아웃
         try {
             String id = request.getParameter("id");
 

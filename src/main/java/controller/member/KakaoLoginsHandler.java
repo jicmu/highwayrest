@@ -20,6 +20,10 @@ public class KakaoLoginsHandler implements Handler {
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+            response.setContentType("text/html; charset=UTF-8");
+
             String id = request.getParameter("id");
 
             MemberService memberService = new MemberService();
