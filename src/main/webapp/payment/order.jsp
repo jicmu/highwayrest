@@ -55,7 +55,7 @@
                             <input class="form-control form-control-sm" type="number" name="total" id="total" readonly>
                         </span>
                         <div class="btn-group float-end">
-                            <button type="button" class="btn btn-outline-danger">취소</button>
+                            <button type="button" class="btn btn-outline-danger" onclick="javascript:history.go(-1);">취소</button>
                             <button type="button" class="btn btn-outline-primary bg-hover-kakao" id="pay-by-kakao" style="border-color: #FFDC00; color: #8A7813">결제</button>
                         </div>
                     </div>
