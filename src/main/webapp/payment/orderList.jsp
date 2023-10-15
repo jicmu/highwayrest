@@ -144,7 +144,7 @@
                         let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
                         status.forEach((statusElem) => {
-                            statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료<span><a href="${pageContext.request.contextPath}/addReview">후기 작성</a></span>'
+                            statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span>수령 완료<span><a href="${pageContext.request.contextPath}/addReview">후기 작성</a></span>'
                         });
                     }
                 }
