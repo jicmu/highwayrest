@@ -20,32 +20,34 @@
                 <h1 class="p-1 pb-2 border-bottom border-muted">주문</h1>
                 <section id="orders" class="row">
                     <c:forEach items="${foodList}" var="f" varStatus="status">
-                        <article class="card p-0 mb-3">
-                            <div class="card-header">
-                                ${f.foodNm}<input type="hidden" name="items" value="${f.foodNo}">
-                                <div id="cancel-${status.index}" class="float-end text-muted" style="cursor: pointer;">
-                                    ${f.restNo}<input type="hidden" name="restNo" value="${f.restNo}">
+                        <c:if test="${f.amount ne 0}">
+                            <article class="card p-0 mb-3">
+                                <div class="card-header">
+                                    ${f.foodNm}<input type="hidden" name="items" value="${f.foodNo}">
+                                    <div id="cancel-${status.index}" class="float-end text-muted" style="cursor: pointer;">
+                                        ${f.restNo}<input type="hidden" name="restNo" value="${f.restNo}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <div class="col-3 m-3 d-inline-block">
-                                    <label for="quantity-${status.index}">수량</label>
-                                    <select name="quantity" id="quantity-${status.index}" class="form-select form-select-sm">
-                                        <c:forEach begin="0" end="${max}" var="i">
-                                            <option value="${i}" <c:if test="${i eq f.amount}">selected</c:if>>${i}</option>
-                                        </c:forEach>
-                                    </select>
+                                <div>
+                                    <div class="col-3 m-3 d-inline-block">
+                                        <label for="quantity-${status.index}">수량</label>
+                                        <select name="quantity" id="quantity-${status.index}" class="form-select form-select-sm">
+                                            <c:forEach begin="0" end="${max}" var="i">
+                                                <option value="${i}" <c:if test="${i eq f.amount}">selected</c:if>>${i}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="col-3 m-3 d-inline-block">
+                                        <label for="unit-${status.index}">단가</label>
+                                        <input class="form-control form-control-sm" type="number" name="unit" id="unit-${status.index}" value="${f.foodCost}" readonly>
+                                    </div>
+                                    <div class="col-3 m-3 d-inline-block">
+                                        <label for="price-${status.index}">가격</label>
+                                        <input class="form-control form-control-sm" type="number" name="price" id="price-${status.index}" readonly>
+                                    </div>
                                 </div>
-                                <div class="col-3 m-3 d-inline-block">
-                                    <label for="unit-${status.index}">단가</label>
-                                    <input class="form-control form-control-sm" type="number" name="unit" id="unit-${status.index}" value="${f.foodCost}" readonly>
-                                </div>
-                                <div class="col-3 m-3 d-inline-block">
-                                    <label for="price-${status.index}">가격</label>
-                                    <input class="form-control form-control-sm" type="number" name="price" id="price-${status.index}" readonly>
-                                </div>
-                            </div>
-                        </article>
+                            </article>
+                        </c:if>
                     </c:forEach>
                     <div class="clearfix">
                         <span class="d-inline-block">
