@@ -75,24 +75,20 @@
                     </article>
                 </c:forEach>
             </section>
-            </div>
+        </div>
         <%--    <%@ include file="footer.jsp" %>--%>
             <%@ include file="/common/footer.jsp"%>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            document.querySelectorAll(".btn-cancel").forEach((element) => {
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.onload = () => {
+            document.querySelectorAll(".btn-deny").forEach((element) => {
                 element.addEventListener("click", () => {
-                    if (!confirm("같이 주문했던 음식도 취소됩니다. 취소하시겠습니까?")) {
-                        return;
-                    }
-
                     let xhr = new XMLHttpRequest();
 
-                    xhr.open("post", "${pageContext.request.contextPath}/api/cancel");
-                    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    xhr.open("post", "${pageContext.request.contextPath}/api/deny");
 
-                    let index = element.getAttribute("ident").replace("btn-cancel-", "");
+                    let index = element.id.replace("btn-deny-", "");
 
                     let parameter = {
                         ordersNo: index
@@ -102,29 +98,28 @@
 
                     xhr.onload = () => {
                         if (xhr.status == 200) {
-                            document.querySelectorAll("[ident=btn-cancel-" + index + "]").forEach((elem) => {
+                            document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
                                 elem.remove();
                             });
 
                             let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
                             status.forEach((statusElem) => {
-                                statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
+                                statusElem.innerHTML = '<span class="status-dot bg-danger" id="status-${o.ordersNo}"></span> 거부';
                             });
-
                         }
                     }
                 })
             });
 
-            document.querySelectorAll(".btn-done").forEach((element) => {
+            document.querySelectorAll(".btn-accept").forEach((element) => {
                 element.addEventListener("click", () => {
                     let xhr = new XMLHttpRequest();
 
-                    xhr.open("post", "${pageContext.request.contextPath}/api/done");
+                    xhr.open("post", "${pageContext.request.contextPath}/api/accept");
                     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-                    let index = element.getAttribute("ident").replace("btn-done-", "");
+                    let index = element.id.replace("btn-accept-", "");
 
                     let parameter = {
                         ordersNo: index
@@ -134,20 +129,20 @@
 
                     xhr.onload = () => {
                         if (xhr.status == 200) {
-                            document.querySelectorAll("[ident=btn-done-" + index + "]").forEach((elem) => {
+                            document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
                                 elem.remove();
                             });
 
                             let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
                             status.forEach((statusElem) => {
-                                statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료<span><a href="${pageContext.request.contextPath}/addReview">후기 작성</a></span>'
+                                statusElem.innerHTML = '<span class="status-dot bg-success" id="status-${o.ordersNo}"></span> 수락'
                             });
                         }
                     }
-                });
+                })
             });
-        </script>
-    </body>
-
-    </html>
+        }
+    </script>
+</body>
+</html>
