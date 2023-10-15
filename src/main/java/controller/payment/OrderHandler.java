@@ -22,9 +22,7 @@ public class OrderHandler implements Handler {
         service = new OrderService();
     }
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
-
-        return "/payment/order.jsp";
+        return doPost(request, response);
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

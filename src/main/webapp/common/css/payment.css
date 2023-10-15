@@ -1,0 +1,43 @@
+.container.main {
+    height: calc(100vh - 111px - 80px);
+    overflow: auto;
+}
+
+.container.main {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+.container.main::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+#wrapper {
+    padding-bottom: 0px !important;
+}
+footer {
+    top: 80px;
+}
+
+.status-dot {
+    border-radius: 100rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    display: inline-block;
+}
+
+body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.border-kakao {
+    border-color: #FFDC00;
+}
+
+.bg-hover-kakao:hover {
+    background-color: #FFDC00 !important;
+    color: #8A7813 !important;
+}
