@@ -95,45 +95,28 @@
 
                 xhr.open("post", cancelUrl);
 
-                console.log(cancelUrl);
-
                 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
                 let index = element.getAttribute("ident").replace("btn-cancel-", "");
                 let orderNo = element.getAttribute("orderNo").replace("btn-cancel-", "");
 
-                let parameter;
-                if (partial) {
-                    parameter = {
-                        orderNo: orderNo,
-                    }
-                } else {
-                    parameter = {
+                let parameter = {
                         ordersNo: index,
-                    };
-                }
+                };
 
                 xhr.send(JSON.stringify(parameter));
 
                 xhr.onload = () => {
                     if (xhr.status == 200) {
-                        if (partial) {
-                            document.querySelector("[orderNo=btn-cancel-" + orderNo + "]").remove();
+                        document.querySelectorAll("[ident=btn-cancel-" + index + "]").forEach((elem) => {
+                            elem.remove();
+                        });
 
-                            let status = document.querySelector("[orderNo=status-container-" + orderNo + "]");
+                        let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
-                            status.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
-                        } else {
-                            document.querySelectorAll("[ident=btn-cancel-" + index + "]").forEach((elem) => {
-                                elem.remove();
-                            });
-
-                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
-
-                            status.forEach((statusElem) => {
-                                statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
-                            });
-                        }
+                        status.forEach((statusElem) => {
+                            statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
+                        });
                     }
                 }
             })
