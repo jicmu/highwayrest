@@ -43,6 +43,7 @@ public class PaymentKakaoApprove implements Handler {
             request.getSession().removeAttribute("partnerUserId");
 
             String stdRestCd = (String) request.getSession().getAttribute("stdRestCd");
+
             request.getSession().removeAttribute("stdRestCd");
 
             request.getSession().removeAttribute("partnerOrderId");

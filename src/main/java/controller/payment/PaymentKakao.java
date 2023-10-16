@@ -65,7 +65,7 @@ public class PaymentKakao implements Handler {
             String[] prices = request.getParameterValues("price");
             String[] quantities = request.getParameterValues("quantity");
 //
-            request.getSession().setAttribute("stdRestCd", request.getParameter("restNo"));
+            request.getSession().setAttribute("stdRestCd", request.getParameter("stdRestCd"));
 //
             String[] items = new String[itemNo.length];
             for (int i = 0; i < items.length; i++) {
