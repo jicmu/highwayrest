@@ -7,21 +7,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1e8cd91d76c21a46aceb30ba9e7ec1e1"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1e8cd91d76c21a46aceb30ba9e7ec1e1&libraries=services,clusterer,drawing"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
-        window.onload = () => {
+        $(document).ready(function(){
+            var svarNm = $("#svarNm").val();
+            var svarAddr = $("#svarAddr").val();
 
             var mapContainer = document.getElementById('map'),
             mapOption = {
                 center: new kakao.maps.LatLng(33.450701, 126.570667),
-                level: 3
+                level: 5
             };
 
             var map = new kakao.maps.Map(mapContainer, mapOption);
 
+            var mapTypeControl = new kakao.maps.MapTypeControl();
+
+            map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+            var zoomControl = new kakao.maps.ZoomControl();
+            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
             var geocoder = new kakao.maps.services.Geocoder();
 
-            geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+            console.log(svarNm);
+            console.log(svarAddr);
+
+            geocoder.addressSearch(svarAddr, function(result, status) {
 
                 if (status === kakao.maps.services.Status.OK) {
 
@@ -33,14 +46,14 @@
                     });
 
                     var infowindow = new kakao.maps.InfoWindow({
-                        content: '<div style="width:100px;text-align:center;padding:5px 0;">우리회사</div>'
+                        content: '<div style="width:150px;text-align:center;padding:5px 0;">' + svarNm + '</div>'
                     });
                     infowindow.open(map, marker);
 
                     map.setCenter(coords);
                 }
             });
-        }
+        });
     </script>
 </head>
 <body>
@@ -48,20 +61,24 @@
         <div class="row">
             <ul class="nav justify-content-center">
               <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath }/foodlist?stdRestCd=${highwayrest.svarCd }">메뉴</a>
+                <a class="nav-link" href="${pageContext.request.contextPath }/foodlist?restNo=${highwayrest.svarCd }">메뉴</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">후기</a>
+                <a class="nav-link" href="${pageContext.request.contextPath }/listReview?svarCd=${highwayrest.svarCd }">후기</a>
               </li>
             </ul>
             <hr>
         </div>
         <div class="row mt-3">
             <h2>${highwayrest.svarNm } 상세 정보</h2>
+            <form style="display:none">
+                <input type="hidden" id="svarNm" value="${highwayrest.svarNm}">
+                <input type="hidden" id="svarAddr" value="${highwayrest.svarAddr}">
+            </form>
         </div>
         <div class="row mt-3">
             <div class="col">
-                <div id="map" style="width:300px;height:200px;"></div>
+                <div id="map" style="width:400px;height:400px;"></div>
             </div>
         </div>
         <div class="row mt-3">
@@ -70,8 +87,6 @@
                     <tr><th>주소</th><td>${highwayrest.svarAddr }</td></tr>
                     <tr><th>대표전화번호</th><td>${highwayrest.rprsTelNo }</td></tr>
                 </table>
-                <div class="d-none" id="svarNm">${highwayrest.svarNm }</div>
-                <div class="d-none" id="svarAddr">${highwayrest.svarAddr }</div>
             </div>
         </div>
     </div>
