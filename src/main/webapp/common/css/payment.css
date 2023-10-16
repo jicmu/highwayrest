@@ -33,15 +33,6 @@ body::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
 }
 
-.border-kakao {
-    border-color: #FFDC00;
-}
-
-.bg-hover-kakao:hover {
-    background-color: #FFDC00 !important;
-    color: #8A7813 !important;
-}
-
 @media (max-width: 990px) {
     #nav-logo {
          font-size: 28px;

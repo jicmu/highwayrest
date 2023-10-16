@@ -55,8 +55,10 @@
                             <input class="form-control form-control-sm" type="number" name="total" id="total" readonly>
                         </span>
                         <div class="btn-group float-end">
-                            <button type="button" class="btn btn-outline-danger" onclick="javascript:history.go(-1);">취소</button>
-                            <button type="button" class="btn btn-outline-primary bg-hover-kakao" id="pay-by-kakao" style="border-color: #FFDC00; color: #8A7813">결제</button>
+                            <button type="button" class="btn btn-outline-danger" onclick="javascript:history.go(-1);" style="width: 97px; height: 40px; border-radius: 50px; top: 7px; position: relative;">취소</button>
+                            <button type="button" class="btn" id="pay-by-kakao">
+                                <img src="${pageContext.request.contextPath}/common/kakao_logo/payment_icon_yellow_small.png" alt="카카오 페이 결제">
+                            </button>
                         </div>
                     </div>
                 </section>
