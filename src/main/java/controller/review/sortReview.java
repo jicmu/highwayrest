@@ -11,13 +11,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class sortReview implements Handler {
-    String go = "/review/list.jsp";
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ReviewService service = new ReviewService();
-        ArrayList<Review> list = new ArrayList<>();
-        String sort = request.getParameter("sort");
+        ArrayList<Review> list = service.getAll();
 
+        String sort = request.getParameter("sort");
         if(sort.equals("sortHighRate")){
             list = service.getAllByHighRate();
         }else if(sort.equals("sortLowRate")){
@@ -25,9 +24,7 @@ public class sortReview implements Handler {
         }
 
         request.setAttribute("list", list);
-        request.setAttribute("view", "/review/review.jsp");
-
-        return go;
+        return "/review/list.jsp";
     }
 
     @Override
@@ -37,6 +34,6 @@ public class sortReview implements Handler {
 
     @Override
     public String getPath() {
-        return path + "sortReview";
+        return path + "/sortReview";
     }
 }
