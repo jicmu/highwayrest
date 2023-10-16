@@ -1,4 +1,4 @@
-package controller.member;
+package controller.member.kakao;
 
 import common.Handler;
 import data.entity.Member;

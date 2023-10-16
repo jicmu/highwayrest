@@ -31,6 +31,104 @@
                 document.getElementById("passwordmsg").innerHTML = "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
             }
         }
+
+        window.addEventListener('load', function(event){
+
+            var email = document.getElementById("email");
+            var emailmsg = document.getElementById("emailmsg");
+
+            var nickname = document.getElementById("nickname");
+            var nicknamemsg = document.getElementById("nicknamemsg");
+
+            var registerbtn = document.getElementById("registerbtn");
+
+            // 중복 검사 통과 여부
+            var emailcheck = false;
+            var nicknamecheck = false;
+            var telcheck = false;
+
+            email.addEventListener("focusout", function(event){
+                if(email.value.trim().length == 0){
+                    emailmsg.style.color = "red";
+                    emailmsg.innerHTML = "이메일을 입력해주세요.";
+                    return;
+                }
+
+                var request = new XMLHttpRequest();
+                request.open("get","${pageContext.request.contextPath}/member/emailcheck?email=" + f.email.value, true);
+                request.send();
+                request.addEventListener('load', function(event) {
+                    var data = JSON.parse(event.target.responseText);
+                    if (!new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$").test(f.email.value)) {
+                        emailmsg.style.color = "red";
+                        emailmsg.innerHTML = "올바른 이메일 형식으로 입력해주세요.";
+                    } else if (data.flag == true) {
+                        emailmsg.style.color = "green";
+                        emailmsg.innerHTML = "사용 가능한 이메일입니다.";
+                        emailcheck = true;
+                    } else {
+                        emailmsg.style.color = "red";
+                        emailmsg.innerHTML = "사용 불가능한 이메일입니다.";
+                    }
+                })
+            });
+
+            nickname.addEventListener(
+                "focusout", function(event){
+                    if(nickname.value.trim().length < 1){
+                        nicknamemsg.style.color = "red";
+                        nicknamemsg.innerHTML = "닉네임을 입력하세요";
+                        nicknamecheck = false;
+                        return;
+                    }
+
+                    var request = new XMLHttpRequest();
+                    request.open("get", "${pageContext.request.contextPath}/member/nicknamecheck?nickname=" + f.nickname.value, true);
+                    request.send();
+                    // 데이터를 가져왔을 때 호출될 메소드를 설정
+                    request.addEventListener(
+                        'load', function(event){
+                            var data = JSON.parse(event.target.responseText);
+                            if (!new RegExp("^[a-zA-Z0-9]+$").test(f.nickname.value)) {
+                                nicknamemsg.style.color = "red";
+                                nicknamemsg.innerHTML = "특수문자는 입력할 수 없습니다..";
+                            } else if (data.result == true) {
+                                nicknamemsg.style.color = "green";
+                                nicknamemsg.innerHTML = "사용 가능한 닉네임입니다.";
+                                nicknamecheck = true;
+                            } else {
+                                nicknamemsg.style.color = "red";
+                                nicknamemsg.innerHTML = "중복된 닉네임입니다.";
+                            }
+                        });
+                });
+
+            tel.addEventListener("focusout", function(event){
+                if(tel.value.trim().length == 0){
+                    emailmsg.style.color = "red";
+                    emailmsg.innerHTML = "번호를 입력해주세요.";
+                    return;
+                }
+
+                var request = new XMLHttpRequest();
+                request.open("get","${pageContext.request.contextPath}/member/telcheck?tel=" + f.tel.value, true);
+                request.send();
+                request.addEventListener('load', function(event) {
+                    var data = JSON.parse(event.target.responseText);
+                    if (!new RegExp("^01([0|1|6|7|8|9]?)([0-9]{3,4})([0-9]{4})$").test(f.tel.value)) {
+                        telmsg.style.color = "red";
+                        telmsg.innerHTML = "올바른 번호를 입력해주세요.";
+                    } else if (data.flag == true) {
+                        telmsg.style.color = "green";
+                        telmsg.innerHTML = "사용 가능한 번호입니다.";
+                        telcheck = true;
+                    } else {
+                        telmsg.style.color = "red";
+                        telmsg.innerHTML = "사용 불가능한 번호입니다.";
+                    }
+                })
+            });
+        });
     </script>
 </head>
 <body>
@@ -80,9 +178,13 @@
                 <label for="tel" class="form-label ms-2" style="text-align:left;">전화번호</label>
                 <input type="text" id="tel" name="tel" class="form-control" placeholder="01012345678">
             </div>
-            <button type="submit" class="btn btn-secondary btn-lg w-100 mb-3">
+            <div id="telmsg"></div>
+            <button type="submit" class="btn btn-secondary btn-lg w-100 my-3">
                 <i class="fa-solid fa-users-line"></i>
                 <span>회원가입</span>
             </button>
-    </body>
+        </form>
+    </div>
+</div>
+</body>
 </html>

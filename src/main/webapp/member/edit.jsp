@@ -25,6 +25,9 @@ email:<input type="text" name="email" value="${m.email}" readonly><br/>
 tel:<input type="text" name="tel" value="${m.tel}"><br/>
 <input type="submit" value="수정">
 <a href="${pageContext.request.contextPath }/controller/yeonann/memberindex.jsp">취소</a>
+<%--<form action="${pageContext.request.contextPath }/member/out?id=${sessionScope.loginId}" method="post">--%>
+<%--    <input type="button" name="b1" value="회원탈퇴" onclick="a()"><br/>--%>
+<%--</form>--%>
 </form>
 </body>
 </html>

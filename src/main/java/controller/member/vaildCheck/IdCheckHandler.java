@@ -1,4 +1,4 @@
-package controller.member;
+package controller.member.vaildCheck;
 
 import common.Handler;
 import data.entity.Member;
@@ -20,7 +20,7 @@ public class IdCheckHandler implements Handler {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 
-		String id = request.getParameter("id");
+		String id = request.getParameter("id").trim();
 		Member m = (new MemberService()).getMember(id);
 		boolean flag = false;
 		String msg = "";
