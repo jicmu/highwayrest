@@ -72,29 +72,29 @@
                                         <input class="form-control form-control-sm" type="number" name="price"
                                             id="price-${'${p.ordersNo}'}" value="${'${p.pay}'}" readonly>
                                     </div>
-                                    <span id="status-container-${'${p.ordersNo}'}" ident="status-container-${'${p.ordersNo}'}" orderNo="status-container-${o.orderNo}">
+                                    <span id="status-container-${'${p.ordersNo}'}" ident="status-container-${'${p.ordersNo}'}" orderNo="status-container-${'${p.orderNo}'}">
                                 `;
 
                                 if (p.status == 0) {
-                                    txt += '<span class="status-dot bg-primary" id="status-${'${p.ordersNo}'}"></span> 수락 대기';
+                                    txt += `<span class="status-dot bg-primary" id="status-${'${p.ordersNo}'}"></span> 수락 대기`;
                                 } else if (p.status == 1) {
-                                    txt += '<span class="status-dot bg-success" id="status-${'${p.ordersNo}'}"></span> 수락';
+                                    txt += `<span class="status-dot bg-success" id="status-${'${p.ordersNo}'}"></span> 수락`;
                                 } else if (p.status == 2) {
-                                    txt += '<span class="status-dot bg-danger" id="status-${'${p.ordersNo}'}"></span> 거부';
+                                    txt += `<span class="status-dot bg-danger" id="status-${'${p.ordersNo}'}"></span> 거부`;
                                 } else if (p.status == 3) {
-                                    txt += '<span class="status-dot bg-warning" id="status-${'${p.ordersNo}'}"></span> 취소';
+                                    txt += `<span class="status-dot bg-warning" id="status-${'${p.ordersNo}'}"></span> 취소`;
                                 } else if (p.status == 4) {
-                                    txt += '<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span> 수령 완료<span><a href="${pageContext.request.contextPath}/addReview?orderNo=${o.orderNo}">후기 작성</a></span>';
+                                    txt += `<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span> 수령 완료<span><a href="${pageContext.request.contextPath}/addReview?orderNo=${'${p.orderNo}'}">후기 작성</a></span>`;
                                 } else if (p.status == 5) {
-                                    txt += '<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span> 조리 완료';
+                                    txt += `<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span> 조리 완료`;
                                 } else {
                                     txt += '<span>알 수 없음</span>'
                                 }
 
                                 if (p.status == 0) {
-                                    txt += '<button class="btn btn-danger btn-cancel" id="btn-cancel-${'${p.ordersNo}'}" ident="btn-cancel-${'${p.ordersNo}'}" orderNo="btn-cancel-${o.orderNo}">주문 취소</button>';
+                                    txt += `<button class="btn btn-danger btn-cancel" id="btn-cancel-${'${p.ordersNo}'}" ident="btn-cancel-${'${p.ordersNo}'}" orderNo="btn-cancel-${'${p.orderNo}'}">주문 취소</button>`;
                                 } else if (p.status == 5) {
-                                    txt += '<button class="btn btn-info btn-done" id="btn-done-${'${p.ordersNo}'}" ident="btn-done-${'${p.ordersNo}'}" orderNo="btn-done-${o.orderNo}">수령</button>';
+                                    txt += `<button class="btn btn-info btn-done" id="btn-done-${'${p.ordersNo}'}" ident="btn-done-${'${p.ordersNo}'}" orderNo="btn-done-${'${p.orderNo}'}">수령</button>`;
                                 }
 
                                 article.innerHTML = txt;
