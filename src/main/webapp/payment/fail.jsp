@@ -14,7 +14,7 @@
     <div id="wrapper">
         <%@ include file="/common/header.jsp"%>
         <div class="container main">
-            <div class="text-center">
+            <div class="text-center" style="position: relative; top: 50%;">
               결제에 실패했습니다.<br>
               <button class="btn btn-primary btn-history">뒤로가기</button>
             </div>
