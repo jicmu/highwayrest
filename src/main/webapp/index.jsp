@@ -70,13 +70,9 @@
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath }/member/edit?id=${sessionScope.loginId}">내정보</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath }/payment/orderList">주문내역</a></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath }/review/listReview">리뷰관리</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath }/review/list">리뷰관리</a></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath }/member/out">로그아웃</a></li>
-                                <%--                            <li>--%>
-                                <%--                                <form action="${pageContext.request.contextPath }/member/out?id=${sessionScope.loginId}" method="post">--%>
-                                <%--                                    <input type="button" name="b1" value="회원탈퇴" onclick="a()"><br/>--%>
-                                <%--                                </form>--%>
-                                <%--                            </li>--%>
+
                         </ul>
                     </li>
                 </c:if>
@@ -90,5 +86,4 @@
     </c:if>
 </div>
 </body>
-</html>
 </html>
