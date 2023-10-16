@@ -2,6 +2,7 @@ package dao.review;
 
 import data.dto.RestReviewDTO;
 import data.entity.Review;
+import data.testdto.RestReviewDTO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public interface ReviewDao {
     ArrayList<RestReviewDTO> selectByHighRate(@Param("svarCd") String svarCd);//별점이 높고 최근에 작성한 리뷰순
 
     @Select("select h.svarcd, r.reviewno, r.memberno, TO_CHAR(r.wdate, 'yyyy-MM-dd') AS wdate, r.content, r.star, r.orderno, r.img1, r.img2, r.img3\n FROM review r, highwayrest h, orders o WHERE h.svarCd=o.restNo AND o.orderNo=r.orderNo ORDER BY r.star ASC, r.wDate DESC")
+
     ArrayList<RestReviewDTO> selectByLowRate(@Param("svarCd") String svarCd);//별점 낮고 최근에 작성한 리뷰순
 
     @Select("SELECT * FROM review WHERE memberNo=#{memberNo}")

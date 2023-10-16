@@ -20,6 +20,7 @@ public class listReview implements Handler {
         ArrayList<RestReviewDTO> list = service.getAll(svarCd);//휴게소별 전체 후기 조회
         request.setAttribute("svarcCd", svarCd);
         request.setAttribute("list", list);
+
         request.setAttribute("view", "/review/list.jsp");
         return go;
     }

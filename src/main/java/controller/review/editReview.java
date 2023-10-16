@@ -1,13 +1,20 @@
 package controller.review;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import common.Handler;
+import common.Size;
 import data.entity.Review;
+import org.apache.commons.io.FileUtils;
 import service.review.ReviewService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class editReview implements Handler {
     String go = "/review/edit.jsp";
@@ -23,8 +30,8 @@ public class editReview implements Handler {
 
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         ReviewService service = new ReviewService();
+
 
         String content = request.getParameter("content");
         int star = Integer.parseInt(request.getParameter("star"));
