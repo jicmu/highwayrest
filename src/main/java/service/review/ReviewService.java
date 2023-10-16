@@ -19,31 +19,30 @@ public class ReviewService {
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
         dao.insert(r);
-        System.out.println("service : " + r);
         session.commit();
         session.close();
     }
 
-    public ArrayList<Review> getAll(){//모든 리뷰 조회
+    public ArrayList<Review> getAll(int svarCd){//모든 리뷰 조회
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
-        ArrayList<Review> list = dao.selectAllByDate();
+        ArrayList<Review> list = dao.selectAllByDate(svarCd);
         session.close();
         return list;
     }
 
-    public ArrayList<Review> getAllByHighRate(){//높은 별점 순으로 조회
+    public ArrayList<Review> getAllByHighRate(int svarCd){//높은 별점 순으로 조회
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
-        ArrayList<Review> list = dao.selectByHighRate();
+        ArrayList<Review> list = dao.selectByHighRate(svarCd);
         session.close();
         return list;
     }
 
-    public ArrayList<Review> getAllByLowRate(){//낮은 별점 순으로 조회
+    public ArrayList<Review> getAllByLowRate(int svarCd){//낮은 별점 순으로 조회
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
-        ArrayList<Review> list = dao.selectByLowRate();
+        ArrayList<Review> list = dao.selectByLowRate(svarCd);
         session.close();
         return list;
     }
@@ -87,5 +86,13 @@ public class ReviewService {
         session.close();
 
         return no;
+    }
+
+    public void editImg(Review r){//사진 수정
+        SqlSession session = sqlSessionFactory.openSession();
+        ReviewDao dao = session.getMapper(ReviewDao.class);
+        dao.updateImg(r);
+        session.commit();
+        session.close();
     }
 }
