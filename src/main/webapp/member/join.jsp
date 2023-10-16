@@ -6,6 +6,7 @@
     <title>Insert title here</title>
     <script type="text/javascript">
         let req = new XMLHttpRequest();
+
         req.onload = () => {
             let obj = JSON.parse(req.responseText);
             document.getElementById("idmsg").style.color = "red";
@@ -22,13 +23,32 @@
             req.send();
         };
 
-        const check = function() {
-            if (document.getElementById("password").value === document.getElementById('password2').value) {
+        const passwordcheck = function() {
+            console.log(f.password.value)
+            if (!new RegExp("^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$").test(f.password.value)) {
+                document.getElementById("passwordmsg").style.color = "red";
+                document.getElementById("passwordmsg").innerHTML = "영어, 숫자, 특수문자를 포함하여 8자 이상, 15자 이하로 입력해주세요.";
+            } else if (f.password.value === f.password2.value) {
                 document.getElementById("passwordmsg").style.color = "green";
                 document.getElementById("passwordmsg").innerHTML = "비밀번호와 비밀번호 확인이 일치합니다.";
             } else {
                 document.getElementById("passwordmsg").style.color = "red";
                 document.getElementById("passwordmsg").innerHTML = "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
+            }
+        }
+
+        const namecheck = function() {
+            var namecheck = false;
+            if(f.name.value.trim().length == 0){
+                namemsg.style.color = "red";
+                namemsg.innerHTML = "이름을 입력해주세요.";
+                return;
+            } else if (new RegExp("^[a-zA-Z]+$").test(f.name.value) || new RegExp("^[가-힣]+$").test(f.name.value)) {
+                document.getElementById("namemsg").innerHTML = "";
+                namecheck = true;
+            } else {
+                document.getElementById("namemsg").style.color = "red";
+                document.getElementById("namemsg").innerHTML = "영어만 또는 한글만 입력할 수 있습니다.";
             }
         }
 
@@ -39,8 +59,6 @@
 
             var nickname = document.getElementById("nickname");
             var nicknamemsg = document.getElementById("nicknamemsg");
-
-            var registerbtn = document.getElementById("registerbtn");
 
             // 중복 검사 통과 여부
             var emailcheck = false;
@@ -105,8 +123,8 @@
 
             tel.addEventListener("focusout", function(event){
                 if(tel.value.trim().length == 0){
-                    emailmsg.style.color = "red";
-                    emailmsg.innerHTML = "번호를 입력해주세요.";
+                    telmsg.style.color = "red";
+                    telmsg.innerHTML = "번호를 입력해주세요.";
                     return;
                 }
 
@@ -153,17 +171,18 @@
             <div id="idmsg"></div>
             <div class="mb-3 text-start">
                 <label for="password" class="form-label ms-2" style="text-align:left;">비밀번호</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password" onkeyup="check();">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" onkeyup="passwordcheck();">
             </div>
             <div class="mb-3 text-start">
                 <label for="password2" class="form-label ms-2" style="text-align:left;">비밀번호 확인</label>
-                <input type="password" id="password2" name="password2" class="form-control" placeholder="Password" onkeyup="check();">
+                <input type="password" id="password2" name="password2" class="form-control" placeholder="Password" onkeyup="passwordcheck();">
             </div>
             <div id="passwordmsg"></div>
             <div class="mb-3 text-start">
                 <label for="name" class="form-label ms-2" style="text-align:left;">이름</label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="Name">
+                <input type="text" id="name" name="name" class="form-control" placeholder="Name" onfocusout="namecheck()">
             </div>
+            <div id="namemsg"></div>
             <div class="mb-3 text-start">
                 <label for="nickname" class="form-label ms-2" style="text-align:left;">닉네임</label>
                 <input type="text" id="nickname" name="nickname" class="form-control" placeholder="Nickname">
@@ -179,7 +198,7 @@
                 <input type="text" id="tel" name="tel" class="form-control" placeholder="01012345678">
             </div>
             <div id="telmsg"></div>
-            <button type="submit" class="btn btn-secondary btn-lg w-100 my-3">
+            <button type="submit" class="btn btn-secondary btn-lg w-100 my-3" id="joinbtn">
                 <i class="fa-solid fa-users-line"></i>
                 <span>회원가입</span>
             </button>
