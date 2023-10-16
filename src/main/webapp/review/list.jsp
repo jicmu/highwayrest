@@ -25,7 +25,7 @@
         $(function () {
             $("#sort").change(function () {
                 let sort = $(this).val();
-                location.href="/highwayrest/sortReview?sort=" + sort;
+                location.href="/highwayrest/sortReview?sort=" + sort + "&svarCd=${svarCd}";
             });
         });
 
@@ -61,9 +61,9 @@
         <c:forEach var="r" items="${list}">
             <table border="1" id="f">
                 <!-- 작성자와 로그인한 회원이 동일할 때-->
-                <div>
-                    <input type="button" value="수정" onclick="editReview(${r.reviewNo})">
-                    <input type="button" value="삭제" onclick="delReview(${r.reviewNo})">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                    <input type="button" value="수정" class="btn btn-outline-secondary" onclick="editReview(${r.reviewNo})">
+                    <input type="button" value="삭제" class="btn btn-outline-secondary" onclick="delReview(${r.reviewNo})">
                 </div>
                         <div class="mb-3 row">
                             <label for="member" class="col-sm-2 col-form-label">회원</label>
@@ -110,7 +110,6 @@
                                 <input type="text" class="form-control-plaintext" id="content" value="${r.content}">
                             </div>
                         </div>
-
             </table>
         </c:forEach>
     </div>

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class myReview implements Handler {
+    String go = "/review/mylist.jsp";
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int memberNo = Integer.parseInt(request.getParameter("memberNo"));
@@ -18,8 +19,9 @@ public class myReview implements Handler {
         ReviewService service = new ReviewService();
         ArrayList<Review> mylist = service.getReviewByMember(memberNo);
         request.setAttribute("mylist", mylist);
+        request.setAttribute("view","/review/mylist.jsp");
 
-        return null;
+        return go;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package controller.review;
 
 import common.Handler;
-import data.entity.Review;
+import data.dto.RestReviewDTO;
 import service.review.ReviewService;
 
 import javax.servlet.ServletException;
@@ -14,8 +14,8 @@ public class sortReview implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ReviewService service = new ReviewService();
-        int svarCd = Integer.parseInt(request.getParameter("svarCd"));
-        ArrayList<Review> list = service.getAll(svarCd);
+        String svarCd = request.getParameter("svarCd");
+        ArrayList<RestReviewDTO> list = service.getAll(svarCd);
 
         String sort = request.getParameter("sort");
         if(sort.equals("sortHighRate")){

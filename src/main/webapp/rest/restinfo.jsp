@@ -17,7 +17,7 @@
                 <a class="nav-link" href="/highwayrest/foodlist?stdRestCd=${highwayrest.svarCd }">메뉴</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">후기</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/listReview?svarCd=${highwayrest.svarCd }">후기</a>
               </li>
             </ul>
             <hr>

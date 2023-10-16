@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class addReview implements Handler {
     String go = "/review/add.jsp";
@@ -22,7 +20,7 @@ public class addReview implements Handler {
 
         //int orderNo = Integer.parseInt(request.getParameter("orderNo"));
 
-        request.setAttribute("go", "/review/add.jsp");
+        request.setAttribute("view", "/review/add.jsp");
 
         return go;
     }
@@ -49,19 +47,14 @@ public class addReview implements Handler {
         int orderNo = Integer.parseInt(mr.getParameter("orderNo"));
         int star = Integer.parseInt(mr.getParameter("star"));
 
-        //현재 날짜 구하기
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd"); //20231012 형식으로 출력됨
-        String fileDate = sdf.format(date);
-
         ReviewService service = new ReviewService();
         int reviewNo = service.getSeq();
 
         //해당 폴더가 없으면 중첩된 폴더 생성: memberNo 안에 fileDate 중첩된 폴더 생성
-        String nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + fileDate + "\\" + reviewNo;
+        String nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\"  + reviewNo;
         String osName1 = System.getProperty("os.name");
         if (osName1.contains("win")) {
-            nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + fileDate + "\\" + reviewNo;
+            nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + reviewNo;
         } else if (osName1.contains("mac")) {
             nPath = "";
         } else if (osName1.contains("nix") || osName1.contains("nux")) {
@@ -116,7 +109,7 @@ public class addReview implements Handler {
         }
 
         service.addReview(new Review(reviewNo, memberNo, null, content, star, orderNo, imgs[0], imgs[1], imgs[2]));
-        return "redirect/index.jsp";
+        return "/listReview";
     }
 
     public String getPath() {

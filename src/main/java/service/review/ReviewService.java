@@ -1,6 +1,7 @@
 package service.review;
 
 import dao.review.ReviewDao;
+import data.dto.RestReviewDTO;
 import data.entity.Review;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -23,26 +24,26 @@ public class ReviewService {
         session.close();
     }
 
-    public ArrayList<Review> getAll(int svarCd){//모든 리뷰 조회
+    public ArrayList<RestReviewDTO> getAll(String svarCd){//모든 리뷰 조회
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
-        ArrayList<Review> list = dao.selectAllByDate(svarCd);
+        ArrayList<RestReviewDTO> list = dao.selectAllByDate(svarCd);
         session.close();
         return list;
     }
 
-    public ArrayList<Review> getAllByHighRate(int svarCd){//높은 별점 순으로 조회
+    public ArrayList<RestReviewDTO> getAllByHighRate(String svarCd){//높은 별점 순으로 조회
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
-        ArrayList<Review> list = dao.selectByHighRate(svarCd);
+        ArrayList<RestReviewDTO> list = dao.selectByHighRate(svarCd);
         session.close();
         return list;
     }
 
-    public ArrayList<Review> getAllByLowRate(int svarCd){//낮은 별점 순으로 조회
+    public ArrayList<RestReviewDTO> getAllByLowRate(String svarCd){//낮은 별점 순으로 조회
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
-        ArrayList<Review> list = dao.selectByLowRate(svarCd);
+        ArrayList<RestReviewDTO> list = dao.selectByLowRate(svarCd);
         session.close();
         return list;
     }
