@@ -49,7 +49,7 @@ public class PaymentKakao implements Handler {
 
             OrderService orderService = new OrderService();
             String partnerOrderId = String.valueOf(orderService.getNextOrdersNo());
-            String partnerUserId = "testId"; // TODO 추후 삭제 후 세션으로 변경 예정
+            String partnerUserId = request.getParameter("stdRestCd"); // master userID = 휴게소 번호
 
             Map<String, String> params = new HashMap<>();
 
@@ -122,6 +122,7 @@ public class PaymentKakao implements Handler {
             JSONObject parsed = (JSONObject) jsonParser.parse(br);
 
             request.getSession().setAttribute("tid", parsed.get("tid"));
+            request.getSession().setAttribute("partnerUserId", partnerUserId);
 
             return "redirect/" + (String) parsed.get("next_redirect_pc_url");
         } catch (MalformedURLException e) {
