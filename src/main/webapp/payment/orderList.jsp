@@ -88,16 +88,9 @@
             element.addEventListener("click", () => {
                 let xhr = new XMLHttpRequest();
 
-                let cancelUrl;
-                let partial = confirm("이 주문만 취소하시겠습니까? 취소를 누르시면 전체 취소됩니다.");
-
-                if (partial) {
-                    cancelUrl = "${pageContext.request.contextPath}/api/partial-cancel";
-                } else {
-                    if (!confirm("같이 주문했던 음식도 취소됩니다. 취소하시겠습니까?")) {
-                        return;
-                    }
-                    cancelUrl = "${pageContext.request.contextPath}/api/cancel";
+                let cancelUrl = "${pageContext.request.contextPath}/api/cancel";
+                if (!confirm("같이 주문했던 음식도 취소됩니다. 취소하시겠습니까?")) {
+                    return;
                 }
 
                 xhr.open("post", cancelUrl);
