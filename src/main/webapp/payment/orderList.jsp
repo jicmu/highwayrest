@@ -16,67 +16,7 @@
         <div class="container main">
             <h1 class="p-1 pb-2 border-bottom border-muted">주문 확인</h1>
             <section id="orders" class="row">
-                <c:forEach items="${orderList}" var="o" varStatus="status">
-                    <article class="card p-0 mb-3">
-                        <div class="card-header">
-                            ${o.ordersNo}<input type="hidden" name="items" value="${o.ordersNo}">
-                            <div id="cancel-1" class="float-end text-muted" style="cursor: pointer;">
-                                ${o.restNo}
-                            </div>
-                        </div>
-                        <div>
-                            <div class="col-3 m-3 d-inline-block">
-                                <label for="menu-${o.ordersNo}">음식</label>
-                                <input class="form-control form-control-sm" type="text" id="menu-${o.ordersNo}"
-                                    name="menu" value="${o.menu}" readonly>
-                            </div>
-                            <div class="col-3 m-3 d-inline-block">
-                                <label for="quantity-${o.ordersNo}">수량</label>
-                                <input class="form-control form-control-sm" type="number"
-                                    id="quantity-${o.ordersNo}" name="quantity" value="${o.quantity}" readonly>
-                            </div>
-                            <div class="col-3 m-3 d-inline-block">
-                                <label for="price-${o.ordersNo}">총 가격</label>
-                                <input class="form-control form-control-sm" type="number" name="price"
-                                    id="price-${o.ordersNo}" value="${o.pay}" readonly>
-                            </div>
-                            <span id="status-container-${o.ordersNo}" ident="status-container-${o.ordersNo}" orderNo="status-container-${o.orderNo}">
-                                <c:choose>
-                                    <c:when test="${o.status eq 0}">
-                                        <span class="status-dot bg-primary" id="status-${o.ordersNo}"></span> 수락 대기
-                                    </c:when>
-                                    <c:when test="${o.status eq 1}">
-                                        <span class="status-dot bg-success" id="status-${o.ordersNo}"></span> 수락
-                                    </c:when>
-                                    <c:when test="${o.status eq 2}">
-                                        <span class="status-dot bg-danger" id="status-${o.ordersNo}"></span> 거부
-                                    </c:when>
-                                    <c:when test="${o.status eq 3}">
-                                        <span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소
-                                    </c:when>
-                                    <c:when test="${o.status eq 4}">
-                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 수령 완료
-                                        <span><a href="${pageContext.request.contextPath}/addReview?orderNo=${o.orderNo}">후기 작성</a></span>
-                                    </c:when>
-                                    <c:when test="${o.status eq 5}">
-                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 조리 완료
-                                    </c:when>
-                                    <c:otherwise>
-                                        <span>알 수 없음</span>
-                                    </c:otherwise>
-                                </c:choose>
-                            </span>
-                        </div>
-                        <c:choose>
-                            <c:when test="${o.status eq 0}">
-                                <button class="btn btn-danger btn-cancel" id="btn-cancel-${o.ordersNo}" ident="btn-cancel-${o.ordersNo}" orderNo="btn-cancel-${o.orderNo}">주문 취소</button>
-                            </c:when>
-                            <c:when test="${o.status eq 5 }">
-                                <button class="btn btn-info btn-done" id="btn-done-${o.ordersNo}" ident="btn-done-${o.ordersNo}" orderNo="btn-done-${o.orderNo}">수령</button>
-                            </c:when>
-                        </c:choose>
-                    </article>
-                </c:forEach>
+                
             </section>
         </div>
     <%--    <%@ include file="footer.jsp" %>--%>
@@ -84,6 +24,98 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // 무한 스크롤
+            window.onload = () => {
+                let page = 1;
+
+                const io = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+
+                        let xhr = new XMLHttpRequest();
+
+                        xhr.open("get", "${pageContext.request.contextPath}/api/page?page=" + page++ + "&amount=" + 10);
+
+                        xhr.send();
+
+                        xhr.onload = () => {
+                            let parsed = JSON.parse(xhr.responseText);
+
+                            let sectionOrders = document.querySelector("section#orders");
+
+                            for (let o in parsed) {
+                                let article = document.createElement("article");
+                                article.classList = "card p-0 mb-3";
+
+                                let p = JSON.parse(parsed[o]);
+
+                                let txt = `
+                                <div class="card-header">
+                                    ${"${p.ordersNo}"}<input type="hidden" name="items" value="${'${p.ordersNo}'}">
+                                    <div id="cancel-1" class="float-end text-muted" style="cursor: pointer;">
+                                        ${'${p.restNo}'}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-3 m-3 d-inline-block">
+                                        <label for="menu-${'${p.ordersNo}'}">음식</label>
+                                        <input class="form-control form-control-sm" type="text" id="menu-${'${p.ordersNo}'}"
+                                            name="menu" value="${'${p.menu}'}" readonly>
+                                    </div>
+                                    <div class="col-3 m-3 d-inline-block">
+                                        <label for="quantity-${'${p.ordersNo}'}">수량</label>
+                                        <input class="form-control form-control-sm" type="number"
+                                            id="quantity-${'${p.ordersNo}'}" name="quantity" value="${o.quantity}" readonly>
+                                    </div>
+                                    <div class="col-3 m-3 d-inline-block">
+                                        <label for="price-${'${p.ordersNo}'}">총 가격</label>
+                                        <input class="form-control form-control-sm" type="number" name="price"
+                                            id="price-${'${p.ordersNo}'}" value="${'${p.pay}'}" readonly>
+                                    </div>
+                                    <span id="status-container-${'${p.ordersNo}'}" ident="status-container-${'${p.ordersNo}'}" orderNo="status-container-${o.orderNo}">
+                                `;
+
+                                if (p.status == 0) {
+                                    txt += '<span class="status-dot bg-primary" id="status-${'${p.ordersNo}'}"></span> 수락 대기';
+                                } else if (p.status == 1) {
+                                    txt += '<span class="status-dot bg-success" id="status-${'${p.ordersNo}'}"></span> 수락';
+                                } else if (p.status == 2) {
+                                    txt += '<span class="status-dot bg-danger" id="status-${'${p.ordersNo}'}"></span> 거부';
+                                } else if (p.status == 3) {
+                                    txt += '<span class="status-dot bg-warning" id="status-${'${p.ordersNo}'}"></span> 취소';
+                                } else if (p.status == 4) {
+                                    txt += '<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span> 수령 완료<span><a href="${pageContext.request.contextPath}/addReview?orderNo=${o.orderNo}">후기 작성</a></span>';
+                                } else if (p.status == 5) {
+                                    txt += '<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span> 조리 완료';
+                                } else {
+                                    txt += '<span>알 수 없음</span>'
+                                }
+
+                                if (p.status == 0) {
+                                    txt += '<button class="btn btn-danger btn-cancel" id="btn-cancel-${'${p.ordersNo}'}" ident="btn-cancel-${'${p.ordersNo}'}" orderNo="btn-cancel-${o.orderNo}">주문 취소</button>';
+                                } else if (p.status == 5) {
+                                    txt += '<button class="btn btn-info btn-done" id="btn-done-${'${p.ordersNo}'}" ident="btn-done-${'${p.ordersNo}'}" orderNo="btn-done-${o.orderNo}">수령</button>';
+                                }
+
+                                article.innerHTML = txt;
+
+                                section.append(article);
+                            }
+
+                            observer.unobserve(entry.target);
+
+                            observer.observe(document.querySelector("article:nth-last-child(2)"));
+                        };
+                        
+                    });
+                });
+
+                let section = document.querySelector("section");
+
+                io.observe(section);
+            }
+        // /무한 스크롤
+
         document.querySelectorAll(".btn-cancel").forEach((element) => {
             element.addEventListener("click", () => {
                 let xhr = new XMLHttpRequest();
@@ -114,7 +146,7 @@
                         let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
                         status.forEach((statusElem) => {
-                            statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
+                            statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${'${p.ordersNo}'}"></span> 취소'
                         });
                     }
                 }
@@ -146,7 +178,7 @@
                         let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
                         status.forEach((statusElem) => {
-                            statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span>수령 완료<span><a href="${pageContext.request.contextPath}/addReview?' + orderNo + '">후기 작성</a></span>'
+                            statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span>수령 완료<span><a href="${pageContext.request.contextPath}/addReview?' + orderNo + '">후기 작성</a></span>'
                         });
                     }
                 }
