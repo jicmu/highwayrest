@@ -15,9 +15,9 @@ public class listReview implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ReviewService service = new ReviewService();
-        ArrayList<Review> list = service.getAll();
+//        ArrayList<Review> list = service.getAll();
 
-        request.setAttribute("list", list);
+//        request.setAttribute("list", list);
         request.setAttribute("view", "/review/list.jsp");
         return go;
     }

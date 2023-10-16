@@ -2,7 +2,9 @@ package controller.food;
 
 import common.Handler;
 import data.entity.RestFood;
+import data.entity.Search;
 import service.master.RestFoodService;
+import service.search.SearchService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,10 +25,8 @@ public class FoodSearch implements Handler {
         String searchWord = request.getParameter("searchWord");
         String name = request.getParameter("name");
 
-        System.out.println(memberNo);
-        System.out.println(searchType);
-        System.out.println(name);
-        System.out.println(searchWord);
+        SearchService searchService = new SearchService();
+        searchService.addSearch(new Search(0, searchType, memberNo, null, searchWord));
 
         RestFoodService restFoodService = new RestFoodService();
         ArrayList<RestFood> list = restFoodService.getByName(name);

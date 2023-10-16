@@ -7,15 +7,80 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1e8cd91d76c21a46aceb30ba9e7ec1e1"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1e8cd91d76c21a46aceb30ba9e7ec1e1&libraries=services,clusterer,drawing"></script>
     <script>
         window.onload = () => {
-            document.getElementById("svarNm").onchange = function(){
+            document.getElementById("svarNm").onchange = function() {
                 let searchWord = document.getElementById("searchWord");
                 let svarNm = document.getElementById("svarNm").value;
                 searchWord.value = svarNm;
             };
-        };
+
+            document.getElementById("direction").onchange = function() {
+                let direction = document.getElementById("direction").value;
+                let url = "${pageContext.request.contextPath }/restsearch?direction=" + direction + "&routeCd=${highway.routeCd}";
+                location.replace(url);
+            };
+
+            var mapContainer = document.getElementById('map'),
+            mapOption = {
+                center: new kakao.maps.LatLng(36.5, 128),
+                level: 13
+            };
+
+            var map = new kakao.maps.Map(mapContainer, mapOption);
+
+            var mapTypeControl = new kakao.maps.MapTypeControl();
+
+            map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+            var zoomControl = new kakao.maps.ZoomControl();
+            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+            var geocoder = new kakao.maps.services.Geocoder();
+
+            var positions = [];
+
+            <c:forEach var="r" items="${list }">
+                var obj = new Object();
+                obj.restNm = '${r.svarNm }';
+                obj.restAddr = '${r.svarAddr}';
+                obj.svarCd = '${r.svarCd}';
+                obj.gudClssCd = '${r.gudClssCd}';
+
+                positions.push(obj);
+            </c:forEach>
+
+            console.log(positions)
+
+            positions.forEach(function(position){
+                geocoder.addressSearch(position.restAddr, function(result, status) {
+
+                    if (status === kakao.maps.services.Status.OK) {
+
+                        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                        var marker = new kakao.maps.Marker({
+                            map: map,
+                            position: coords,
+                            clickable: true
+                        });
+
+                        var iwContent = '<div style="width:150px;text-align:center;padding:5px 0;"><a href="${pageContext.request.contextPath}/restinfo?svarCd=' + position.svarCd + '">' + position.restNm + '</a></div>',
+                            iwRemovable = true;
+
+                        var infowindow = new kakao.maps.InfoWindow({
+                            content: iwContent,
+                            removable: iwRemovable
+                        });
+
+                        kakao.maps.event.addListener(marker, 'click', function() {
+                            infowindow.open(map, marker);
+                        });
+                    }
+                });
+            });
+        }
     </script>
 </head>
 <body>
@@ -24,7 +89,7 @@
             <div class="col mt-3">
                 <form class="d-flex" id="f" role="search" action="${pageContext.request.contextPath }/restsearch" method="post">
                     <input type="hidden" name="searchType" value="2">
-                    <input type="hidden" name="memberNo" value="1">
+                    <input type="hidden" name="memberNo" value="${sessionScope.loginId}">
                     <input type="hidden" id="searchWord" name="searchWord" value="">
                     <input class="form-control me-2" type="search" id="svarNm" name="svarNm" placeholder="휴게소명">
                     <input class="btn btn-outline-success" type="submit" value="검색"></button>
@@ -33,16 +98,7 @@
         </div>
         <div class="row mt-3">
             <div class="col">
-                <div id="map" style="width:300px;height:200px;"></div>
-                    <script>
-               	        var container = document.getElementById('map');
-                   	    var options = {
-   	    		            center: new kakao.maps.LatLng(33.450701, 126.570667),
-            	   	        level: 3
-             	        };
-
-                        var map = new kakao.maps.Map(container, options);
-            	    </script>
+                <div id="map" style="width:400px;height:300px;"></div>
             </div>
         </div>
         <div class="mt-3">
@@ -50,7 +106,15 @@
         </div>
         <div class="mt-3">
             <table>
-                <tr><th>휴게소명</th><th>방향</th></tr>
+                <tr><th>휴게소명</th>
+                    <th>방향
+                        <select id="direction">
+                            <option value="">방향선택</option>
+                            <option value="0">상행</option>
+                            <option value="1">하행</option>
+                        </select>
+                    </th>
+                </tr>
                 <c:forEach var="r" items="${list }">
                 <tr>
                     <td>

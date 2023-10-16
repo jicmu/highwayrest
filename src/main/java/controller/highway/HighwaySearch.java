@@ -2,7 +2,9 @@ package controller.highway;
 
 import common.Handler;
 import data.entity.Highway;
+import data.entity.Search;
 import service.master.HighwayService;
+import service.search.SearchService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,10 +25,8 @@ public class HighwaySearch implements Handler {
         String searchWord = request.getParameter("searchWord");
         String routeNm = request.getParameter("routeNm");
 
-        System.out.println(memberNo);
-        System.out.println(searchType);
-        System.out.println(routeNm);
-        System.out.println(searchWord);
+        SearchService searchService = new SearchService();
+        searchService.addSearch(new Search(0, searchType, memberNo, null, searchWord));
 
         HighwayService highwayService = new HighwayService();
         ArrayList<Highway> list = highwayService.getByNm(routeNm);
