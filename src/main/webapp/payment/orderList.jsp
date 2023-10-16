@@ -104,7 +104,9 @@
 
                             observer.unobserve(entry.target);
 
-                            observer.observe(document.querySelector("article:nth-last-child(2)"));
+                            if (parsed[9] != null) {
+                                observer.observe(document.querySelector("article:nth-last-child(2)"));
+                            }
                         };
                         
                     });
