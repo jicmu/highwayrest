@@ -1,6 +1,7 @@
 package controller.review;
 
 import common.Handler;
+import data.dto.RestReviewDTO;
 import service.review.ReviewService;
 
 import javax.servlet.ServletException;
@@ -9,15 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class sortReview implements Handler {
-    String go = "/review/list.jsp";
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ReviewService service = new ReviewService();
+        String svarCd = request.getParameter("svarCd");
+        ArrayList<RestReviewDTO> list = service.getAll(svarCd);
 
-        ArrayList<Review> list = new ArrayList<>();
-        request.setAttribute("view", "/review/review.jsp");
+        String sort = request.getParameter("sort");
+        if(sort.equals("sortHighRate")){
+            list = service.getAllByHighRate(svarCd);
+        }else if(sort.equals("sortLowRate")){
+            list = service.getAllByLowRate(svarCd);
+        }
 
-        return go;
+        request.setAttribute("list", list);
+        return "/review/list.jsp";
     }
 
     @Override
@@ -27,6 +34,6 @@ public class sortReview implements Handler {
 
     @Override
     public String getPath() {
-        return path + "sortReview";
+        return path + "/sortReview";
     }
 }

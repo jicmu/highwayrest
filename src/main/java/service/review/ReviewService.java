@@ -1,6 +1,7 @@
 package service.review;
 
 import dao.review.ReviewDao;
+import data.dto.RestReviewDTO;
 import data.entity.Review;
 import data.testdto.RestReviewDTO;
 import org.apache.ibatis.session.SqlSession;
@@ -20,7 +21,6 @@ public class ReviewService {
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
         dao.insert(r);
-        System.out.println("service : " + r);
         session.commit();
         session.close();
     }
@@ -88,5 +88,13 @@ public class ReviewService {
         session.close();
 
         return no;
+    }
+
+    public void editImg(Review r){//사진 수정
+        SqlSession session = sqlSessionFactory.openSession();
+        ReviewDao dao = session.getMapper(ReviewDao.class);
+        dao.updateImg(r);
+        session.commit();
+        session.close();
     }
 }

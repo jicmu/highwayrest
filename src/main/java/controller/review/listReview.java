@@ -1,7 +1,7 @@
 package controller.review;
 
 import common.Handler;
-import data.entity.Review;
+import data.dto.RestReviewDTO;
 import service.review.ReviewService;
 
 import javax.servlet.ServletException;
@@ -14,10 +14,13 @@ public class listReview implements Handler {
     String go = "/review/list.jsp";
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String svarCd = request.getParameter("svarCd");
+        System.out.println(svarCd);
         ReviewService service = new ReviewService();
-//        ArrayList<Review> list = service.getAll();
+        ArrayList<RestReviewDTO> list = service.getAll(svarCd);//휴게소별 전체 후기 조회
+        request.setAttribute("svarcCd", svarCd);
+        request.setAttribute("list", list);
 
-//        request.setAttribute("list", list);
         request.setAttribute("view", "/review/list.jsp");
         return go;
     }
