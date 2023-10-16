@@ -22,9 +22,7 @@ public class OrderHandler implements Handler {
         service = new OrderService();
     }
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
-
-        return "/payment/order.jsp";
+        return doPost(request, response);
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,7 +34,12 @@ public class OrderHandler implements Handler {
         int max = 10;
         if (amounts != null && amounts.length != 0) {
             for (String a : amounts) {
-                int amount = Integer.parseInt(a);
+                int amount = 0;
+                if (!a.isEmpty()) {
+                    amount = Integer.parseInt(a);
+                } else {
+                    continue;
+                }
 
                 if (max < amount) {
                     max = amount;

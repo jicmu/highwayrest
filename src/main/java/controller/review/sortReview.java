@@ -14,14 +14,7 @@ public class sortReview implements Handler {
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ReviewService service = new ReviewService();
 
-//        ArrayList<Review> list = new ArrayList<>();
-//
-//        if(sort.equals("sortHighRate")){
-//            list = service.getAllByHighRate();
-//        }else if(sort.equals("sortLowRate")){
-//            list = service.getAllByLowRate();
-//        }
-//        equest.setAttribute("list", list);
+        ArrayList<Review> list = new ArrayList<>();
         request.setAttribute("view", "/review/review.jsp");
 
         return go;

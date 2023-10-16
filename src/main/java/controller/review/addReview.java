@@ -50,11 +50,8 @@ public class addReview implements Handler {
             if (files[i] != null && files[i].length() != 0) {
                 imgs[i] = files[i].getName();
             } else {
-                imgs[i] = "";
+                imgs[i] = null;
             }
-        }
-        for (String s : imgs) {
-            System.out.println(s);
         }
 
         String content = mr.getParameter("content");
@@ -88,7 +85,7 @@ public class addReview implements Handler {
                 dir.mkdirs();//폴더 생성
                 System.out.println("폴더를 생성합니다.");
             } else {
-                System.out.println("폴더가 이미 존재하므로 생성하지 않습니다.");
+                System.out.println("폴더가 이미 존재하는 관계로 생성하지 않습니다.");
             }
         } else {//업로드한 파일이 없을 때
             System.out.println("업로드한 파일이 없습니다.");

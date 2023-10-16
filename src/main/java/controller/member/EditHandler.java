@@ -27,7 +27,8 @@ public class EditHandler implements Handler {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String nickname = request.getParameter("nickname");
-		service.editMember(new Member(0, id, password, "", nickname, "", ""));
+		String tel = request.getParameter("tel");
+		service.editMember(new Member(0, id, password, "", nickname, "", tel));
 
 		HttpSession session = request.getSession();
 		session.setAttribute("nickname", nickname);

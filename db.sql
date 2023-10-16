@@ -57,7 +57,7 @@ create table orders (
     quantity        number          default 1,                                      -- 주문한 수량
     memberNo        number          references member(memberNo)on delete cascade,   -- 회원번호
     ordersNo        varchar2(21)    not null,                                       -- 결제 번호
-    status          number          check(status BETWEEN 0 AND 4),                  -- 0: 결제 완료  / 1: 수락 / 2: 거부 / 3: 취소 / 4: 완료
+    status          number          check(status BETWEEN 0 AND 5),                  -- 0: 결제 완료  / 1: 수락 / 2: 거부 / 3: 취소 / 4: 완료 / 5: 조리 완료
     oDate           date            default sysdate                                 -- 주문 날짜
 );
 
