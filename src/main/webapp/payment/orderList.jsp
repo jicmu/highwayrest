@@ -56,7 +56,7 @@
                                     </c:when>
                                     <c:when test="${o.status eq 4}">
                                         <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 수령 완료
-                                        <span><a href="${pageContext.request.contextPath}/addReview?orderNo=${o.ordersNo}">후기 작성</a></span>
+                                        <span><a href="${pageContext.request.contextPath}/addReview?orderNo=${o.orderNo}">후기 작성</a></span>
                                     </c:when>
                                     <c:when test="${o.status eq 5}">
                                         <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 조리 완료
@@ -72,7 +72,7 @@
                                 <button class="btn btn-danger btn-cancel" id="btn-cancel-${o.ordersNo}" ident="btn-cancel-${o.ordersNo}" orderNo="btn-cancel-${o.orderNo}">주문 취소</button>
                             </c:when>
                             <c:when test="${o.status eq 5 }">
-                                <button class="btn btn-info btn-done" id="btn-done-${o.ordersNo}" ident="btn-done-${o.ordersNo}">수령</button>
+                                <button class="btn btn-info btn-done" id="btn-done-${o.ordersNo}" ident="btn-done-${o.ordersNo}" orderNo="btn-done-${o.orderNo}">수령</button>
                             </c:when>
                         </c:choose>
                     </article>
@@ -98,7 +98,6 @@
                 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
                 let index = element.getAttribute("ident").replace("btn-cancel-", "");
-                let orderNo = element.getAttribute("orderNo").replace("btn-cancel-", "");
 
                 let parameter = {
                         ordersNo: index,
@@ -130,6 +129,7 @@
                 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
                 let index = element.getAttribute("ident").replace("btn-done-", "");
+                let orderNo = element.getAttribute("orderNo").replace("btn-done-", "");
 
                 let parameter = {
                     ordersNo: index
@@ -146,7 +146,7 @@
                         let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
                         status.forEach((statusElem) => {
-                            statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span>수령 완료<span><a href="${pageContext.request.contextPath}/addReview">후기 작성</a></span>'
+                            statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span>수령 완료<span><a href="${pageContext.request.contextPath}/addReview?' + orderNo + '">후기 작성</a></span>'
                         });
                     }
                 }
