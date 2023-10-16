@@ -96,6 +96,10 @@
                 calculatePrice();
 
                 document.querySelector("#total").value = parseInt(setTotalPrice());
+
+                if (document.querySelector("#total").value == 0) {
+                    document.querySelector("#pay-by-kakao").disabled = true;
+                }
             });
         });
 
