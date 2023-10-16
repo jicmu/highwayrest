@@ -14,7 +14,7 @@ public interface OrderDao {
     @Select("SELECT seq_orders.NEXTVAL FROM dual")
     int getSeqOrders();
 
-    @Select("SELECT orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name FROM orders o INNER JOIN restfood r ON o.foodno = r.no WHERE memberNo = 1 ORDER BY odate DESC")
+    @Select("SELECT orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name FROM orders o INNER JOIN restfood r ON o.foodno = r.no WHERE memberNo = #{memberNo} ORDER BY odate DESC")
     List<Order> findByMember(@Param("memberNo") int memberNo);
 
     @Select("SELECT * FROM orders WHERE rest LIKE '%#{rest}%' ORDER BY odate DESC")
