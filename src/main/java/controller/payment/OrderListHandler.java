@@ -19,9 +19,7 @@ public class OrderListHandler implements Handler {
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrderService orderService = new OrderService();
 
-        // TODO 세션에 저장할 정보 결정 후 수정
-        String loginNum = (String) request.getSession().getAttribute("loginNum");
-//        loginNum = "1";
+        String loginNum = String.valueOf(request.getSession().getAttribute("loginNum"));
 
         List<Order> orderList = orderService.getMyOrders(Integer.parseInt(loginNum));
 

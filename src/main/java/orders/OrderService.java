@@ -244,12 +244,11 @@ public class OrderService {
             huc.setDoInput(true);
             huc.setDoOutput(true);
 
-            // TODO 추후 수정
-            String companyId = "1";
+            String companyId = "TC0ONETIME";
 
             Map<String, String> params = new HashMap<>();
 
-            params.put("cid", "TC0ONETIME");
+            params.put("cid", companyId);
             params.put("tid", ordersNo);
             params.put("cancel_tax_free_amount", "0");
             params.put("cancel_amount", String.valueOf(findTotalPrice(ordersNo)));
@@ -292,12 +291,11 @@ public class OrderService {
             huc.setDoInput(true);
             huc.setDoOutput(true);
 
-            // TODO 추후 수정
-            String companyId = "1";
+            String companyId = "TC0ONETIME";
 
             Map<String, String> params = new HashMap<>();
 
-            params.put("cid", "TC0ONETIME");
+            params.put("cid", companyId);
             params.put("tid", ordersNo);
             params.put("cancel_tax_free_amount", "0");
             params.put("cancel_amount", amount);
