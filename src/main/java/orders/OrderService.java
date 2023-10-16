@@ -141,6 +141,25 @@ public class OrderService {
         return count;
     }
 
+    public int partialCancel(int orderNo) {
+        Order order = Order.builder()
+                .orderNo(orderNo)
+                .status(3)
+                .build();
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrderDao dao = sqlSession.getMapper(OrderDao.class);
+
+        int count = dao.setStatusByOrderNo(order);
+
+        sqlSession.commit();
+
+        sqlSession.close();
+
+        return count;
+    }
+
     public int done(String ordersNum) {
         Order order = Order.builder()
                 .ordersNo(ordersNum)
@@ -196,7 +215,7 @@ public class OrderService {
 
         OrderDao dao = sqlSession.getMapper(OrderDao.class);
 
-        int totalPrice = dao.findTotalPrice(ordersNo);
+        Integer totalPrice = dao.findTotalPrice(ordersNo);
 
         sqlSession.close();
 
@@ -251,6 +270,54 @@ public class OrderService {
         }
     }
 
+    public void cancelKakaoPay(String ordersNo, String amount) throws IOException, ParseException {
+        // kakao 결제 취소
+        URL credentialUrl = Thread.currentThread().getContextClassLoader().getResource("../../WEB-INF/credential.properties");
+
+        Properties properties = new Properties();
+
+        properties.load(new FileReader(credentialUrl.getPath()));
+
+        String kakaoKey = properties.getProperty("kakaoKey");
+
+        try {
+            URL url = new URL("https://kapi.kakao.com/v1/payment/cancel");
+
+            HttpURLConnection huc = (HttpURLConnection) url.openConnection();
+
+            huc.setRequestMethod("POST");
+            huc.setRequestProperty("Authorization", "KakaoAK " + kakaoKey);
+            huc.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+
+            huc.setDoInput(true);
+            huc.setDoOutput(true);
+
+            // TODO 추후 수정
+            String companyId = "1";
+
+            Map<String, String> params = new HashMap<>();
+
+            params.put("cid", "TC0ONETIME");
+            params.put("tid", ordersNo);
+            params.put("cancel_tax_free_amount", "0");
+            params.put("cancel_amount", amount);
+
+            String param = "";
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                param += entry.getKey() + "=" + entry.getValue() + "&";
+            }
+
+            huc.getOutputStream().write(param.getBytes("utf-8"));
+
+            BufferedReader cancelBr = new BufferedReader(new InputStreamReader(huc.getInputStream()));
+
+            JSONParser jsonParser = new JSONParser();
+            JSONObject parsed = (JSONObject) jsonParser.parse(cancelBr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Order> getMenuByFoodNo(List<Order> orders) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
@@ -275,5 +342,17 @@ public class OrderService {
         sqlSession.close();
 
         return menu;
+    }
+
+    public Order findByOrderNo(int orderNo) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrderDao dao = sqlSession.getMapper(OrderDao.class);
+
+        Order order = dao.findByOrderNo(String.valueOf(orderNo));
+
+        sqlSession.close();
+
+        return order;
     }
 }

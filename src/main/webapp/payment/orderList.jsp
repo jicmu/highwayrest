@@ -40,7 +40,7 @@
                                 <input class="form-control form-control-sm" type="number" name="price"
                                     id="price-${o.ordersNo}" value="${o.pay}" readonly>
                             </div>
-                            <span id="status-container-${o.ordersNo}" ident="status-container-${o.ordersNo}">
+                            <span id="status-container-${o.ordersNo}" ident="status-container-${o.ordersNo}" orderNo="status-container-${o.orderNo}">
                                 <c:choose>
                                     <c:when test="${o.status eq 0}">
                                         <span class="status-dot bg-primary" id="status-${o.ordersNo}"></span> 수락 대기
@@ -69,7 +69,7 @@
                         </div>
                         <c:choose>
                             <c:when test="${o.status eq 0}">
-                                <button class="btn btn-danger btn-cancel" id="btn-cancel-${o.ordersNo}" ident="btn-cancel-${o.ordersNo}">주문 취소</button>
+                                <button class="btn btn-danger btn-cancel" id="btn-cancel-${o.ordersNo}" ident="btn-cancel-${o.ordersNo}" orderNo="btn-cancel-${o.orderNo}">주문 취소</button>
                             </c:when>
                             <c:when test="${o.status eq 5 }">
                                 <button class="btn btn-info btn-done" id="btn-done-${o.ordersNo}" ident="btn-done-${o.ordersNo}">수령</button>
@@ -86,35 +86,61 @@
     <script>
         document.querySelectorAll(".btn-cancel").forEach((element) => {
             element.addEventListener("click", () => {
-                if (!confirm("같이 주문했던 음식도 취소됩니다. 취소하시겠습니까?")) {
-                    return;
-                }
-
                 let xhr = new XMLHttpRequest();
 
-                xhr.open("post", "${pageContext.request.contextPath}/api/cancel");
+                let cancelUrl;
+                let partial = confirm("이 주문만 취소하시겠습니까? 취소를 누르시면 전체 취소됩니다.");
+
+                if (partial) {
+                    cancelUrl = "${pageContext.request.contextPath}/api/partial-cancel";
+                } else {
+                    if (!confirm("같이 주문했던 음식도 취소됩니다. 취소하시겠습니까?")) {
+                        return;
+                    }
+                    cancelUrl = "${pageContext.request.contextPath}/api/cancel";
+                }
+
+                xhr.open("post", cancelUrl);
+
+                console.log(cancelUrl);
+
                 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
                 let index = element.getAttribute("ident").replace("btn-cancel-", "");
+                let orderNo = element.getAttribute("orderNo").replace("btn-cancel-", "");
 
-                let parameter = {
-                    ordersNo: index
-                };
+                let parameter;
+                if (partial) {
+                    parameter = {
+                        orderNo: orderNo,
+                    }
+                } else {
+                    parameter = {
+                        ordersNo: index,
+                    };
+                }
 
                 xhr.send(JSON.stringify(parameter));
 
                 xhr.onload = () => {
                     if (xhr.status == 200) {
-                        document.querySelectorAll("[ident=btn-cancel-" + index + "]").forEach((elem) => {
-                            elem.remove();
-                        });
+                        if (partial) {
+                            document.querySelector("[orderNo=btn-cancel-" + orderNo + "]").remove();
 
-                        let status = document.querySelectorAll("[ident=status-container-" + index + "]");
+                            let status = document.querySelector("[orderNo=status-container-" + orderNo + "]");
 
-                        status.forEach((statusElem) => {
-                            statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
-                        });
+                            status.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
+                        } else {
+                            document.querySelectorAll("[ident=btn-cancel-" + index + "]").forEach((elem) => {
+                                elem.remove();
+                            });
 
+                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
+
+                            status.forEach((statusElem) => {
+                                statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
+                            });
+                        }
                     }
                 }
             })
