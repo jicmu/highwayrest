@@ -49,7 +49,7 @@ public class PaymentKakao implements Handler {
 
             OrderService orderService = new OrderService();
             String partnerOrderId = String.valueOf(orderService.getNextOrdersNo());
-            String partnerUserId = "testId"; // TODO 추후 삭제 후 세션으로 변경 예정
+            String partnerUserId = request.getParameter("stdRestCd"); // master userID = 휴게소 번호
 
             Map<String, String> params = new HashMap<>();
 
@@ -58,14 +58,13 @@ public class PaymentKakao implements Handler {
 
             request.getSession().setAttribute("partnerOrderId", partnerOrderId);
 
-//            params.put("partner_user_id", (String) request.getSession().getAttribute("loginId"));;
-            params.put("partner_user_id", partnerUserId);
+            params.put("partner_user_id", (String) request.getSession().getAttribute("loginId"));;
 
             String[] itemNo = request.getParameterValues("items");
             String[] prices = request.getParameterValues("price");
             String[] quantities = request.getParameterValues("quantity");
 //
-            request.getSession().setAttribute("stdRestCd", request.getParameter("restNo"));
+            request.getSession().setAttribute("stdRestCd", request.getParameter("stdRestCd"));
 //
             String[] items = new String[itemNo.length];
             for (int i = 0; i < items.length; i++) {
@@ -122,6 +121,7 @@ public class PaymentKakao implements Handler {
             JSONObject parsed = (JSONObject) jsonParser.parse(br);
 
             request.getSession().setAttribute("tid", parsed.get("tid"));
+            request.getSession().setAttribute("partnerUserId", partnerUserId);
 
             return "redirect/" + (String) parsed.get("next_redirect_pc_url");
         } catch (MalformedURLException e) {
