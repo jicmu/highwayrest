@@ -37,7 +37,7 @@ public class PaymentKakaoApprove implements Handler {
 
         try {
             String partnerOrderId = (String) request.getSession().getAttribute("partnerOrderId");
-            String partnerUserId = (String) request.getSession().getAttribute("partnerUserId");
+            String partnerUserId = (String) request.getSession().getAttribute("loginId");
 
             request.getSession().removeAttribute("partnerOrderId");
             request.getSession().removeAttribute("partnerUserId");

@@ -58,8 +58,7 @@ public class PaymentKakao implements Handler {
 
             request.getSession().setAttribute("partnerOrderId", partnerOrderId);
 
-//            params.put("partner_user_id", (String) request.getSession().getAttribute("loginId"));;
-            params.put("partner_user_id", partnerUserId);
+            params.put("partner_user_id", (String) request.getSession().getAttribute("loginId"));;
 
             String[] itemNo = request.getParameterValues("items");
             String[] prices = request.getParameterValues("price");
