@@ -17,14 +17,7 @@ public class sortReview implements Handler {
         ReviewService service = new ReviewService();
 
         ArrayList<Review> list = new ArrayList<>();
-
-//        if(sort.equals("sortHighRate")){
-//            list = service.getAllByHighRate();
-//        }else if(sort.equals("sortLowRate")){
-//            list = service.getAllByLowRate();
-//        }
-//        equest.setAttribute("list", list);
-//        request.setAttribute("view", "/review/review.jsp");
+        request.setAttribute("view", "/review/review.jsp");
 
         return go;
     }

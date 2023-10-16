@@ -28,6 +28,7 @@ public class RestSearch implements Handler {
         System.out.println(memberNo);
         System.out.println(searchType);
         System.out.println(svarNm);
+        System.out.println(searchWord);
 
         HighwayRestService highwayRestService = new HighwayRestService();
         ArrayList<HighwayRest> list = highwayRestService.getByNm(svarNm);

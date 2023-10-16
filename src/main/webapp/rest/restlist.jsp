@@ -10,13 +10,10 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1e8cd91d76c21a46aceb30ba9e7ec1e1"></script>
     <script>
         window.onload = () => {
-            document.getElementById("btn").onclick = function(){
+            document.getElementById("svarNm").onchange = function(){
                 let searchWord = document.getElementById("searchWord");
-                let svarNm = document.getElementById("svarNm");
-                searchWord.value = routeNm.value;
-
-                document.getElementById("f").submit();
-                return false;
+                let svarNm = document.getElementById("svarNm").value;
+                searchWord.value = svarNm;
             };
         };
     </script>
@@ -25,12 +22,12 @@
     <div class="container">
         <div class="row">
             <div class="col mt-3">
-                <form class="d-flex" id="f" role="search" action="/highwayrest/restsearch" method="post">
+                <form class="d-flex" id="f" role="search" action="${pageContext.request.contextPath }/restsearch" method="post">
                     <input type="hidden" name="searchType" value="2">
-                    <input type="hidden" name="memberNo" value="${sessionScope.loginId }">
+                    <input type="hidden" name="memberNo" value="1">
                     <input type="hidden" id="searchWord" name="searchWord" value="">
                     <input class="form-control me-2" type="search" id="svarNm" name="svarNm" placeholder="휴게소명">
-                    <input class="btn btn-outline-success" type="button" id="btn" value="검색"></button>
+                    <input class="btn btn-outline-success" type="submit" value="검색"></button>
                 </form>
             </div>
         </div>
@@ -57,7 +54,7 @@
                 <c:forEach var="r" items="${list }">
                 <tr>
                     <td>
-                        <a href="/highwayrest/restinfo?svarCd=${r.svarCd }" class="list-group-item list-group-item-action">${r.svarNm }</a>
+                        <a href="${pageContext.request.contextPath }/restinfo?svarCd=${r.svarCd }" class="list-group-item list-group-item-action">${r.svarNm }</a>
                     </td>
                     <c:if test="${r.gudClssCd == 0}">
                         <td>상행</td>

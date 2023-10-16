@@ -1,6 +1,7 @@
 package controller.payment;
 
 import common.Handler;
+import orders.OrderService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -46,19 +47,29 @@ public class PaymentKakao implements Handler {
             huc.setDoInput(true);
             huc.setDoOutput(true);
 
-            String partnerOrderId = "2";
-            String partnerUserId = "testId";
+            OrderService orderService = new OrderService();
+            String partnerOrderId = String.valueOf(orderService.getNextOrdersNo());
+            String partnerUserId = request.getParameter("stdRestCd"); // master userID = 휴게소 번호
 
             Map<String, String> params = new HashMap<>();
 
             params.put("cid", "TC0ONETIME");
-            params.put("partner_order_id", partnerOrderId); // TODO Order 번호를 받아와서 수정
-//            params.put("partner_user_id", (String) request.getSession().getAttribute("user_id"));;
-            params.put("partner_user_id", partnerUserId);
+            params.put("partner_order_id", partnerOrderId);
 
-            String[] items = request.getParameterValues("items");
+            request.getSession().setAttribute("partnerOrderId", partnerOrderId);
+
+            params.put("partner_user_id", (String) request.getSession().getAttribute("loginId"));;
+
+            String[] itemNo = request.getParameterValues("items");
             String[] prices = request.getParameterValues("price");
             String[] quantities = request.getParameterValues("quantity");
+//
+            request.getSession().setAttribute("stdRestCd", request.getParameter("stdRestCd"));
+//
+            String[] items = new String[itemNo.length];
+            for (int i = 0; i < items.length; i++) {
+                items[i] = orderService.getMenuByFoodNo(Integer.parseInt(itemNo[i]));
+            }
 
             if (items.length > 1) {
                 params.put("item_name", "'" + items[0] + " 외 " + (items.length - 1) + "개'");
@@ -70,9 +81,11 @@ public class PaymentKakao implements Handler {
 
             Map<String, String> itemMap = new HashMap<>();
             Map<String, String> quantityMap = new HashMap<>();
+            Map<String, String> foodNoMap = new HashMap<>();
             for (int i = 0; i < items.length; i++) {
                 itemMap.put(items[i], prices[i]);
                 quantityMap.put(items[i], quantities[i]);
+                foodNoMap.put(items[i], itemNo[i]);
             }
 
             // redirect로 이동하기 때문에 필요한 정보 세션에 저장
@@ -80,6 +93,8 @@ public class PaymentKakao implements Handler {
             request.getSession().setAttribute("items", itemJson.toJSONString());
             JSONObject quantityJson = new JSONObject(quantityMap);
             request.getSession().setAttribute("quantities", quantityJson.toJSONString());
+            JSONObject foodNoJson = new JSONObject(foodNoMap);
+            request.getSession().setAttribute("foodNos", foodNoJson.toJSONString());
 
             params.put("quantity", String.valueOf(items.length));
 
@@ -106,6 +121,7 @@ public class PaymentKakao implements Handler {
             JSONObject parsed = (JSONObject) jsonParser.parse(br);
 
             request.getSession().setAttribute("tid", parsed.get("tid"));
+            request.getSession().setAttribute("partnerUserId", partnerUserId);
 
             return "redirect/" + (String) parsed.get("next_redirect_pc_url");
         } catch (MalformedURLException e) {

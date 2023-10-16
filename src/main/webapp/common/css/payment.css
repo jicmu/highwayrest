@@ -1,0 +1,66 @@
+.container.main {
+    height: calc(100vh - 111px - 80px);
+    overflow: auto;
+}
+
+.container.main {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+.container.main::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+#wrapper {
+    padding-bottom: 0px !important;
+}
+footer {
+    top: 80px;
+}
+
+button#pay-by-kakao:focus {
+    border: 0;
+}
+
+.status-dot {
+    border-radius: 100rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    display: inline-block;
+}
+
+body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+@media (max-width: 990px) {
+    #nav-logo {
+         font-size: 28px;
+    }
+
+    .nav-logo {
+        font-size: 24px;
+    }
+
+    .nav-link {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 770px) {
+    #nav-logo {
+         font-size: 20px;
+    }
+
+    .nav-logo {
+        font-size: 16px;
+    }
+
+    .nav-link {
+        font-size: 16px;
+    }
+}

@@ -21,10 +21,18 @@
             <td><textarea cols="50" rows="30" value="${r.content}"></textarea></td>
         </tr>
         <tr>
-            <!-- TODO 업로드한 모든 사진을 한 번에 수정 가능하게?-->
-            <c:if test="${not empty r.File1!=null}">
+            <!-- TODO 업로드 한 모든 사진을 한 번에 수정 가능하게-->
+            <c:if test="${not empty {r.img1}=null}">
                 <th>사진</th>
-                <td><img src="${r.File1}" style="width:200px;height:200px"></td>
+                <td><img src="${r.img1}" style="width:200px;height:200px"></td>
+            </c:if>
+            <c:if test="${not empty {r.img1}=null}">
+                <th>사진</th>
+                <td><img src="${r.img1}" style="width:200px;height:200px"></td>
+            </c:if>
+            <c:if test="${not empty {r.img1}=null}">
+                <th>사진</th>
+                <td><img src="${r.img1}" style="width:200px;height:200px"></td>
             </c:if>
         </tr>
         <tr>

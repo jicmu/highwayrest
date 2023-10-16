@@ -36,8 +36,17 @@ public class PaymentKakaoApprove implements Handler {
         String kakaoKey = properties.getProperty("kakaoKey");
 
         try {
-            String partnerOrderId = "2";
-            String partnerUserId = "testId";
+            String partnerOrderId = (String) request.getSession().getAttribute("partnerOrderId");
+            String partnerUserId = (String) request.getSession().getAttribute("loginId");
+
+            request.getSession().removeAttribute("partnerOrderId");
+            request.getSession().removeAttribute("partnerUserId");
+
+            String stdRestCd = (String) request.getSession().getAttribute("stdRestCd");
+
+            request.getSession().removeAttribute("stdRestCd");
+
+            request.getSession().removeAttribute("partnerOrderId");
 
             // Approve
             String approveUrlStr = "https://kapi.kakao.com/v1/payment/approve";
@@ -80,6 +89,8 @@ public class PaymentKakaoApprove implements Handler {
             request.getSession().setAttribute("paymentResult", parsedApproved.toJSONString());
 
             // DB 등록
+            String foodNos = (String) request.getSession().getAttribute("foodNos");
+            request.getSession().removeAttribute("foodNos");
             String items = (String) request.getSession().getAttribute("items");
             request.getSession().removeAttribute("items");
             String quantities = (String) request.getSession().getAttribute("quantities");
@@ -87,6 +98,7 @@ public class PaymentKakaoApprove implements Handler {
 
             JSONObject parsedItems = (JSONObject) jsonParser.parse(items);
             JSONObject parsedQuantities = (JSONObject) jsonParser.parse(quantities);
+            JSONObject parsedFoodNos = (JSONObject) jsonParser.parse(foodNos);
 
             OrderService orderService = new OrderService();
 
@@ -94,10 +106,12 @@ public class PaymentKakaoApprove implements Handler {
                 String item = (String) o;
                 String amount = (String) parsedItems.get(o);
                 String quantity = (String) parsedQuantities.get(o);
+                String foodNo = (String) parsedFoodNos.get(o);
+
 
                 orderService.order(Order.builder()
-                        .menu(item)
-                        .restNo(1)
+                        .foodNo(Integer.parseInt(foodNo))
+                        .restNo(Integer.parseInt(stdRestCd))
                         .pay(Integer.parseInt(amount))
                         .quantity(Integer.parseInt(quantity))
                         .memberNo(1) // session에서 가져와야함

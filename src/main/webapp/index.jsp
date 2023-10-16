@@ -72,6 +72,7 @@
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath }/payment/orderList">주문내역</a></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath }/review/list">리뷰관리</a></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath }/member/out">로그아웃</a></li>
+
                         </ul>
                     </li>
                 </c:if>

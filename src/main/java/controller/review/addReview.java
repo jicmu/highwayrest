@@ -50,11 +50,8 @@ public class addReview implements Handler {
             if (files[i] != null && files[i].length() != 0) {
                 imgs[i] = files[i].getName();
             } else {
-                imgs[i] = "";
+                imgs[i] = null;
             }
-        }
-        for (String s : imgs) {
-            System.out.println(s);
         }
 
         String content = mr.getParameter("content");
@@ -67,10 +64,13 @@ public class addReview implements Handler {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd"); //20231012 형식으로 출력됨
         String fileDate = sdf.format(date);
 
-        String nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + fileDate + "\\" + orderNo;
+        ReviewService service = new ReviewService();
+        int reviewNo = service.getSeq();
+
+        String nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + fileDate + "\\" + reviewNo;
         String osName1 = System.getProperty("os.name");
         if (osName1.contains("win")) {
-            nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + fileDate + "\\" + orderNo;
+            nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + fileDate + "\\" + reviewNo;
         } else if (osName1.contains("mac")) {
             nPath = "";
         } else if (osName1.contains("nix") || osName1.contains("nux")) {
@@ -85,7 +85,7 @@ public class addReview implements Handler {
                 dir.mkdirs();//폴더 생성
                 System.out.println("폴더를 생성합니다.");
             } else {
-                System.out.println("폴더가 이미 존재하므로 생성하지 않습니다.");
+                System.out.println("폴더가 이미 존재하는 관계로 생성하지 않습니다.");
             }
         } else {//업로드한 파일이 없을 때
             System.out.println("업로드한 파일이 없습니다.");
@@ -108,8 +108,7 @@ public class addReview implements Handler {
             }
         }
 
-        ReviewService service = new ReviewService();
-        service.addReview(new Review(0, memberNo, null, content, star, orderNo, imgs[0], imgs[1], imgs[2]));
+        service.addReview(new Review(reviewNo, memberNo, null, content, star, orderNo, imgs[0], imgs[1], imgs[2]));
         return "redirect/index.jsp";
     }
 

@@ -1,28 +1,19 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <title>주문 확인 - 휴게소 음식 주문</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-            crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
-        <style>
-            .status-dot {
-                border-radius: 100rem;
-                width: 0.5rem;
-                height: 0.5rem;
-                display: inline-block;
-            }
-        </style>
-    </head>
+<head>
+    <title>주문 확인</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<c:url value="/common/css/common.css" />" type="text/css">
+    <link rel="stylesheet" href="<c:url value='/common/css/payment.css' />" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
 
-    <body>
-        <main class="container-sm">
+<body>
+    <div id="wrapper">
+        <%@ include file="/common/header.jsp"%>
+        <div class="container main">
             <h1 class="p-1 pb-2 border-bottom border-muted">주문 확인</h1>
             <section id="orders" class="row">
                 <c:forEach items="${orderList}" var="o" varStatus="status">
@@ -49,7 +40,7 @@
                                 <input class="form-control form-control-sm" type="number" name="price"
                                     id="price-${o.ordersNo}" value="${o.pay}" readonly>
                             </div>
-                            <span id="status-container-${o.ordersNo}" ident="status-container-${o.ordersNo}">
+                            <span id="status-container-${o.ordersNo}" ident="status-container-${o.ordersNo}" orderNo="status-container-${o.orderNo}">
                                 <c:choose>
                                     <c:when test="${o.status eq 0}">
                                         <span class="status-dot bg-primary" id="status-${o.ordersNo}"></span> 수락 대기
@@ -64,8 +55,11 @@
                                         <span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소
                                     </c:when>
                                     <c:when test="${o.status eq 4}">
-                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료
-                                        <span><a href="${pageContext.request.contextPath}/addReview">후기 작성</a></span>
+                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 수령 완료
+                                        <span><a href="${pageContext.request.contextPath}/addReview?orderNo=${o.orderNo}">후기 작성</a></span>
+                                    </c:when>
+                                    <c:when test="${o.status eq 5}">
+                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 조리 완료
                                     </c:when>
                                     <c:otherwise>
                                         <span>알 수 없음</span>
@@ -75,83 +69,90 @@
                         </div>
                         <c:choose>
                             <c:when test="${o.status eq 0}">
-                                <button class="btn btn-danger btn-cancel" id="btn-cancel-${o.ordersNo}" ident="btn-cancel-${o.ordersNo}">주문 취소</button>
+                                <button class="btn btn-danger btn-cancel" id="btn-cancel-${o.ordersNo}" ident="btn-cancel-${o.ordersNo}" orderNo="btn-cancel-${o.orderNo}">주문 취소</button>
                             </c:when>
-                            <c:when test="${o.status eq 1}">
-                                <button class="btn btn-info btn-done" id="btn-done-${o.ordersNo}" ident="btn-done-${o.ordersNo}">수령</button>
+                            <c:when test="${o.status eq 5 }">
+                                <button class="btn btn-info btn-done" id="btn-done-${o.ordersNo}" ident="btn-done-${o.ordersNo}" orderNo="btn-done-${o.orderNo}">수령</button>
                             </c:when>
                         </c:choose>
                     </article>
                 </c:forEach>
             </section>
-        </main>
-        <script>
-            document.querySelectorAll(".btn-cancel").forEach((element) => {
-                element.addEventListener("click", () => {
-                    if (!confirm("같이 주문했던 음식도 취소됩니다. 취소하시겠습니까?")) {
-                        return;
+        </div>
+    <%--    <%@ include file="footer.jsp" %>--%>
+        <%@ include file="/common/footer.jsp"%>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll(".btn-cancel").forEach((element) => {
+            element.addEventListener("click", () => {
+                let xhr = new XMLHttpRequest();
+
+                let cancelUrl = "${pageContext.request.contextPath}/api/cancel";
+                if (!confirm("같이 주문했던 음식도 취소됩니다. 취소하시겠습니까?")) {
+                    return;
+                }
+
+                xhr.open("post", cancelUrl);
+
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                let index = element.getAttribute("ident").replace("btn-cancel-", "");
+
+                let parameter = {
+                        ordersNo: index,
+                };
+
+                xhr.send(JSON.stringify(parameter));
+
+                xhr.onload = () => {
+                    if (xhr.status == 200) {
+                        document.querySelectorAll("[ident=btn-cancel-" + index + "]").forEach((elem) => {
+                            elem.remove();
+                        });
+
+                        let status = document.querySelectorAll("[ident=status-container-" + index + "]");
+
+                        status.forEach((statusElem) => {
+                            statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
+                        });
                     }
+                }
+            })
+        });
 
-                    let xhr = new XMLHttpRequest();
+        document.querySelectorAll(".btn-done").forEach((element) => {
+            element.addEventListener("click", () => {
+                let xhr = new XMLHttpRequest();
 
-                    xhr.open("post", "${pageContext.request.contextPath}/api/cancel");
-                    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhr.open("post", "${pageContext.request.contextPath}/api/done");
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-                    let index = element.getAttribute("ident").replace("btn-cancel-", "");
+                let index = element.getAttribute("ident").replace("btn-done-", "");
+                let orderNo = element.getAttribute("orderNo").replace("btn-done-", "");
 
-                    let parameter = {
-                        ordersNo: index
-                    };
+                let parameter = {
+                    ordersNo: index
+                };
 
-                    xhr.send(JSON.stringify(parameter));
+                xhr.send(JSON.stringify(parameter));
 
-                    xhr.onload = () => {
-                        if (xhr.status == 200) {
-                            document.querySelectorAll("[ident=btn-cancel-" + index + "]").forEach((elem) => {
-                                elem.remove();
-                            });
+                xhr.onload = () => {
+                    if (xhr.status == 200) {
+                        document.querySelectorAll("[ident=btn-done-" + index + "]").forEach((elem) => {
+                            elem.remove();
+                        });
 
-                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
+                        let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
-                            status.forEach((statusElem) => {
-                                statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
-                            });
-
-                        }
+                        status.forEach((statusElem) => {
+                            statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span>수령 완료<span><a href="${pageContext.request.contextPath}/addReview?' + orderNo + '">후기 작성</a></span>'
+                        });
                     }
-                })
+                }
             });
+        });
+    </script>
+</body>
 
-            document.querySelectorAll(".btn-done").forEach((element) => {
-                element.addEventListener("click", () => {
-                    let xhr = new XMLHttpRequest();
-
-                    xhr.open("post", "${pageContext.request.contextPath}/api/done");
-                    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-                    let index = element.getAttribute("ident").replace("btn-done-", "");
-
-                    let parameter = {
-                        ordersNo: index
-                    };
-
-                    xhr.send(JSON.stringify(parameter));
-
-                    xhr.onload = () => {
-                        if (xhr.status == 200) {
-                            document.querySelectorAll("[ident=btn-done-" + index + "]").forEach((elem) => {
-                                elem.remove();
-                            });
-
-                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
-
-                            status.forEach((statusElem) => {
-                                statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 완료<span><a href="${pageContext.request.contextPath}/addReview">후기 작성</a></span>'
-                            });
-                        }
-                    }
-                });
-            });
-        </script>
-    </body>
 </html>

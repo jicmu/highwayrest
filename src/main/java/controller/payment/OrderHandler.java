@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class OrderHandler implements Handler {
@@ -21,21 +22,24 @@ public class OrderHandler implements Handler {
         service = new OrderService();
     }
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
-
-        return "/payment/order.jsp";
+        return doPost(request, response);
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String stdRestCd = request.getParameter("stdRestCd");
-        String[] foodNms = request.getParameterValues("foodNm");
+        String[] foodNos = request.getParameterValues("foodNo");
         String[] foodCosts = request.getParameterValues("foodCost");
         String[] amounts = request.getParameterValues("amount");
 
         int max = 10;
         if (amounts != null && amounts.length != 0) {
             for (String a : amounts) {
-                int amount = Integer.parseInt(a);
+                int amount = 0;
+                if (!a.isEmpty()) {
+                    amount = Integer.parseInt(a);
+                } else {
+                    continue;
+                }
 
                 if (max < amount) {
                     max = amount;
@@ -45,16 +49,17 @@ public class OrderHandler implements Handler {
 
         request.setAttribute("max", max);
 
-        if (foodNms == null || foodCosts == null || amounts == null
-                || foodNms.length == 0 || foodCosts.length == 0 || amounts.length == 0) {
+        if (foodNos == null || foodCosts == null || amounts == null
+                || foodNos.length == 0 || foodCosts.length == 0 || amounts.length == 0) {
             return "/payment/order.jsp";
         }
 
         List<OrderParamDTO> dtos = new ArrayList<>();
-        for (int i = 0; i < foodNms.length; i++) {
+        for (int i = 0; i < foodNos.length; i++) {
             OrderParamDTO orderParamDTO = OrderParamDTO.builder()
                     .stdRestCd(stdRestCd)
-                    .foodNm(foodNms[i])
+                    .foodNo(Integer.parseInt(foodNos[i]))
+                    .foodNm(service.getMenuByFoodNo(Integer.parseInt(foodNos[i])))
                     .foodCost(Integer.parseInt(foodCosts[i]))
                     .amount(Integer.parseInt(amounts[i]))
                     .build();
