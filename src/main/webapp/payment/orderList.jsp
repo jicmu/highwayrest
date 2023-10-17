@@ -137,7 +137,7 @@
 
                                 card += cardHeader;
 
-                                let contentMain = "";
+                                let contentMain = "<div class='card-body'>";
 
                                 for (let a of p) {
                                     contentMain += `
@@ -158,6 +158,8 @@
                                         </div>
                                     `;
                                 }
+
+                                contentMain += "</div>";
 
                                 card += contentMain;
 
