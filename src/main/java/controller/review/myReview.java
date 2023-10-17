@@ -13,13 +13,14 @@ import java.util.ArrayList;
 public class myReview implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+
+        String loginNum = String.valueOf(request.getSession().getAttribute("loginNum"));
 
         ReviewService service = new ReviewService();
-        ArrayList<Review> mylist = service.getReviewByMember(memberNo);
-        request.setAttribute("mylist", mylist);
+        ArrayList<Review> reviewList = service.getReviewByMember(Integer.parseInt(loginNum));
+        request.setAttribute("reviewList", reviewList);
 
-        return null;
+        return "/review/myList.jsp";
     }
 
     @Override
