@@ -32,6 +32,9 @@ public class PageApiHandler implements Handler {
         String page = request.getParameter("page");
         String amount = request.getParameter("amount");
 
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+
         List<Order> orders = orderService.findByMemberIdWithPaging(user, Integer.parseInt(page), Integer.parseInt(amount));
 
         Map<Integer, String> ordersMap = new HashMap<>();
