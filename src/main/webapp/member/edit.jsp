@@ -12,6 +12,15 @@
             passwordInput.readOnly = true;
         }
     });
+        <%--<script type="text/javascript">--%>
+        <%--    const a = () => {--%>
+        <%--        if (confirm("정말로 탈퇴하시겠습니까?") == true) {--%>
+        <%--            document.forms[0].submit(); // 첫번째 폼에 접근하여 submit--%>
+        <%--        }else{--%>
+        <%--            return; // 취소--%>
+        <%--        }--%>
+        <%--    }--%>
+        <%--</script>--%>
 </script>
 </head>
 <body>
