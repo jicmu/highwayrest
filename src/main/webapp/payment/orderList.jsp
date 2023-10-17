@@ -23,7 +23,6 @@
         <%@ include file="/common/footer.jsp"%>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="${pageContext.request.contextPath}/common/js/payment.js"></script>
     <script>
     // 취소, 수령 함수
         let setEvent = () => {
