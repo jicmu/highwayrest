@@ -26,7 +26,7 @@ public class OrderHandler implements Handler {
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String stdRestCd = request.getParameter("stdRestCd");
+        String stdRestCd = request.getParameter("restNo");
         String[] foodNos = request.getParameterValues("foodNo");
         String[] foodCosts = request.getParameterValues("foodCost");
         String[] amounts = request.getParameterValues("amount");
