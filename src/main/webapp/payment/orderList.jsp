@@ -23,7 +23,81 @@
         <%@ include file="/common/footer.jsp"%>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/common/js/payment.js"></script>
     <script>
+    // 취소, 수령 함수
+        let setEvent = () => {
+            document.querySelectorAll(".btn-done").forEach((element) => {
+                element.addEventListener("click", () => {
+                    let xhr = new XMLHttpRequest();
+
+                    xhr.open("post", "${pageContext.request.contextPath}/api/done");
+                    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                    let index = element.getAttribute("ident").replace("btn-done-", "");
+                    let orderNo = element.getAttribute("orderNo").replace("btn-done-", "");
+
+                    let parameter = {
+                        ordersNo: index
+                    };
+
+                    xhr.send(JSON.stringify(parameter));
+
+                    xhr.onload = () => {
+                        if (xhr.status == 200) {
+                            document.querySelectorAll("[ident=btn-done-" + index + "]").forEach((elem) => {
+                                elem.remove();
+                            });
+
+                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
+
+                            status.forEach((statusElem) => {
+                                statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span>수령 완료<span><a href="${pageContext.request.contextPath}/addReview?' + orderNo + '">후기 작성</a></span>'
+                            });
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll(".btn-cancel").forEach((element) => {
+                element.addEventListener("click", () => {
+                    let xhr = new XMLHttpRequest();
+
+                    let cancelUrl = "${pageContext.request.contextPath}/api/cancel";
+                    if (!confirm("같이 주문했던 음식도 취소됩니다. 취소하시겠습니까?")) {
+                        return;
+                    }
+
+                    xhr.open("post", cancelUrl);
+
+                    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                    let index = element.getAttribute("ident").replace("btn-cancel-", "");
+
+                    let parameter = {
+                            ordersNo: index,
+                    };
+
+                    xhr.send(JSON.stringify(parameter));
+
+                    xhr.onload = () => {
+                        if (xhr.status == 200) {
+                            document.querySelectorAll("[ident=btn-cancel-" + index + "]").forEach((elem) => {
+                                elem.remove();
+                            });
+
+                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
+
+                            status.forEach((statusElem) => {
+                                statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${'${p.ordersNo}'}"></span> 취소'
+                            });
+                        }
+                    }
+                })
+            });
+        }
+    // /취소, 수령 함수
+
         // 무한 스크롤
             window.onload = () => {
                 let page = 1;
@@ -91,6 +165,8 @@
                                     txt += '<span>알 수 없음</span>'
                                 }
 
+                                txt += "</div>";
+
                                 if (p.status == 0) {
                                     txt += `<button class="btn btn-danger btn-cancel" id="btn-cancel-${'${p.ordersNo}'}" ident="btn-cancel-${'${p.ordersNo}'}" orderNo="btn-cancel-${'${p.orderNo}'}">주문 취소</button>`;
                                 } else if (p.status == 5) {
@@ -100,7 +176,10 @@
                                 article.innerHTML = txt;
 
                                 section.append(article);
+
                             }
+
+                            setEvent();
 
                             observer.unobserve(entry.target);
 
@@ -117,75 +196,7 @@
                 io.observe(section);
             }
         // /무한 스크롤
-
-        document.querySelectorAll(".btn-cancel").forEach((element) => {
-            element.addEventListener("click", () => {
-                let xhr = new XMLHttpRequest();
-
-                let cancelUrl = "${pageContext.request.contextPath}/api/cancel";
-                if (!confirm("같이 주문했던 음식도 취소됩니다. 취소하시겠습니까?")) {
-                    return;
-                }
-
-                xhr.open("post", cancelUrl);
-
-                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-                let index = element.getAttribute("ident").replace("btn-cancel-", "");
-
-                let parameter = {
-                        ordersNo: index,
-                };
-
-                xhr.send(JSON.stringify(parameter));
-
-                xhr.onload = () => {
-                    if (xhr.status == 200) {
-                        document.querySelectorAll("[ident=btn-cancel-" + index + "]").forEach((elem) => {
-                            elem.remove();
-                        });
-
-                        let status = document.querySelectorAll("[ident=status-container-" + index + "]");
-
-                        status.forEach((statusElem) => {
-                            statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${'${p.ordersNo}'}"></span> 취소'
-                        });
-                    }
-                }
-            })
-        });
-
-        document.querySelectorAll(".btn-done").forEach((element) => {
-            element.addEventListener("click", () => {
-                let xhr = new XMLHttpRequest();
-
-                xhr.open("post", "${pageContext.request.contextPath}/api/done");
-                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-                let index = element.getAttribute("ident").replace("btn-done-", "");
-                let orderNo = element.getAttribute("orderNo").replace("btn-done-", "");
-
-                let parameter = {
-                    ordersNo: index
-                };
-
-                xhr.send(JSON.stringify(parameter));
-
-                xhr.onload = () => {
-                    if (xhr.status == 200) {
-                        document.querySelectorAll("[ident=btn-done-" + index + "]").forEach((elem) => {
-                            elem.remove();
-                        });
-
-                        let status = document.querySelectorAll("[ident=status-container-" + index + "]");
-
-                        status.forEach((statusElem) => {
-                            statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span>수령 완료<span><a href="${pageContext.request.contextPath}/addReview?' + orderNo + '">후기 작성</a></span>'
-                        });
-                    }
-                }
-            });
-        });
+        setEvent();
     </script>
 </body>
 
