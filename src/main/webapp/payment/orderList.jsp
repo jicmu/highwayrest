@@ -65,7 +65,7 @@
                                     <div class="col-3 m-3 d-inline-block">
                                         <label for="quantity-${'${p.ordersNo}'}">수량</label>
                                         <input class="form-control form-control-sm" type="number"
-                                            id="quantity-${'${p.ordersNo}'}" name="quantity" value="${o.quantity}" readonly>
+                                            id="quantity-${'${p.ordersNo}'}" name="quantity" value="${'${p.quantity}'}" readonly>
                                     </div>
                                     <div class="col-3 m-3 d-inline-block">
                                         <label for="price-${'${p.ordersNo}'}">총 가격</label>
