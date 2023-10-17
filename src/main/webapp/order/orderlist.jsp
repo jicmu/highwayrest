@@ -15,29 +15,6 @@
                 searchWord.value = foodNm;
             }
 
-            const calc = () => {
-                let amount = document.getElementById("${m.no }_amount").value;
-                let price = document.getElementById("${m.no }_price").value;
-
-                let sum;
-                sum += amount;
-
-                let tamount = document.getElementById("tamount");
-                tamount.innerHTML = "총 주문 수량 : '" + sum + "'";
-
-                let inTamount = document.getElementById("inTamount");
-                inTamount.value = sum;
-
-                let sumtotal;
-                sumtotal += (amount * price);
-
-                let tprice = document.getElementById("tprice");
-                tprice.innerHTML = "총 결제 금액 : '" + sumtotal + "'";
-
-                let inTprice = document.getElementById("inTprice");
-                inTprice.value = sumtotal;
-            }
-
             const reset = () => {
                 let amount = document.querySelectorAll("input[name='amount']").value;
                 amount = 0;
@@ -74,7 +51,7 @@
             <hr>
         </div>
         <form action="${pageContext.request.contextPath }/order" method="get">
-            <input type="hidden" name="stdRestCd" value="${stdRestCd }">
+            <input type="hidden" name="restNo" value="${stdRestCd }">
             <div class="row">
                 <table class="text-center" id="food-table">
                     <tr><th>메뉴</th><th>가격</th><th>수량</th></tr>
@@ -82,7 +59,7 @@
                     <tr>
                         <td>${m.name }<input type="hidden" id="${m.no }_name" name="foodNo" value="${m.no }"></td>
                         <td>${m.foodCost }<input type="hidden" id="${m.no }_price" name="foodCost" value="${m.foodCost }"></td>
-                        <td><input type="number" id="${m.no }_amount" name="amount"></td>
+                        <td><input type="number" id="${m.no }_amount" name="amount" value=0></td>
                     </tr>
                     </c:forEach>
                 </table>

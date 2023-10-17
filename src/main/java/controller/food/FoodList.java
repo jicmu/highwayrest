@@ -14,11 +14,11 @@ import java.util.ArrayList;
 public class FoodList implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String stdRestCd = request.getParameter("stdRestCd");
+        String restNo = request.getParameter("restNo");
         RestFoodService restFoodService = new RestFoodService();
-        ArrayList<RestFood> list = restFoodService.getBySCd(stdRestCd);
+        ArrayList<RestFood> list = restFoodService.getBySCd(restNo);
 
-        request.setAttribute("stdRestCd", stdRestCd);
+        request.setAttribute("restNo", restNo);
         request.setAttribute("list", list);
         return "/order/orderlist.jsp";
     }

@@ -11,12 +11,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class myReview implements Handler {
+    String go = "/review/mylist.jsp";
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String loginNum = String.valueOf(request.getSession().getAttribute("loginNum"));
 
         ReviewService service = new ReviewService();
+      
         ArrayList<Review> reviewList = service.getReviewByMember(Integer.parseInt(loginNum));
         request.setAttribute("reviewList", reviewList);
 

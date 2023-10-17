@@ -15,10 +15,6 @@ import java.util.ArrayList;
 public class RestFoodCRUD implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HighwayRestService service = new HighwayRestService();
-        ArrayList<HighwayRest> list = service.getAll();
-
-        request.setAttribute("list", list);
 
         return "/highway/master/restfood.jsp";
     }

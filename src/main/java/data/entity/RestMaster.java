@@ -6,14 +6,13 @@ import java.sql.Date;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class restMaster {
+public class RestMaster {
     private int masterNo;
     private String id;
-    private String password;
-    private Date logout;
+    private Date logOut;
     private Date lastIn;
     private String tel;
     private int status;
