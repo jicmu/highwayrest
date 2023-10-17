@@ -25,7 +25,7 @@
         $(function () {
             $("#sort").change(function () {
                 let sort = $(this).val();
-                location.href="/highwayrest/sortReview?sort=" + sort + "&svarCd=${svarCd}";
+                location.href = "/highwayrest/sortReview?sort=" + sort + "&svarCd=${svarCd}";
             });
         });
 
@@ -62,54 +62,48 @@
             <table border="1" id="f">
                 <!-- 작성자와 로그인한 회원이 동일할 때-->
                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                    <input type="button" value="수정" class="btn btn-outline-secondary" onclick="editReview(${r.reviewNo})">
-                    <input type="button" value="삭제" class="btn btn-outline-secondary" onclick="delReview(${r.reviewNo})">
+                    <input type="button" value="수정" class="btn btn-outline-secondary"
+                           onclick="editReview(${r.reviewNo})">
+                    <input type="button" value="삭제" class="btn btn-outline-secondary"
+                           onclick="delReview(${r.reviewNo})">
                 </div>
-                        <div class="mb-3 row">
-                            <label for="member" class="col-sm-2 col-form-label">회원</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control-plaintext" id="member" value="${r.memberNo}">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="WDate" class="col-sm-2 col-form-label">작성일</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control-plaintext" id="Wdate" value="${r.WDate}">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="star" class="col-sm-2 col-form-label">별점</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control-plaintext" id="star" value="${r.star}">
-                            </div>
-                        </div>
-
-                <c:if test="${empty r.img1}">
-                    <label for="star" class="col-sm-2 col-form-label">사진</label>
-                    <div>
-                        <!--TODO 절대 경로?를 지정해야 할까? 경로를 어떻게 해야할 지 월요일에 다시 물어 보자.-->
-                        <img src="${r.img1}" class="img-thumbnail">
+                <div class="mb-3 row">
+                    <label for="member" class="col-sm-2 col-form-label">회원</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control-plaintext" id="member" value="${r.memberNo}">
                     </div>
-                    <c:if test="${empty r.img2}">
-                        <div>
-                            <img src="/highwayrest/${r.img2}" class="img-thumbnail">
-                        </div>
-                    </c:if>
-                    <c:if test="${empty r.img3}">
-                        <div>
-                            <img src="/highwayrest/${r.img3}" class="img-thumbnail">
-                        </div>
-                    </c:if>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="WDate" class="col-sm-2 col-form-label">작성일</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control-plaintext" id="Wdate" value="${r.WDate}">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="star" class="col-sm-2 col-form-label">별점</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control-plaintext" id="star" value="${r.star}">
+                    </div>
+                </div>
+                <c:if test="${not empty images}">
+                    <div class="mb-3 row">
+                        <label for="img" class="col-sm-2 col-form-label">사진</label>
+                        <c:forEach var="img" items="${images }">
+                            <c:forEach var="i" items="${img}">
+                                <img src="${i}" class="rounded" id="img" style="height:100px;width: 100px ">
+                            </c:forEach>
+                        </c:forEach>
+                    </div>
                 </c:if>
 
-                        <div class="mb-3 row">
-                            <label for="content" class="col-sm-2 col-form-label">후기</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control-plaintext" id="content" value="${r.content}">
-                            </div>
-                        </div>
+                <div class="mb-3 row">
+                    <label for="content" class="col-sm-2 col-form-label">후기</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control-plaintext" id="content" value="${r.content}">
+                    </div>
+                </div>
             </table>
         </c:forEach>
     </div>
