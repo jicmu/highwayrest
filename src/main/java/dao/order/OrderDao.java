@@ -46,4 +46,7 @@ public interface OrderDao {
 
     @Select("SELECT orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name FROM orders o INNER JOIN restfood r ON o.foodno = r.no WHERE orderNo = #{orderNo}")
     Order findByOrderNo(@Param("orderNo") String orderNo);
+
+    @Select("SELECT orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name FROM (SELECT ROWNUM AS rn, orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name FROM (SELECT orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name  FROM orders o INNER JOIN restfood r ON o.foodno = r.no  WHERE restno = #{restno} ORDER BY odate DESC )) WHERE  ((#{page} - 1) * #{amount}) + 1 <= rn AND rn <= (#{page} * #{amount})")
+    List<Order> findByRestNoWithPaging(@Param("restno") int restno, @Param("page") int page, @Param("amount") int amount);
 }
