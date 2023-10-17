@@ -353,4 +353,28 @@ public class OrderService {
 
         return order;
     }
+
+    public List<Order> findByMemberIdWithPaging(int memberId, int page, int amount) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrderDao dao = sqlSession.getMapper(OrderDao.class);
+
+        List<Order> orders = dao.findByMemberWithPaging(memberId, page, amount);
+
+        sqlSession.close();
+
+        return orders;
+    }
+
+    public List<Order> findByRestNoWithPaging(int restno, int page, int amount) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrderDao dao = sqlSession.getMapper(OrderDao.class);
+
+        List<Order> orders = dao.findByRestNoWithPaging(restno, page, amount);
+
+        sqlSession.close();
+
+        return orders;
+    }
 }
