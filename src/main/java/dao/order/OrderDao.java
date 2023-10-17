@@ -38,7 +38,7 @@ public interface OrderDao {
     @Select("SELECT * FROM orders WHERE ordersNo = #{ordersNo}")
     List<Order> findByOrdersNo(@Param("orderNo") String ordersNo);
 
-    @Select("SELECT SUM(pay) FROM orders WHERE ordersNo = #{ordersNo} AND status = 0 GROUP BY ordersNo")
+    @Select("SELECT SUM(pay) FROM orders WHERE ordersNo = #{ordersNo} GROUP BY ordersNo")
     Integer findTotalPrice(@Param("ordersNo") String ordersNo);
 
     @Select("SELECT name AS menu FROM restFood WHERE no = #{foodNo}")

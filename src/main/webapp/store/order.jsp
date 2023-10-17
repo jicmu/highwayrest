@@ -42,10 +42,12 @@
                         let sectionOrders = document.querySelector("section#orders");
 
                         for (let o in parsed) {
+                            let p = JSON.parse(parsed[o]);
+
                             let article = document.createElement("article");
                             article.classList = "card p-0 mb-3";
+                            article.setAttribute("ident", "article-" + p.ordersNo);
 
-                            let p = JSON.parse(parsed[o]);
 
                             let txt = `
                             <div class="card-header">
