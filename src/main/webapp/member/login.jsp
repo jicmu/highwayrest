@@ -114,7 +114,7 @@
                 <div class="d-flex justify-content-center">
                     <a class="btn btn-dark btn-sm me-2" href="${pageContext.request.contextPath}/member/join" role="button">회원가입</a>
                     <a class="btn btn-dark btn-sm me-2" href="${pageContext.request.contextPath}/member/findId" role="button">아이디찾기</a>
-                    <a class="btn btn-dark btn-sm" href="#" role="button">비밀번호찾기</a>
+                    <a class="btn btn-dark btn-sm" href="${pageContext.request.contextPath}/member/findPwd" role="button">비밀번호찾기</a>
                 </div>
             </form>
         </div>

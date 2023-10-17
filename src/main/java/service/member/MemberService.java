@@ -92,8 +92,8 @@ public class MemberService {
 	}
 
 	public void certifiedTel(String tel, int randomNumber) {
-		String apiKey = "NCS3OWJHKSI1POSQ";
-		String apiSecret = "JRZORHDQEKRVH28SLOP2I0IJRV44FSZ1";
+		String apiKey = "";
+		String apiSecret = "";
 		Message sms = new Message(apiKey, apiSecret);
 
 		// 4 params(to, from, type, text) are mandatory. must be filled
@@ -105,8 +105,8 @@ public class MemberService {
 		params.put("app_version", "test app 1.2");
 
 		try {
-			System.out.println("params: " + params);
 			JSONObject obj = sms.send(params);
+			System.out.println("params: " + params);
 			System.out.println("coolsms: " + obj.toString());
 		} catch (Exception e) {
 			System.out.println("error: " + e.getMessage());
