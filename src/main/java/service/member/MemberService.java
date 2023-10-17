@@ -2,11 +2,14 @@ package service.member;
 
 import dao.member.MemberDao;
 import data.entity.Member;
+import net.nurigo.sdk.message.model.Message;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.json.simple.JSONObject;
 import sql.Factory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MemberService {
@@ -85,5 +88,27 @@ public class MemberService {
 		ArrayList<Member> list = dao.selectAll();
 		session.close();
 		return list;
+	}
+
+	public void certifiedTel(String telNumber, int randomNumber) {
+//		String api_key = "NCS3OWJHKSI1POSQ";
+//		String api_secret = "JRZORHDQEKRVH28SLOP2I0IJRV44FSZ1";
+//		Message coolsms = new Message(api_key, api_secret);
+//
+//		// 4 params(to, from, type, text) are mandatory. must be filled
+//		HashMap<String, String> params = new HashMap<>();
+//		params.put("to", "01066086682");    // 수신전화번호
+//		params.put("from", "01066086682");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
+//		params.put("type", "SMS");
+//		params.put("text", "[TEST] 인증번호는" + "["+randomNumber+"]" + "입니다."); // 문자 내용 입력
+//		params.put("app_version", "test app 1.2"); // application name and version
+//
+//		try {
+//			JSONObject obj = (JSONObject) coolsms.send(params);
+//			System.out.println(obj.toString());
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//			System.out.println(e.getCause());
+//		}
 	}
 }
