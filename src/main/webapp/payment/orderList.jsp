@@ -116,63 +116,81 @@
 
                             let sectionOrders = document.querySelector("section#orders");
 
+                            let article = document.createElement("article");
                             for (let o in parsed) {
-                                let article = document.createElement("article");
-                                article.classList = "card p-0 mb-3";
-
+                                let card = "";
+                                
                                 let p = JSON.parse(parsed[o]);
 
-                                let txt = `
+                                article = document.createElement("article");
+                                article.classList = "card p-0 mb-3";
+
+                                let cardHeader = `
                                 <div class="card-header">
-                                    ${"${p.ordersNo}"}<input type="hidden" name="items" value="${'${p.ordersNo}'}">
+                                    ${"${p[0].orderNo}"}
+                                    <input type="hidden" name="items" value="${'${p[0].ordersNo}'}">
                                     <div id="cancel-1" class="float-end text-muted" style="cursor: pointer;">
-                                        ${'${p.restNo}'}
+                                        ${'${p[0].restNo}'}
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="col-3 m-3 d-inline-block">
-                                        <label for="menu-${'${p.ordersNo}'}">음식</label>
-                                        <input class="form-control form-control-sm" type="text" id="menu-${'${p.ordersNo}'}"
-                                            name="menu" value="${'${p.menu}'}" readonly>
-                                    </div>
-                                    <div class="col-3 m-3 d-inline-block">
-                                        <label for="quantity-${'${p.ordersNo}'}">수량</label>
-                                        <input class="form-control form-control-sm" type="number"
-                                            id="quantity-${'${p.ordersNo}'}" name="quantity" value="${'${p.quantity}'}" readonly>
-                                    </div>
-                                    <div class="col-3 m-3 d-inline-block">
-                                        <label for="price-${'${p.ordersNo}'}">총 가격</label>
-                                        <input class="form-control form-control-sm" type="number" name="price"
-                                            id="price-${'${p.ordersNo}'}" value="${'${p.pay}'}" readonly>
-                                    </div>
-                                    <span id="status-container-${'${p.ordersNo}'}" ident="status-container-${'${p.ordersNo}'}" orderNo="status-container-${'${p.orderNo}'}">
-                                `;
+                                <div>`;
 
-                                if (p.status == 0) {
-                                    txt += `<span class="status-dot bg-primary" id="status-${'${p.ordersNo}'}"></span> 수락 대기`;
-                                } else if (p.status == 1) {
-                                    txt += `<span class="status-dot bg-success" id="status-${'${p.ordersNo}'}"></span> 수락`;
-                                } else if (p.status == 2) {
-                                    txt += `<span class="status-dot bg-danger" id="status-${'${p.ordersNo}'}"></span> 거부`;
-                                } else if (p.status == 3) {
-                                    txt += `<span class="status-dot bg-warning" id="status-${'${p.ordersNo}'}"></span> 취소`;
-                                } else if (p.status == 4) {
-                                    txt += `<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span> 수령 완료<span><a href="${pageContext.request.contextPath}/addReview?orderNo=${'${p.orderNo}'}">후기 작성</a></span>`;
-                                } else if (p.status == 5) {
-                                    txt += `<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span> 조리 완료`;
+                                card += cardHeader;
+
+                                let contentMain = "";
+
+                                for (let a of p) {
+                                    contentMain += `
+                                        <div class="col-3 m-3 d-inline-block">
+                                            <label for="menu-${'${a.ordersNo}'}">음식</label>
+                                            <input class="form-control form-control-sm" type="text" id="menu-${'${a.ordersNo}'}"
+                                                name="menu" value="${'${a.menu}'}" readonly>
+                                        </div>
+                                        <div class="col-3 m-3 d-inline-block">
+                                            <label for="quantity-${'${a.ordersNo}'}">수량</label>
+                                            <input class="form-control form-control-sm" type="number"
+                                                id="quantity-${'${a.ordersNo}'}" name="quantity" value="${'${a.quantity}'}" readonly>
+                                        </div>
+                                        <div class="col-3 m-3 d-inline-block">
+                                            <label for="price-${'${a.ordersNo}'}">총 가격</label>
+                                            <input class="form-control form-control-sm" type="number" name="price"
+                                                id="price-${'${a.ordersNo}'}" value="${'${a.pay}'}" readonly>
+                                        </div>
+                                    `;
+                                }
+
+                                card += contentMain;
+
+                                card += "<div class='card-footer'>"
+
+                                card += `<span class="status" id="status-container-${'${p[0].ordersNo}'}" ident="status-container-${'${p[0].ordersNo}'}" orderNo="status-container-${'${p[0].orderNo}'}">`;
+
+                                if (p[0].status == 0) {
+                                    card += `<span class="status-dot bg-primary" id="status-${'${p[0].ordersNo}'}"></span> 수락 대기`;
+                                } else if (p[0].status == 1) {
+                                    card += `<span class="status-dot bg-success" id="status-${'${p[0].ordersNo}'}"></span> 수락`;
+                                } else if (p[0].status == 2) {
+                                    card += `<span class="status-dot bg-danger" id="status-${'${p[0].ordersNo}'}"></span> 거부`;
+                                } else if (p[0].status == 3) {
+                                    card += `<span class="status-dot bg-warning" id="status-${'${p[0].ordersNo}'}"></span> 취소`;
+                                } else if (p[0].status == 4) {
+                                    card += `<span class="status-dot bg-info" id="status-${'${p[0].ordersNo}'}"></span> 수령 완료<span><a href="${pageContext.request.contextPath}/addReview?orderNo=${'${p[0].orderNo}'}">후기 작성</a></span>`;
+                                } else if (p[0].status == 5) {
+                                    card += `<span class="status-dot bg-info" id="status-${'${p[0].ordersNo}'}"></span> 조리 완료`;
                                 } else {
-                                    txt += '<span>알 수 없음</span>'
+                                    card += '<span>알 수 없음</span>'
+                                }
+                                card += "</div>";
+
+                                card += "</div>";
+
+                                if (p[0].status == 0) {
+                                    card += `<button class="btn btn-danger btn-cancel" id="btn-cancel-${'${p[0].ordersNo}'}" ident="btn-cancel-${'${p[0].ordersNo}'}" orderNo="btn-cancel-${'${p[0].orderNo}'}">주문 취소</button>`;
+                                } else if (p[0].status == 5) {
+                                    card += `<button class="btn btn-info btn-done" id="btn-done-${'${p[0].ordersNo}'}" ident="btn-done-${'${p[0].ordersNo}'}" orderNo="btn-done-${'${p[0].orderNo}'}">수령</button>`;
                                 }
 
-                                txt += "</div>";
-
-                                if (p.status == 0) {
-                                    txt += `<button class="btn btn-danger btn-cancel" id="btn-cancel-${'${p.ordersNo}'}" ident="btn-cancel-${'${p.ordersNo}'}" orderNo="btn-cancel-${'${p.orderNo}'}">주문 취소</button>`;
-                                } else if (p.status == 5) {
-                                    txt += `<button class="btn btn-info btn-done" id="btn-done-${'${p.ordersNo}'}" ident="btn-done-${'${p.ordersNo}'}" orderNo="btn-done-${'${p.orderNo}'}">수령</button>`;
-                                }
-
-                                article.innerHTML = txt;
+                                article.innerHTML = article.innerHTML + card;
 
                                 section.append(article);
 

@@ -37,6 +37,20 @@ body::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
 }
 
+.card-footer {
+    min-height: 40px;
+}
+
+.status {
+    float: right;
+}
+
+.status::after {
+    claer: both;
+    display: block;
+    content: "";
+}
+
 @media (max-width: 990px) {
     #nav-logo {
          font-size: 28px;
