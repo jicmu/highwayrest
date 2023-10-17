@@ -12,11 +12,11 @@ public class SendSMS implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String telNumber = request.getParameter("phone");
+        String tel = request.getParameter("tel");
         int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000); // 난수 생성
 
         MemberService memberService = new MemberService();
-        memberService.certifiedTel(telNumber, randomNumber);
+//        memberService.certifiedTel(tel, randomNumber);
 
         return "responsebody/" + randomNumber;
     }
@@ -28,6 +28,6 @@ public class SendSMS implements Handler {
 
     @Override
     public String getPath() {
-        return path + "telCheck";
+        return path + "/member/sendSMS";
     }
 }

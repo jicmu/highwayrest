@@ -3,7 +3,6 @@ package service.review;
 import dao.review.ReviewDao;
 import data.dto.RestReviewDTO;
 import data.entity.Review;
-import data.testdto.RestReviewDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import sql.Factory;

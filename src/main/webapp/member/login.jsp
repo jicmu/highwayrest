@@ -3,29 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 폰트 -->
-    <style>
-        @font-face {
-            font-family: "GmarketSansMedium";
-            src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        html>body {
-            font-family: "GmarketSansMedium";
-            text-underline-position: under;
-            word-break: keep-all;
-        }
-    </style>
-    <!-- 부트스트랩 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <!-- 폰트어썸 아이콘: https://fontawesome.com/search?o=r&m=free -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- 카카오 로그인 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -133,7 +113,7 @@
                 </a>
                 <div class="d-flex justify-content-center">
                     <a class="btn btn-dark btn-sm me-2" href="${pageContext.request.contextPath}/member/join" role="button">회원가입</a>
-                    <a class="btn btn-dark btn-sm me-2" href="#" role="button">아이디찾기</a>
+                    <a class="btn btn-dark btn-sm me-2" href="${pageContext.request.contextPath}/member/findId" role="button">아이디찾기</a>
                     <a class="btn btn-dark btn-sm" href="#" role="button">비밀번호찾기</a>
                 </div>
             </form>
