@@ -38,6 +38,30 @@ public class MemberService {
 		session.close();
 		return m;
 	}
+
+	public Member getMemberByEmail(String email) {
+		SqlSession session = sqlSessionFactory.openSession();
+		MemberDao dao = (MemberDao) session.getMapper(MemberDao.class);
+		Member m = dao.selectByEmail(email);
+		session.close();
+		return m;
+	}
+
+	public Member getMemberByNickname(String nickname) {
+		SqlSession session = sqlSessionFactory.openSession();
+		MemberDao dao = (MemberDao) session.getMapper(MemberDao.class);
+		Member m = dao.selectByNickname(nickname);
+		session.close();
+		return m;
+	}
+
+	public Member getMemberByTel(String tel) {
+		SqlSession session = sqlSessionFactory.openSession();
+		MemberDao dao = (MemberDao) session.getMapper(MemberDao.class);
+		Member m = dao.selectByNickname(tel);
+		session.close();
+		return m;
+	}
 	
 	public void editMember(Member m){
 		SqlSession session = sqlSessionFactory.openSession();

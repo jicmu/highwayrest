@@ -20,12 +20,12 @@ public class JoinHandler implements Handler {
 
 	@Override
 	public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
+		String id = request.getParameter("id").trim();
 		String password = request.getParameter("password");
-		String name = request.getParameter("name");
-		String nickname = request.getParameter("nickname");
-		String email = request.getParameter("email");
-		String tel = request.getParameter("tel");
+		String name = request.getParameter("name").trim();
+		String nickname = request.getParameter("nickname").trim();
+		String email = request.getParameter("email").trim();
+		String tel = request.getParameter("tel").trim();
 		MemberService service = new MemberService();
 		service.addMember(new Member(0, id, password, name, nickname, email, tel));
 

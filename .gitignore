@@ -340,3 +340,6 @@ src/main/java/data/testdto/**
 
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,intellij,eclipse,visualstudiocode,java
+
+# apikey
+src/main/webapp/WEB-INF/apikey.js

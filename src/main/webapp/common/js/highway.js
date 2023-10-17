@@ -55,7 +55,10 @@ const going = (value) => {
                 let restloc = item.svarNm;
                 if(restloc.indexOf("쉼터") == -1){
                     console.log(item);
-                    let value = item.svarCd + "/" + item.svarNm + "/" +item.gudClssCd + "/" + item.rprsTelNo + "/" + item.routeCd + "/" + item.svarAddr;
+
+                    let addr = item.svarAddr;
+
+                    let value = item.svarCd + "/" + item.svarNm + "/" +item.gudClssCd + "/" + item.rprsTelNo + "/" + item.routeCd + "/" + addr.replaceAll(" ", ",");
                     console.log("value: " + value);
                     txt += "<option value=" + value +">" + item.svarNm + "</option>";
                 }
