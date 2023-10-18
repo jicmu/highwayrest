@@ -9,8 +9,12 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.json.simple.JSONObject;
 import sql.Factory;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Properties;
 
 
 public class MemberService {
@@ -92,25 +96,36 @@ public class MemberService {
 	}
 
 	public void certifiedTel(String tel, int randomNumber) {
-		String apiKey = "";
-		String apiSecret = "";
-		Message sms = new Message(apiKey, apiSecret);
-
-		// 4 params(to, from, type, text) are mandatory. must be filled
-		HashMap<String, String> params = new HashMap<>();
-		params.put("to", tel); // 수신 번호
-		params.put("from", "01066086682"); // 발신 번호
-		params.put("type", "SMS");
-		params.put("text", "인증번호 " + "["+randomNumber+"]" + "를 화면에 입력해주세요."); // 문자 내용 입력
-		params.put("app_version", "test app 1.2");
-
 		try {
-			JSONObject obj = sms.send(params);
-			System.out.println("params: " + params);
-			System.out.println("coolsms: " + obj.toString());
-		} catch (Exception e) {
-			System.out.println("error: " + e.getMessage());
-			System.out.println("error: " + e.getCause());
+			URL credentialUrl = Thread.currentThread().getContextClassLoader().getResource("../../WEB-INF/credential.properties");
+			Properties properties = new Properties();
+			properties.load(new FileReader(credentialUrl.getPath()));
+
+
+			String SMSKey = properties.getProperty("SMSKey");
+			String SMSSecret = properties.getProperty("SMSSecret");
+
+			String apiKey = SMSKey;
+			String apiSecret = SMSSecret;
+			Message sms = new Message(apiKey, apiSecret);
+
+			HashMap<String, String> params = new HashMap<>();
+			params.put("to", tel); // 수신 번호
+			params.put("from", "01066086682"); // 발신 번호 (인증한 번호만 가능)
+			params.put("type", "SMS");
+			params.put("text", "인증번호 " + "[" + randomNumber + "]" + "를 화면에 입력해주세요."); // 문자 내용
+			params.put("app_version", "test app 1.2");
+
+			try {
+				JSONObject obj = sms.send(params);
+				System.out.println("params: " + params);
+				System.out.println("coolsms: " + obj.toString());
+			} catch (Exception e) {
+				System.out.println("error: " + e.getMessage());
+				System.out.println("error: " + e.getCause());
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 }
