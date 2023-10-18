@@ -23,7 +23,7 @@
                     console.log(event.target);
                 });
             } else if (!(passwordResult && nameResult && nicknameResult && emailResult && telResult)) {
-                msg = "모든 항목을 작성해주세요."
+                msg = "모든 항목을 알맞게 작성해주세요."
                 const $form = document.querySelector("form");
                 $form.addEventListener("submit", (event) => {
                     event.preventDefault();
@@ -166,7 +166,7 @@
                     telmsg.innerHTML = "올바른 번호를 입력해주세요.";
                 } else if (data.flag == true) {
                     telmsg.style.color = "green";
-                    telmsg.innerHTML = "사용 가능한 번호입니다.";
+                    telmsg.innerHTML = "입력하신 번호는 아이디, 비밀번호 찾기에 사용됩니다.";
                     telResult = true;
                 } else {
                     telmsg.style.color = "red";

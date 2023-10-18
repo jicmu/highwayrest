@@ -20,10 +20,9 @@ public class FindIdHandler implements Handler {
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String tel = request.getParameter("tel");
-        System.out.println("tel:" + tel);
+
         MemberService memberService = new MemberService();
         Member m = memberService.getMemberByTel(tel);
-        System.out.println("m:" + m);
 
         if (m != null) {
             request.setAttribute("foundId", m.getId());
