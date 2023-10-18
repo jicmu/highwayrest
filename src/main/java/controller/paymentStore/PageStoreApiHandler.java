@@ -23,9 +23,7 @@ public class PageStoreApiHandler implements Handler {
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrderService orderService = new OrderService();
 
-        // TODO session에서 가져옴
-        String user = (String) request.getSession().getAttribute("loginStore");
-        user = "306";
+        String user = request.getParameter("loginStore");
 
         String page = request.getParameter("page");
         String amount = request.getParameter("amount");

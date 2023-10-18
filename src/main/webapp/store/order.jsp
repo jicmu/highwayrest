@@ -170,7 +170,7 @@
 
                     let xhr = new XMLHttpRequest();
 
-                    xhr.open("get", "${pageContext.request.contextPath}/api/pageStore?page=" + page++ + "&amount=" + 10);
+                    xhr.open("get", "${pageContext.request.contextPath}/api/pageStore?page=" + page++ + "&amount=" + 10 + "&loginStore=${loginStore}");
 
                     xhr.send();
 
