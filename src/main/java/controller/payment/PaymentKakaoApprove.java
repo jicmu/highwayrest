@@ -111,7 +111,7 @@ public class PaymentKakaoApprove implements Handler {
 
                 orderService.order(Order.builder()
                         .foodNo(Integer.parseInt(foodNo))
-                        .restNo(Integer.parseInt(stdRestCd))
+                        .restNo(stdRestCd)
                         .pay(Integer.parseInt(amount))
                         .quantity(Integer.parseInt(quantity))
                         .memberNo(1) // session에서 가져와야함
