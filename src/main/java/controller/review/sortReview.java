@@ -16,7 +16,16 @@ public class sortReview implements Handler {
         ReviewService service = new ReviewService();
         String svarCd = request.getParameter("svarCd");
 
-//        request.setAttribute("list", list);
+        String sort = request.getParameter("sort");
+        if(sort.equals("sortRecent")){
+            list = service.getAll(svarCd);
+        }else if(sort.equals("sortHighRate")){
+            list = service.getAllByHighRate(svarCd);
+        }else if(sort.equals("sortLowRate")){
+            list = service.getAllByLowRate(svarCd);
+        }
+
+        request.setAttribute("list", list);
         return "/review/list.jsp";
     }
 
