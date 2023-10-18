@@ -105,5 +105,8 @@
         </div>
     </div>
 </div>
+<%--    <%@ include file="footer.jsp" %>--%>
+<%@ include file="/common/footer.jsp" %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"/>
 </body>
 </html>
