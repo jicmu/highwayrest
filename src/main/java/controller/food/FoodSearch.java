@@ -32,7 +32,8 @@ public class FoodSearch implements Handler {
         ArrayList<RestFood> list = restFoodService.getByName(name);
 
         request.setAttribute("list", list);
-        return "/order/orderlist.jsp";
+        request.setAttribute("view", "/food/foodlist.jsp");
+        return "/index.jsp";
     }
 
     @Override

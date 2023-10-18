@@ -9,14 +9,33 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script>
         window.onload = () => {
-            document.getElementById("foodNm").onchange = function(){
-                let searchWord = document.getElementById("searchWord");
-                let foodNm = document.getElementById("foodNm").value;
+            document.getElementById("foodNm").onchange = function() {
+                var searchWord = document.getElementById("searchWord");
+                var foodNm = document.getElementById("foodNm").value;
                 searchWord.value = foodNm;
             }
 
+            function eventPreventDefault(event) {
+                event.preventDefault();
+            }
+
+            document.getElementById("submit").onclick = function() {
+                var amounts = document.querySelectorAll("input[name=amount]");
+                var sum = 0;
+                for(let amount of amounts) {
+                    sum += parseInt(amount.value);
+                }
+                var orderform = document.getElementById("order");
+                if(sum == 0) {
+                    alert("주문할 메뉴를 1개 이상 선택해주세요");
+                    orderform.addEventListener("submit", eventPreventDefault);
+                }else {
+                    orderform.removeEventListener("submit", eventPreventDefault);
+                    orderform.submit();
+                }
+            }
+
             const reset = () => {
-                let amount = document.querySelectorAll("input[name='amount']").value;
                 amount = 0;
             }
         }
@@ -40,44 +59,42 @@
                 <h2>주문</h2>
             </div>
             <div class="col-9">
-                <form class="d-flex" role="search" action="${pageContext.request.contextPath }/foodsearch" method="post">
+                <form class="d-flex" role="search" name="search" id="search" action="${pageContext.request.contextPath }/foodsearch" method="post">
                     <input type="hidden" name="searchType" value="3">
-                    <input type="hidden" name="memberNo" value="1">
+                    <input type="hidden" name="memberNo" value="${sessionScope.loginNum }">
                     <input type="hidden" id="searchWord" name="searchWord" value="">
                     <input class="form-control me-2" type="search" id="foodNm" name="name" placeholder="메뉴명">
-                    <button class="btn btn-outline-success" type="submit">검색</button>
+                    <input class="btn btn-outline-success" type="submit" value="검색"></button>
                 </form>
             </div>
             <hr>
         </div>
-        <form action="${pageContext.request.contextPath }/order" method="get">
+
+        <form action="${pageContext.request.contextPath }/order" method="post" id="order" name="order">
             <input type="hidden" name="restNo" value="${stdRestCd }">
             <div class="row">
-                <table class="text-center" id="food-table">
-                    <tr><th>메뉴</th><th>가격</th><th>수량</th></tr>
+                <table class="table table-hover text-center" id="food-table">
+                    <thead class="table-light">
+                        <tr><th>메뉴</th><th>가격</th><th>수량</th></tr>
+                    </thead>
                     <c:forEach var="m" items="${list }">
                     <tr>
                         <td>${m.name }<input type="hidden" id="${m.no }_name" name="foodNo" value="${m.no }"></td>
                         <td>${m.foodCost }<input type="hidden" id="${m.no }_price" name="foodCost" value="${m.foodCost }"></td>
-                        <td><input type="number" id="${m.no }_amount" name="amount" value=0></td>
+                        <td><input type="number" id="${m.no }_amount" name="amount" value="0" min="0"></td>
                     </tr>
                     </c:forEach>
                 </table>
             </div>
-            <div class="row d-flex justify-content-end mt-3">
-                <input type="hidden" id= name="tamount" value="">
-                <input type="hidden" id= name="tprice" value="">
-                <h5 class="d-flex justify-content-end" id="tamount"></h5>
-                <h5 class="d-flex justify-content-end" id="tprice"></h5>
+
+            <div class="row mt-2">
                 <hr>
-            </div>
-            <div class="row">
                 <ul class="nav justify-content-center nav-pills nav-fill">
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary" onclick="reset()">수량 재설정</a>
+                        <button type="button" class="btn btn-primary" onclick="reset()">수량 초기화</a>
                     </li>
                     <li class="nav-item">
-                        <input type="submit" class="btn btn-primary" value="주문하기"></a>
+                        <input type="submit" id="submit" class="btn btn-primary" value="주문하기"></a>
                     </li>
                 </ul>
             </div>

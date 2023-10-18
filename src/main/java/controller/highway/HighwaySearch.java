@@ -32,7 +32,8 @@ public class HighwaySearch implements Handler {
         ArrayList<Highway> list = highwayService.getByNm(routeNm);
 
         request.setAttribute("list", list);
-        return "/highway/highwaylist.jsp";
+        request.setAttribute("view", "/highway/highwaylist.jsp");
+        return "/index.jsp";
     }
 
     @Override

@@ -19,9 +19,11 @@ public class RestSearch implements Handler {
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String routeCd = request.getParameter("routeCd");
         int direction = Integer.parseInt(request.getParameter("direction"));
+
         HighwayRestService highwayRestService = new HighwayRestService();
         HighwayService highwayService = new HighwayService();
         Highway highway = highwayService.getByCd(routeCd);
+
         ArrayList<HighwayRest> arr = highwayRestService.getByRCd(routeCd);
         ArrayList<HighwayRest> list = new ArrayList<>();
         for(HighwayRest r : arr){
@@ -32,7 +34,8 @@ public class RestSearch implements Handler {
 
         request.setAttribute("highway", highway);
         request.setAttribute("list", list);
-        return "/rest/restlist.jsp";
+        request.setAttribute("view", "/rest/restlist.jsp");
+        return "/index.jsp";
     }
 
     @Override
@@ -49,7 +52,8 @@ public class RestSearch implements Handler {
         ArrayList<HighwayRest> list = highwayRestService.getByNm(svarNm);
 
         request.setAttribute("list", list);
-        return "/rest/restlist.jsp";
+        request.setAttribute("view", "/rest/restlist.jsp");
+        return "/index.jsp";
     }
 
     @Override

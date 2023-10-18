@@ -17,7 +17,8 @@ public class RestInfo implements Handler {
         HighwayRest highwayrest = highwayRestService.getBySCd(svarCd);
 
         request.setAttribute("highwayrest", highwayrest);
-        return "/rest/restinfo.jsp";
+        request.setAttribute("view", "/rest/restinfo.jsp");
+        return "/index.jsp";
     }
 
     @Override

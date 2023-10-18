@@ -2,7 +2,6 @@ package dao.review;
 
 import data.dto.RestReviewDTO;
 import data.entity.Review;
-import data.testdto.RestReviewDTO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.ArrayList;

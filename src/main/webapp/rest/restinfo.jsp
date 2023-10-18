@@ -17,7 +17,7 @@
             var mapContainer = document.getElementById('map'),
             mapOption = {
                 center: new kakao.maps.LatLng(33.450701, 126.570667),
-                level: 5
+                level: 6
             };
 
             var map = new kakao.maps.Map(mapContainer, mapOption);
@@ -58,8 +58,9 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <ul class="nav justify-content-center">
+
+        <div class="row justify-content-center mt-3">
+            <ul class="nav justify-content-center nav-pills nav-fill">
               <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath }/foodlist?restNo=${highwayrest.svarCd }">메뉴</a>
               </li>
@@ -69,23 +70,20 @@
             </ul>
             <hr>
         </div>
+
         <div class="row mt-3">
-            <h2>${highwayrest.svarNm } 상세 정보</h2>
-            <form style="display:none">
-                <input type="hidden" id="svarNm" value="${highwayrest.svarNm}">
-                <input type="hidden" id="svarAddr" value="${highwayrest.svarAddr}">
-            </form>
-        </div>
-        <div class="row mt-3">
-            <div class="col">
-                <div id="map" style="width:400px;height:400px;"></div>
+            <div class="col-6">
+                <div id="map" style="width:450px;height:500px;"></div>
             </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-10">
-                <table>
-                    <tr><th>주소</th><td>${highwayrest.svarAddr }</td></tr>
-                    <tr><th>대표전화번호</th><td>${highwayrest.rprsTelNo }</td></tr>
+            <div class="col-6">
+                <h2>${highwayrest.svarNm } 상세 정보</h2>
+                <form style="display:none">
+                    <input type="hidden" id="svarNm" value="${highwayrest.svarNm}">
+                    <input type="hidden" id="svarAddr" value="${highwayrest.svarAddr}">
+                </form>
+                <table class="table mt-5">
+                    <tr><th class="table-light">주소</th><td>${highwayrest.svarAddr }</td></tr>
+                    <tr><th class="table-light">대표전화번호</th><td>${highwayrest.rprsTelNo }</td></tr>
                 </table>
             </div>
         </div>
