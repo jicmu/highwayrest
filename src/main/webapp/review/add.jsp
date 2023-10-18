@@ -35,7 +35,7 @@
             $file_upload.on('change', function () {
                 var number_of_images = $(this)[0].files.length;//첨부한 파일 개수
                 if (number_of_images > max_file_number) {//첨부한 파일 개수가 초과하면
-                    alert('사진은 최대' + max_file_number+ '장까지만 첨부할 수 있습니다.');
+                    alert('사진은 최대' + max_file_number + '장까지만 첨부할 수 있습니다.');
                     $(this).val('');
                     $button.prop('disabled', 'disabled');//비활성화
                 } else {
@@ -150,7 +150,8 @@
         <form action="${pageContext.request.contextPath}/addReview" id="f" name="f" style="border:none" method="post" enctype="multipart/form-data">
 
                 <input type="hidden" name="memberNo" value="1">
-                <input type="hidden" name="orderNo" value="73">
+                <input type="hidden" name="orderNo" value="125">
+                <input type="hidden" name="restNo" value="000306">
 
                 <div>별점</div>
                 <div class="form-check form-check-inline">

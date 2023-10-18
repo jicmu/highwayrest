@@ -3,7 +3,6 @@ package service.review;
 import dao.review.ReviewDao;
 import data.dto.RestReviewDTO;
 import data.entity.Review;
-import data.testdto.RestReviewDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import sql.Factory;
@@ -33,6 +32,14 @@ public class ReviewService {
         return list;
     }
 
+//public ArrayList<Review> getAll(String restNo){//모든 리뷰 조회
+//    SqlSession session = sqlSessionFactory.openSession();
+//    ReviewDao dao = session.getMapper(ReviewDao.class);
+//    ArrayList<Review> list = dao.selectAllByDate(restNo);
+//    session.close();
+//    return list;
+//}
+
     public ArrayList<RestReviewDTO> getAllByHighRate(String svarCd){//높은 별점 순으로 조회
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
@@ -41,6 +48,14 @@ public class ReviewService {
         return list;
     }
 
+//    public ArrayList<Review> getAllByHighRate(String restNo){//높은 별점 순으로 조회
+//        SqlSession session = sqlSessionFactory.openSession();
+//        ReviewDao dao = session.getMapper(ReviewDao.class);
+//        ArrayList<Review> list = dao.selectByHighRate(restNo);
+//        session.close();
+//        return list;
+//    }
+
     public ArrayList<RestReviewDTO> getAllByLowRate(String svarCd){//낮은 별점 순으로 조회
         SqlSession session = sqlSessionFactory.openSession();
         ReviewDao dao = session.getMapper(ReviewDao.class);
@@ -48,6 +63,14 @@ public class ReviewService {
         session.close();
         return list;
     }
+
+//    public ArrayList<Review> getAllByLowRate(String restNo){//낮은 별점 순으로 조회
+//        SqlSession session = sqlSessionFactory.openSession();
+//        ReviewDao dao = session.getMapper(ReviewDao.class);
+//        ArrayList<Review> list = dao.selectByLowRate(restNo);
+//        session.close();
+//        return list;
+//    }
 
     public ArrayList<Review> getReviewByMember(int memberNo) {//멤버별 리뷰 조회 => 내 후기 조회
         SqlSession session = sqlSessionFactory.openSession();
@@ -88,13 +111,5 @@ public class ReviewService {
         session.close();
 
         return no;
-    }
-
-    public void editImg(Review r){//사진 수정
-        SqlSession session = sqlSessionFactory.openSession();
-        ReviewDao dao = session.getMapper(ReviewDao.class);
-        dao.updateImg(r);
-        session.commit();
-        session.close();
     }
 }

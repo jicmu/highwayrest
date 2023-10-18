@@ -19,4 +19,5 @@ public class Review {
     private String img1;
     private String img2;
     private String img3;
+    private String restNo;
 }

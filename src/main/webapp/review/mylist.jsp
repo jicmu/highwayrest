@@ -40,9 +40,6 @@
                     <tr>
                         <th>사진</th>
                         <td>
-                            <c:if test="${empty r.img1}">
-                                <input type="file" name="file" id="file" accept="image/*" multiple>
-                            </c:if>
                             <c:if test="${not empty r.img1 }">
                                 <img src="${r.img1 }">
                             </c:if>
@@ -59,7 +56,6 @@
         </table>
     </div>
 </div>
-<%--    <%@ include file="footer.jsp" %>--%>
 <%@ include file="/common/footer.jsp"%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" />
 </body>

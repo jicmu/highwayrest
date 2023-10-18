@@ -1,0 +1,1037 @@
+[33mcommit f64ffdfbf71b6f068a5f7f07babf3312c48ae503[m[33m ([m[1;36mHEAD -> [m[1;32mjustlikeryu[m[33m)[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Sun Oct 15 00:52:29 2023 +0900
+
+    DB에 업로드한 파일 경로 저장
+
+[33mcommit c444f4b7208efcb15ddd443d6d93146c65af57fe[m
+Merge: e387f97 83d6fb2
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Fri Oct 13 17:58:49 2023 +0900
+
+    Merge branch 'main' into justlikeryu
+
+[33mcommit e387f9795601f2669661758de9f69731e2f33dab[m[33m ([m[1;31morigin/justlikeryu[m[33m)[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Fri Oct 13 17:55:48 2023 +0900
+
+    후기 수정 시 기존의 사진과 폴더 삭제 및 새로운 사진과 폴더 생성
+
+[33mcommit 83d6fb28a45366e79ce1a7bbe390bbcbe5ea4bb0[m[33m ([m[1;32mmain[m[33m)[m
+Merge: 9bc9453 c622f73
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 13 17:51:38 2023 +0900
+
+    Merge pull request #37 from yoojungkook/yoojungkook
+    
+    진행중
+
+[33mcommit c622f73c88b40896e6ebed9b247bd8ccdacf1333[m[33m ([m[1;31morigin/yoojungkook[m[33m)[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Fri Oct 13 17:51:11 2023 +0900
+
+    진행중
+
+[33mcommit 9bc945344473036c262f567d1c4ee1846c4fe3c9[m
+Merge: 34b2ea7 d63f2b6
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 13 17:50:23 2023 +0900
+
+    Merge pull request #36 from yoojungkook/jicmu
+    
+    Fix: 음식 이름으로 작동하던걸 음식 코드로 바꿨습니다.
+
+[33mcommit d63f2b69ebe84f7b7da383c44e01596318e05814[m[33m ([m[1;31morigin/jicmu[m[33m)[m
+Author: jicmu <jicmu0@gmail.com>
+Date:   Fri Oct 13 17:41:34 2023 +0900
+
+    Fix: 후기 작성 페이지로 이동할 때 파라미터를 가지고 가게 변경
+
+[33mcommit 7e27a8be2ccef455b26ba220f3c401d11d9be938[m
+Author: jicmu <jicmu0@gmail.com>
+Date:   Fri Oct 13 17:41:06 2023 +0900
+
+    Fix: 음식 이름으로 사용되던 VO, 음식 code로 변경
+
+[33mcommit 36e174db113d39fe1d5d62983242d0db5fced3e7[m
+Merge: 9420275 34b2ea7
+Author: jicmu <jicmu0@gmail.com>
+Date:   Fri Oct 13 15:55:30 2023 +0900
+
+    Merge branch 'main' of https://github.com/yoojungkook/highwayrest into jicmu
+
+[33mcommit 34b2ea7ea3d7fccf8b37356f604cd1c1fe36502f[m
+Merge: 8a3dffc 0ff13d7
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 13 15:54:52 2023 +0900
+
+    Merge pull request #35 from yoojungkook/justlikeryu
+    
+    후기 작성 시 사진 저장 폴더 주소 수정, 후기 삭제 시 파일 및 폴더 삭제
+
+[33mcommit 9420275730d487abe02f671294d0a16b88bdc98c[m
+Author: jicmu <jicmu0@gmail.com>
+Date:   Fri Oct 13 15:54:37 2023 +0900
+
+    Fix: 파라미터명 변경
+
+[33mcommit 8a3dffcc1d6fb3fc50a3c5cab564670831d1b36c[m
+Merge: 1918709 e8f315d
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 13 15:54:27 2023 +0900
+
+    Merge pull request #34 from yoojungkook/jicmu
+    
+    Fix: 메뉴 이름에서 음식 넘버로 변경했습니다.
+
+[33mcommit 0ff13d7a2e93ca5eeda47fe89c2217acff3ccaca[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Fri Oct 13 15:34:24 2023 +0900
+
+    후기 작성 주소 수정, 후기 삭제 시 파일 및 폴더 삭제
+
+[33mcommit e8f315d1069b4b3867eef0e839a202d2fbfb6e60[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 15:19:56 2023 +0900
+
+    Fix: 입력 데이터가 Menu이름에서 FoodNo로 바뀌어 임시 수정
+
+[33mcommit f5906fe145970478b3c5cb585867f4f6706e5f6b[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 15:08:13 2023 +0900
+
+    Chore: 테스트용 데이터 삭제
+
+[33mcommit 1918709ab2bcee33bd523de04d74a3776b55658a[m
+Merge: 6a880b1 2175327
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 13 14:43:05 2023 +0900
+
+    Merge pull request #33 from yoojungkook/yoojungkook
+    
+    --- ing
+
+[33mcommit 21753276f941881eb24bee2f3f560fe16f55b54b[m
+Merge: b3f0612 6a880b1
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 13 14:42:56 2023 +0900
+
+    Merge branch 'main' into yoojungkook
+
+[33mcommit b3f0612f794d96c41f3018d857fa666c0cc4cd2e[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Fri Oct 13 14:39:35 2023 +0900
+
+    --- ing
+
+[33mcommit 6a880b10fc4a2f2356f9f40676005eb35a08c537[m
+Merge: e2f0fef 978dca7
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 13 14:20:14 2023 +0900
+
+    Merge pull request #32 from yoojungkook/iuj09
+    
+    iuj09
+
+[33mcommit e2f0fef0339869837da30e8de5ae471c8a829a9a[m
+Merge: 7cf2d6b c83f7a9
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 13 14:19:23 2023 +0900
+
+    Merge pull request #31 from yoojungkook/justlikeryu
+    
+    review Dao/Service 위치 변경 및 addReview 사진 저장 폴더 생성 및 파일 이동
+
+[33mcommit c83f7a943ae106a64f0e2ae711223e4b776f5a92[m
+Merge: 14f94fa 7cf2d6b
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 13 14:19:09 2023 +0900
+
+    Merge branch 'main' into justlikeryu
+
+[33mcommit 7cf2d6b3536b7546b16c52f761a331b425b3a4e9[m
+Merge: 5815975 b09c6fa
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 13 14:16:08 2023 +0900
+
+    Merge pull request #30 from yoojungkook/yeonann
+    
+    feat: nav bar 추가, 로그인 및 회원가입 디자인, 회원가입 유효성 검사
+
+[33mcommit b09c6fab61992eb530cee5322cb4157aa3e948d2[m[33m ([m[1;31morigin/yeonann[m[33m)[m
+Merge: e24d6ca 5815975
+Author: yeonann <yyeonann@gmail.com>
+Date:   Fri Oct 13 14:14:56 2023 +0900
+
+    Merge branch 'main' into yeonann
+
+[33mcommit 5815975e1e52bc58b1ab60148852333e64325a57[m
+Merge: cc82bd2 f8aa6dc
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 13 13:57:15 2023 +0900
+
+    Merge pull request #29 from yoojungkook/jicmu
+    
+    Jicmu
+
+[33mcommit f8aa6dcfe32ecd42df508db84a1efca09ab8b993[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 13:53:14 2023 +0900
+
+    Fix: 구매 물품이 1개일 때 상품 이름이 뜨도록 수정
+
+[33mcommit 978dca76e93c3886209fc9cfbb451cd3d0a19d9b[m
+Author: IUJin <iuj09@naver.com>
+Date:   Fri Oct 13 12:44:07 2023 +0900
+
+    iuj09
+
+[33mcommit 7eb35ccdf12bb133f11312ddc056cdeada80bc89[m
+Author: IUJin <iuj09@naver.com>
+Date:   Fri Oct 13 12:43:58 2023 +0900
+
+    iuj09
+
+[33mcommit 14f94fac4eaec9cba7798ab9b4ad0abe23bbaa74[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Fri Oct 13 12:43:18 2023 +0900
+
+    review Dao/Service 위치 변경 및 addReview 사진 저장 폴더 생성 및 파일 이동
+
+[33mcommit eb1b69f946764e3afae675250de5ea972684ab7e[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 12:39:41 2023 +0900
+
+    Feat: 주문 취소시 확인 문구 추가
+
+[33mcommit e24d6ca70b0193d35565c92d87cd2ca154f440fa[m
+Author: yeonann <yyeonann@gmail.com>
+Date:   Fri Oct 13 12:28:16 2023 +0900
+
+    feat: nav bar 추가, 로그인 및 회원가입 디자인, 회원가입 유효성 검사
+
+[33mcommit 96d33172860153e6a83495a685678f0b67236c0c[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 12:25:49 2023 +0900
+
+    Fix: 받아온 음식 수량의 최댓값이 select 박스 안에 뜨도록 변경
+
+[33mcommit 8e63ce8c873b9e8171d115cd3d71187664ba37f5[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 11:42:48 2023 +0900
+
+    Fix: 메뉴 페이지에서 값을 받아오기 위한 수정
+
+[33mcommit 57d6cc9aea78f6cbd04940d17d3b74ccb9de9932[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 11:42:10 2023 +0900
+
+    Fix: 결제 후 이동하는 페이지 변경
+
+[33mcommit 1724506ea38c7810c08403168f305c75d39f55a5[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 11:41:31 2023 +0900
+
+    Fix: 주문 확인 페이지 입력값 변경 가능하던 현상 수정
+
+[33mcommit a7ad6d6568f5d1b7aa11041d453c75945a1072fc[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 11:08:39 2023 +0900
+
+    Chore: 휴게소 번호 출력되게 변경 - 추후 휴게소 이름으로 변경 예정
+
+[33mcommit 9c35b7bb24bd66db7bcbbf06e7437e8eb190cbdc[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 10:25:49 2023 +0900
+
+    Refactor: 카카오 페이 결제 취소 메서드 분리
+
+[33mcommit e344b8ca3f9df337f598ba5d22bd4d69ca67aa1f[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 10:24:39 2023 +0900
+
+    Refactor: Dao 위치 변경에 따른 삭제
+
+[33mcommit c01120ffa0292f8e64924f1ed3584dbc5378cb21[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 10:06:32 2023 +0900
+
+    Fix: 같은 주문 번호를 갖고 있는 주문 수락, 거절시 하나의 주문에만 이벤트가 발생하는 현상 수정
+
+[33mcommit 229064216de5628431a30548deb2eb6a5d8fd76d[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 09:54:57 2023 +0900
+
+    Fix: 같은 주문 번호를 갖고 있는 주문 취소시 하나만 문자열이 바뀌는 현상 수정
+
+[33mcommit 38cf88c061fc2c000b25b8409b7431ce9aad25ba[m
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 09:43:26 2023 +0900
+
+    Refactor: Dao 읽어오는 방식 변경으로 인한 패키지 이동 및 수정
+
+[33mcommit c1a6e55953b5beea964a3386d1900b1e7599d4fc[m
+Merge: 0087eb1 cc82bd2
+Author: categorySet <categorySet@gmail.com>
+Date:   Fri Oct 13 08:51:43 2023 +0900
+
+    Merge branch 'main' of https://github.com/yoojungkook/highwayrest into jicmu
+
+[33mcommit 0087eb1b8d502613c8a4db826e96e1a158f448f9[m
+Author: jicmu <jicmu0@gmail.com>
+Date:   Thu Oct 12 20:34:41 2023 +0900
+
+    Fix: 불필요한 파일 제거
+
+[33mcommit cc82bd29170a9bff5fe8e872b13e3a257d48446f[m
+Merge: 7fb6f75 1a8946e
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Thu Oct 12 18:58:05 2023 +0900
+
+    Merge pull request #28 from yoojungkook/justlikeryu
+    
+    확인
+
+[33mcommit 1a8946eadad8603e076820debd652b8b3ed510aa[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Thu Oct 12 18:57:01 2023 +0900
+
+    확인
+
+[33mcommit 7fb6f753b455a5b66f158b7c7c75b7c0b6d4ff38[m
+Merge: 7ed8276 872522e
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Thu Oct 12 18:39:20 2023 +0900
+
+    Merge pull request #27 from yoojungkook/yeonann
+    
+    캐시 삭제
+
+[33mcommit 872522e1c5760bf1f6b4972196eb4b039240c510[m
+Merge: 90284b7 7ed8276
+Author: yeonann <125848876+yeonann@users.noreply.github.com>
+Date:   Thu Oct 12 18:38:51 2023 +0900
+
+    Merge branch 'main' into yeonann
+
+[33mcommit 7ed8276f4e8e0d42d7805497dce461bc8e967440[m
+Merge: f3bcb55 f5db0ae
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Thu Oct 12 18:29:25 2023 +0900
+
+    Merge pull request #26 from yoojungkook/yoojungkook
+    
+    --- 공통 파일 수정 및 고속도로 관련 파일 수정
+
+[33mcommit f5db0ae4f96a37c665990611cb6adf1ec25cd4d7[m
+Merge: 6965212 f3bcb55
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Thu Oct 12 18:29:17 2023 +0900
+
+    Merge branch 'main' into yoojungkook
+
+[33mcommit 696521283c537fda0accdf114c620da2445e097d[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Thu Oct 12 18:27:00 2023 +0900
+
+    --- 공통 파일 수정 및 고속도로 관련 파일 수정
+
+[33mcommit 90284b743f9c6205644774d1e92c085cdd3b8262[m
+Author: yeonann <yyeonann@gmail.com>
+Date:   Thu Oct 12 18:26:49 2023 +0900
+
+    캐시 삭제
+
+[33mcommit f3bcb558d22a79e0fcb861237c4d7a9495f42c2b[m
+Merge: e51d5f5 8adb9c5
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Thu Oct 12 18:15:04 2023 +0900
+
+    Merge pull request #25 from yoojungkook/justlikeryu
+    
+    후기 정렬 추가
+
+[33mcommit 8adb9c588da7b4ad8709c0175a9e2fa405bc0930[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Thu Oct 12 18:12:18 2023 +0900
+
+    후기 정렬 추가
+
+[33mcommit e51d5f5107b36d999de1774c85b3fb2e5bc13ef9[m
+Merge: eb14cb8 9f3de47
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Thu Oct 12 17:47:33 2023 +0900
+
+    Merge pull request #24 from yoojungkook/yeonann
+    
+    Yeonann
+
+[33mcommit 9f3de4776c9857331b873a7f1a66e42d88902d01[m
+Merge: c02504c eb14cb8
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Thu Oct 12 17:47:09 2023 +0900
+
+    Merge branch 'main' into yeonann
+
+[33mcommit be4e9c4a1eec3be29dea47b805b87d8d939c84cb[m
+Merge: 4b8a6ba eb14cb8
+Author: J Kim <jicmu0@gmail.com>
+Date:   Thu Oct 12 17:35:44 2023 +0900
+
+    Merge branch 'main' of https://github.com/yoojungkook/highwayrest into jicmu
+
+[33mcommit 4b8a6ba8320b8e5f7a24668034488d391cae9656[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Thu Oct 12 17:34:49 2023 +0900
+
+    Feat: 취소시 카카오페이에서도 취소되는 기능 추가
+
+[33mcommit c02504c98cfc3f0a1fa6c6be40204dff173bda45[m
+Author: yeonann <yyeonann@gmail.com>
+Date:   Thu Oct 12 17:31:11 2023 +0900
+
+    feat: 로그아웃, 회원탈퇴
+
+[33mcommit a8bf32d4bff8b67c36e11b645fcf4b7012af4e19[m
+Author: yeonann <yyeonann@gmail.com>
+Date:   Thu Oct 12 16:49:34 2023 +0900
+
+    feat: 내정보 확인, 수정
+
+[33mcommit 47f91dcfead8173f599f786ec432b95d7c10d69a[m
+Author: yeonann <yyeonann@gmail.com>
+Date:   Thu Oct 12 15:53:13 2023 +0900
+
+    feat: 로그인 실패 메세지
+
+[33mcommit ab3d01fd1ea3159c6c2e99af7b8ab1ebb45955a4[m
+Author: yeonann <yyeonann@gmail.com>
+Date:   Thu Oct 12 15:40:07 2023 +0900
+
+    feat: 로그인
+
+[33mcommit 104faee3df79ffb399b885c3ec2b1fdbbce5ae1f[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Thu Oct 12 15:19:25 2023 +0900
+
+    Fix: 수량이 적용되지 않던 현상 수정
+
+[33mcommit e8cba43d4dc2444b272f0aa7e3ab58e3c21d6c84[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Thu Oct 12 13:44:09 2023 +0900
+
+    Fix: 중복 파일 제거
+
+[33mcommit dc0a5462e1a68e78d21192b003624ddb89a5ea88[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Thu Oct 12 12:47:45 2023 +0900
+
+    Feat: 클라이언트가 수령확인 가능하게 수정
+
+[33mcommit eb14cb8ccbe2652f4015ac48df8a2119d8849463[m
+Merge: 8986d12 3750c6d
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Thu Oct 12 12:47:16 2023 +0900
+
+    Merge pull request #23 from yoojungkook/iuj09
+    
+    임시저장
+
+[33mcommit 3750c6dbf7b11cc686e691918257da355a50d66a[m
+Author: IUJin <iuj09@naver.com>
+Date:   Thu Oct 12 12:39:19 2023 +0900
+
+    임시저장
+
+[33mcommit 8986d1212ed296950fa8d4e36f11bf153ec2b05d[m
+Merge: 214999f 28aa287
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Thu Oct 12 12:18:26 2023 +0900
+
+    Merge pull request #22 from yoojungkook/yoojungkook
+    
+    --- 고속도로 및 휴게소 기능 update
+
+[33mcommit 28aa2878f92154aaef4a01656535786219b6d838[m
+Merge: ca371f5 214999f
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Thu Oct 12 12:18:11 2023 +0900
+
+    Merge branch 'main' into yoojungkook
+
+[33mcommit ca371f53d16bcc97b0a40a51769c709d5186a9ba[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Thu Oct 12 12:16:36 2023 +0900
+
+    --- 고속도로 및 휴게소 기능 update
+
+[33mcommit 68de08b4c01222cbf54f7d4ce3de7e317424fafd[m
+Author: yeonann <yyeonann@gmail.com>
+Date:   Thu Oct 12 10:14:52 2023 +0900
+
+    feat: 회원가입
+
+[33mcommit 9be05d3beef260887cbd4db93ab815071a884be2[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Thu Oct 12 10:00:56 2023 +0900
+
+    Docs: status에 완료 추가
+
+[33mcommit 6b5282a7ec9d56c625445606948a58ed08f39d8c[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Thu Oct 12 09:58:23 2023 +0900
+
+    Feat: 주문 수락, 거부 기능 추가
+
+[33mcommit bd9cc3f3dd9e71bd0f1ab2dc23d6ee929d5d9f79[m
+Merge: 8caf97f 214999f
+Author: J Kim <jicmu0@gmail.com>
+Date:   Thu Oct 12 09:57:08 2023 +0900
+
+    Merge branch 'main' of https://github.com/yoojungkook/highwayrest into jicmu
+
+[33mcommit 8caf97f833c860dbb8fb6f7313888d2ceb19c39a[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 16:42:17 2023 +0900
+
+    Feat: 휴게소 직원이 접속하는 페이지 생성
+
+[33mcommit 4cc7390706ac23708ed47d4ca78d86d8d8a62094[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 16:41:16 2023 +0900
+
+    Doc: DB sql 변경
+
+[33mcommit fa156f342ae539b2f4c254aec99240bb626b2995[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 16:40:50 2023 +0900
+
+    Fix: 테이블 컬럼 varchar2로 변경함에 따라 코드 수정
+
+[33mcommit 40db716f1ac8e2aaae112cb16726eb96201a8cc6[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 14:57:52 2023 +0900
+
+    Docs: 테이블 변경에 따른 sql 수정
+
+[33mcommit 214999ffb66ce1f5f4b8670e5fccc476ebef50db[m
+Merge: 760673e d84a36d
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Wed Oct 11 14:30:58 2023 +0900
+
+    Merge pull request #21 from yoojungkook/yeonann
+    
+    local folder add .gitignore
+
+[33mcommit d84a36deb7e696b67d242f8234b8faed3381dace[m
+Author: yeonann <yyeonann@gmail.com>
+Date:   Wed Oct 11 14:27:46 2023 +0900
+
+    local folder add .gitignore
+
+[33mcommit 760673ebb6761aeb4e67f4e294804fc12c5e281d[m
+Merge: 9aefcaa afbacbb
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Wed Oct 11 14:14:33 2023 +0900
+
+    Merge pull request #20 from yoojungkook/jicmu
+    
+    Jicmu
+
+[33mcommit 9aefcaa490d47593c560ae876fecf506555f6a32[m
+Merge: b5a01a0 ce7ac09
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Wed Oct 11 14:11:52 2023 +0900
+
+    Merge pull request #19 from yoojungkook/yoojungkook
+    
+    .gitignore 파일 적용
+
+[33mcommit afbacbb617e072e78a6202f75e488a5d210c9fa0[m
+Merge: fa14366 b5a01a0
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 14:11:40 2023 +0900
+
+    Merge branch 'main' of https://github.com/yoojungkook/highwayrest into jicmu
+
+[33mcommit fa14366b524e8de3400631e5f0081f745aaf94f7[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 14:07:23 2023 +0900
+
+    Fix: 파라미터 변경
+
+[33mcommit 6b535a3eedda56d83a28cebc4d00d98998e8697a[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 14:06:37 2023 +0900
+
+    Fix: sql 테이블명 오류 수정
+
+[33mcommit e9816e5b3596d1edb30c7b0ee1f51f0b17247ee7[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 14:05:02 2023 +0900
+
+    Fix: pay를 결제 여부에서 가격을 나타내는 컬럼으로 변경
+
+[33mcommit 17965231c8fa8e331bad12e5d68e4bb828424788[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 14:03:50 2023 +0900
+
+    Feat: 결제 확인 페이지 생성
+
+[33mcommit aedd28b9310cb5bb8d58fc86f08420e551b8a3a4[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 14:03:23 2023 +0900
+
+    Feat: 결제 실패, 결제 취소 페이지 생성
+
+[33mcommit ce7ac0945dd1a8b496b972b0da075d9ddc41ad70[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Wed Oct 11 13:59:37 2023 +0900
+
+    .gitignore 파일 적용
+
+[33mcommit b5a01a04c5ed8d94b8adc1ba7b1c262e8d987e1b[m
+Merge: 4496511 68af5fd
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Wed Oct 11 13:39:58 2023 +0900
+
+    Merge pull request #18 from yoojungkook/yoojungkook
+    
+    .gitignore 재수정
+
+[33mcommit 68af5fd30b7742175b67259ed5287c32c558da0a[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Wed Oct 11 13:38:44 2023 +0900
+
+    .gitignore 재수정
+
+[33mcommit 4496511972d13a9ab7bc8ecbaabd402de08626c2[m
+Merge: 4a8f735 10cbe94
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Wed Oct 11 13:31:59 2023 +0900
+
+    Merge pull request #17 from yoojungkook/yoojungkook
+    
+    Yoojungkook
+
+[33mcommit 10cbe940e7445f90e2109294d2faf26317b4854d[m
+Merge: 6e687bd 4a8f735
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Wed Oct 11 13:31:37 2023 +0900
+
+    Merge branch 'main' into yoojungkook
+
+[33mcommit 6e687bd6bf44c237c28087b84b2e6ab5feaf26dd[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Wed Oct 11 12:38:39 2023 +0900
+
+    .gitignore 변경
+
+[33mcommit 4a8f735ac42529d824250ca1afd3288f0fd7b6c4[m
+Merge: edbb4ac 671703a
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Wed Oct 11 12:31:48 2023 +0900
+
+    Merge pull request #16 from yoojungkook/justlikeryu
+    
+    file recovery
+
+[33mcommit 671703a66ae63086170f80c37c5fb9cec824f824[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Wed Oct 11 12:30:07 2023 +0900
+
+    file recovery
+
+[33mcommit edbb4acfbd6d4300726560db1259d30b6c306e23[m
+Merge: e4bb9c5 cabae23
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Wed Oct 11 12:27:48 2023 +0900
+
+    Merge pull request #15 from yoojungkook/justlikeryu
+    
+    review crud 진행중
+
+[33mcommit cabae2333c4cc24c9a712eda65199d940f3338e1[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Wed Oct 11 12:25:53 2023 +0900
+
+    review crud 진행중
+
+[33mcommit e4bb9c5926055c7e470abec7a8c80a7c4ca767bd[m
+Merge: b7e3ce6 0ed43b9
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Wed Oct 11 11:47:29 2023 +0900
+
+    Merge pull request #14 from yoojungkook/iuj09
+    
+    Iuj09
+
+[33mcommit 0ed43b937a33ce7faec6aac76528b8389c9ee6da[m
+Author: IUJin <iuj09@naver.com>
+Date:   Wed Oct 11 11:44:19 2023 +0900
+
+    페이지 작업중
+
+[33mcommit 5fa2463a81b2d5af68e244e322bb6a1dfc34b200[m
+Merge: 2361d35 b7e3ce6
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 11:20:52 2023 +0900
+
+    Merge branch 'main' of https://github.com/yoojungkook/highwayrest into jicmu
+    
+    # Conflicts:
+    #       .gitignore
+
+[33mcommit 2361d35393a496ab2c4255e02743394ba6a7c2ae[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 11:19:34 2023 +0900
+
+    Feat: DB 연동
+
+[33mcommit 693f399bc60e6ca8ed028d0f91ed21df49cbe9e4[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Wed Oct 11 11:16:21 2023 +0900
+
+    Chore: 커밋 대상에서 제외
+
+[33mcommit c10bbda74ffb0252927a131b4a1e4a53bd6b7c8c[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Wed Oct 11 00:51:23 2023 +0900
+
+    --- .gitignore 수정
+    --- config.xml .gitignore에 추가
+    --- pom.xml 업데이트
+
+[33mcommit eec366da73d1b88b93decd4e38e34ca8105b3535[m
+Merge: 6b369d2 b7e3ce6
+Author: IUJin <iuj09@naver.com>
+Date:   Tue Oct 10 18:13:14 2023 +0900
+
+    Merge branch 'main' into iuj09
+
+[33mcommit 2e91bd62e4feaea433439c275fe1731eb4daa4c0[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Tue Oct 10 17:49:40 2023 +0900
+
+    Fix: 패키지 변경, 구매 완료 페이지 수정
+
+[33mcommit b7e3ce64686f15fb9da082b8a61541584197a76c[m
+Merge: 6f86b36 3200ae9
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Tue Oct 10 16:12:29 2023 +0900
+
+    Merge pull request #13 from yoojungkook/yoojungkook
+    
+    gitignore 마지막 적용
+
+[33mcommit 3200ae974afc41be624fc54e943a4e4f1dff6e94[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Tue Oct 10 16:11:11 2023 +0900
+
+    gitignore 마지막 적용
+
+[33mcommit 6f86b367194067fb7ace3da4c151b57eaa7c996b[m
+Merge: c0f78df 9f2deb3
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Tue Oct 10 15:58:24 2023 +0900
+
+    Merge pull request #12 from yoojungkook/yoojungkook
+    
+    gitignore 적용
+
+[33mcommit 9f2deb3c5889a307c0a65cb7848e37064719c6a0[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Tue Oct 10 15:55:37 2023 +0900
+
+    gitignore 적용
+
+[33mcommit c0f78dfe098cbe389d94b14b9ab6a1b2b1f6c78b[m
+Merge: 1a40dc5 b55ec9a
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Tue Oct 10 15:45:54 2023 +0900
+
+    Merge pull request #11 from yoojungkook/yoojungkook
+    
+    README.md 추가
+
+[33mcommit b55ec9a1a5661c641286d95563fe6b82d108c655[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Tue Oct 10 15:44:41 2023 +0900
+
+    README.md 추가
+
+[33mcommit 1a40dc5076fafcbff5cadad8db656f55bdb69cff[m
+Merge: 6793ad6 15ef014
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Tue Oct 10 15:41:36 2023 +0900
+
+    Merge pull request #10 from yoojungkook/yoojungkook
+    
+    --- gitignore 수정
+
+[33mcommit 15ef014a14ea658a6b4de34a081805a64a294664[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Tue Oct 10 15:41:11 2023 +0900
+
+    --- gitignore 수정
+
+[33mcommit 6b369d2d006a528d66d28fbf9a207f833f90dc9a[m
+Merge: d75e859 6793ad6
+Author: IUJin <iuj09@naver.com>
+Date:   Tue Oct 10 15:13:43 2023 +0900
+
+    edit index.jsp
+
+[33mcommit 4c07b58f72c435cac901899d77644a0011ff24c7[m
+Merge: 4f85f26 6793ad6
+Author: J Kim <jicmu0@gmail.com>
+Date:   Tue Oct 10 15:09:25 2023 +0900
+
+    Merge branch 'main' of https://github.com/yoojungkook/highwayrest into jicmu
+
+[33mcommit 6793ad6a21f0ca19dccb8d3b2df9512134dfec34[m
+Merge: f38a1f6 04278d4
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Tue Oct 10 15:08:21 2023 +0900
+
+    Merge pull request #9 from yoojungkook/justlikeryu
+    
+    Justlikeryu
+
+[33mcommit 04278d4cdeda302379b9fc0835dfcdf3280117a8[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Tue Oct 10 15:05:26 2023 +0900
+
+    변경 확인
+
+[33mcommit 5ba46acfc5cb673914518c4b18f23ba5959175bd[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Tue Oct 10 15:04:37 2023 +0900
+
+    확인
+
+[33mcommit 4f85f26daa7c2d1ec512dac39a1b3efb3e4e147e[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Tue Oct 10 14:58:25 2023 +0900
+
+    Fix: jsp el 안되던 현상 수정
+
+[33mcommit d75e859d52d33f4cae218f7b72bf84d63db41b1f[m
+Merge: b25d935 f38a1f6
+Author: IUJin <iuj09@naver.com>
+Date:   Tue Oct 10 14:53:11 2023 +0900
+
+    Merge branch 'main' into iuj09
+
+[33mcommit f38a1f63fb0cb08fd5ae05e9d66f26fcdd6b3a50[m
+Merge: 6e78c1d 5821540
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Tue Oct 10 14:50:35 2023 +0900
+
+    Merge pull request #8 from yoojungkook/justlikeryu
+    
+    Justlikeryu
+
+[33mcommit 5821540f29a52b82af439ab850e17f347f1c843d[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Tue Oct 10 14:48:50 2023 +0900
+
+    Review 기능 추가
+
+[33mcommit 4625c4f01ede70433005148aad78aaedcd3bc418[m
+Merge: d41860f 6e78c1d
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Tue Oct 10 14:42:04 2023 +0900
+
+    Merge branch 'main' into justlikeryu
+    
+    # Conflicts:
+    #       src/main/webapp/master/home.jsp
+
+[33mcommit b25d93519827cd26dd2d84c486ec2e40bf59652f[m
+Author: IUJin <iuj09@naver.com>
+Date:   Tue Oct 10 14:33:24 2023 +0900
+
+    Merge branch 'iuj09' of /Users/iujin/KOSTA/highwayrest with conflicts.
+
+[33mcommit 6e78c1d5e07c63212c16ceb8831876eff57cf1fa[m
+Merge: 0885d9c 634ebbd
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Tue Oct 10 14:24:07 2023 +0900
+
+    Merge pull request #7 from yoojungkook/jicmu
+    
+    Jicmu
+
+[33mcommit 0885d9cd506adbfd89f73e14b93ab2a790f6f15a[m
+Merge: af59d49 40b4619
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Tue Oct 10 14:22:18 2023 +0900
+
+    Merge pull request #6 from yoojungkook/yoojungkook
+    
+    -- ImageFile.java
+
+[33mcommit 40b4619ffbf7b78db23f7f7ba88748e24b0a126a[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Tue Oct 10 14:21:06 2023 +0900
+
+    -- ImageFile.java
+    이미지 파일의 업로드 및 보이기에 관련된 기능에 대해서 작성
+
+[33mcommit 634ebbd77edfe0dda9c61d9414304a9f879aef91[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Tue Oct 10 14:19:33 2023 +0900
+
+    Fix: redirect url 절대 경로로 수정
+
+[33mcommit f1149dd6568d3f3cbab8ff39279d0d5660d4c15a[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Tue Oct 10 14:14:23 2023 +0900
+
+    Fix: 결제 완료가 되지 않던 현상 수정
+
+[33mcommit 1e1fa32ed356f79439fa4c4daf83fd41aa26806f[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Tue Oct 10 12:12:41 2023 +0900
+
+    appKey 변수로 분리
+
+[33mcommit 06c6f689b49059ea1f332a50c63b11800fbd11a0[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Tue Oct 10 12:07:30 2023 +0900
+
+    Feat: 누락했던 핸들러 추가
+
+[33mcommit 0b04e3e088b60431f088ca5c7b95313b80dfe720[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Tue Oct 10 12:04:00 2023 +0900
+
+    Feat: 카카오 결제 기능 추가 - 수정 필요
+
+[33mcommit 5f0707cac529ca33191efc275bd080b5bcbf0568[m
+Merge: 2a74e16 af59d49
+Author: J Kim <jicmu0@gmail.com>
+Date:   Tue Oct 10 09:34:34 2023 +0900
+
+    Merge branch 'main' of https://github.com/yoojungkook/highwayrest into jicmu
+
+[33mcommit af59d49c3abbaa5d1eb603089ac60882d9e33f38[m
+Merge: e339c90 76922d5
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 6 17:42:41 2023 +0900
+
+    Merge pull request #5 from yoojungkook/yoojungkook
+
+[33mcommit 76922d55aacd67e21211f0810888ffbe681d6395[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Fri Oct 6 17:40:39 2023 +0900
+
+    -- Controller.java
+    doGet, doPost 수정
+
+[33mcommit d365eac9b2b8a76eb56215eddf955eb89ed5adc5[m
+Merge: c487461 e339c90
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Fri Oct 6 16:16:06 2023 +0900
+
+    Merge branch 'main' into yoojungkook
+
+[33mcommit d41860fe53ec2f7f4783444a227c93f3ef6e0df0[m
+Merge: d72a043 e339c90
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Fri Oct 6 16:00:30 2023 +0900
+
+    Merge branch 'main' into justlikeryu
+
+[33mcommit c4874619070a71553afbd612d689904df3373462[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Fri Oct 6 15:56:07 2023 +0900
+
+    -- Controller.java
+    doGet 메소드 구현체 수정
+
+[33mcommit e339c90dfc0d1144b1d46c74c696ac4d63cb182b[m
+Merge: fb12c3e 877e7bc
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 6 15:43:19 2023 +0900
+
+    Merge pull request #4 from yoojungkook/yoojungkook
+
+[33mcommit 877e7bca0baa0ded75a7c3915e8852cb245c4688[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Fri Oct 6 15:40:04 2023 +0900
+
+    -- Add
+    db.sql : 프로젝트에 사용할 db파일
+    .java : db 테이블에 1:1 매칭 vo 또는 dto
+    config.xml : 클라우드에서 공통으로 사용할 db 설정 파일
+
+[33mcommit d72a04309410cce5200173cb3c21b8c7c36f3d7c[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Fri Oct 6 12:27:23 2023 +0900
+
+    test2
+
+[33mcommit fb12c3e35ac94f0cf5c88fff30d0100ca6f0f7c1[m
+Merge: 80ae503 c143e0e
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 6 12:23:07 2023 +0900
+
+    Merge pull request #3 from yoojungkook/iuj09
+    
+    iuj09
+
+[33mcommit c143e0ee9cc790db240811cf0e8887aee254ee73[m
+Author: IUJin <iuj09@naver.com>
+Date:   Fri Oct 6 12:20:09 2023 +0900
+
+    iuj09
+
+[33mcommit 80ae50398ab421399fcf532f979a8ff3f8b63396[m
+Merge: ad1aa39 750e0c9
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 6 12:15:18 2023 +0900
+
+    Merge pull request #2 from yoojungkook/justlikeryu
+    
+    test
+
+[33mcommit 750e0c9d11a3d9be058586a71ce87d7c91469af0[m
+Author: justlikeryu <gaheeryu97@gmail.com>
+Date:   Fri Oct 6 12:13:52 2023 +0900
+
+    test
+
+[33mcommit ad1aa39e07b5fc387d3dd32ac0c10c109585e20f[m
+Merge: 343c35f c047f16
+Author: 유정국 <141127270+yoojungkook@users.noreply.github.com>
+Date:   Fri Oct 6 12:07:17 2023 +0900
+
+    Merge pull request #1 from yoojungkook/yeonann
+    
+    test2
+
+[33mcommit 2a74e164126b563cd6467629efa271cd2309e2c9[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Fri Oct 6 12:02:19 2023 +0900
+
+    Initial Commit
+
+[33mcommit c047f16450651fa164c727efac6b237d67b8e667[m
+Author: yeonann <yyeonann@gmail.com>
+Date:   Fri Oct 6 11:58:37 2023 +0900
+
+    test2
+
+[33mcommit 6770ca56802528a840cd4baa3ff77ab4dbe56ac6[m
+Author: J Kim <jicmu0@gmail.com>
+Date:   Fri Oct 6 11:40:47 2023 +0900
+
+    Test
+
+[33mcommit 343c35f9bcf6d01793ba03c9c3941fb99264974a[m
+Author: Jungkook Yoo <yoojeebee@kakao.com>
+Date:   Thu Oct 5 11:53:15 2023 +0900
+
+    프로젝트 시작
