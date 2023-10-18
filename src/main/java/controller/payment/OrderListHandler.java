@@ -25,7 +25,9 @@ public class OrderListHandler implements Handler {
 
         request.setAttribute("orderList", orderList);
 
-        return "/payment/orderList.jsp";
+        request.setAttribute("view", "/payment/orderList.jsp");
+
+        return "/index.jsp";
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -5,7 +5,7 @@
 <head>
     <title>Edit</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<c:url value='/common/css/common.css' />" type="text/css">
+    <!-- <link rel="stylesheet" href="<c:url value='/common/css/common.css' />" type="text/css"> -->
     <link rel="stylesheet" href="<c:url value='/common/css/payment.css' />" type="text/css">
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -13,7 +13,7 @@
 
 <body>
     <div id="wrapper">
-        <%@ include file="/common/header.jsp"%>
+        <!-- <%@ include file="/common/header.jsp"%> -->
         <div class="container main">
             <form action="" name="form-payment">
                 <h1 class="p-1 pb-2 border-bottom border-muted">주문</h1>
@@ -64,7 +64,7 @@
             </form>
         </div>
         <%--    <%@ include file="footer.jsp" %>--%>
-            <%@ include file="/common/footer.jsp"%>
+        <%--    <%@ include file="/common/footer.jsp"%> --%>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
