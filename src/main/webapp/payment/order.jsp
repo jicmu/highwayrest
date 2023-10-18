@@ -101,6 +101,8 @@
 
                 if (document.querySelector("#total").value == 0) {
                     document.querySelector("#pay-by-kakao").disabled = true;
+                } else {
+                    document.querySelector("#pay-by-kakao").disabled = false;
                 }
             });
         });
