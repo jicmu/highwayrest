@@ -271,8 +271,9 @@
 
                         observer.unobserve(entry.target);
 
-                        if (parsed[9] != null) {
+                        if (Object.keys(parsed).length != 0) {
                             observer.observe(document.querySelector("article:nth-last-child(2)"));
+                            console.log("1");
                         }
                     };
 
