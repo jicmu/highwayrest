@@ -23,7 +23,8 @@ public class RestList implements Handler {
 
         request.setAttribute("highway", highway);
         request.setAttribute("list", list);
-        return "/rest/restlist.jsp";
+        request.setAttribute("view", "/rest/restlist.jsp");
+        return "/index.jsp";
     }
 
     @Override

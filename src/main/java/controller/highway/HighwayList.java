@@ -17,7 +17,8 @@ public class HighwayList implements Handler {
         ArrayList<Highway> list = highwayService.getAll();
 
         request.setAttribute("list", list);
-        return "/highway/highwaylist.jsp";
+        request.setAttribute("view", "/highway/highwaylist.jsp");
+        return "/index.jsp";
     }
 
     @Override

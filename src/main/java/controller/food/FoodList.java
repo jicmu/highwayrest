@@ -20,7 +20,8 @@ public class FoodList implements Handler {
 
         request.setAttribute("restNo", restNo);
         request.setAttribute("list", list);
-        return "/order/orderlist.jsp";
+        request.setAttribute("view", "/food/foodlist.jsp");
+        return "/index.jsp";
     }
 
     @Override

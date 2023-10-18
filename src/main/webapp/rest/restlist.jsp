@@ -11,8 +11,8 @@
     <script>
         window.onload = () => {
             document.getElementById("svarNm").onchange = function() {
-                let searchWord = document.getElementById("searchWord");
-                let svarNm = document.getElementById("svarNm").value;
+                var searchWord = document.getElementById("searchWord");
+                var svarNm = document.getElementById("svarNm").value;
                 searchWord.value = svarNm;
             };
 
@@ -24,7 +24,7 @@
 
             var mapContainer = document.getElementById('map'),
             mapOption = {
-                center: new kakao.maps.LatLng(36.5, 128),
+                center: new kakao.maps.LatLng(36, 128),
                 level: 13
             };
 
@@ -89,53 +89,56 @@
             <div class="col mt-3">
                 <form class="d-flex" id="f" role="search" action="${pageContext.request.contextPath }/restsearch" method="post">
                     <input type="hidden" name="searchType" value="2">
-                    <input type="hidden" name="memberNo" value="${sessionScope.loginId}">
+                    <input type="hidden" name="memberNo" value="${sessionScope.loginNum }">
                     <input type="hidden" id="searchWord" name="searchWord" value="">
                     <input class="form-control me-2" type="search" id="svarNm" name="svarNm" placeholder="휴게소명">
                     <input class="btn btn-outline-success" type="submit" value="검색"></button>
                 </form>
             </div>
         </div>
+
         <div class="row mt-3">
-            <div class="col">
-                <div id="map" style="width:400px;height:300px;"></div>
+            <div class="col-6">
+                <div id="map" style="width:450px;height:500px;"></div>
             </div>
-        </div>
-        <div class="mt-3">
-            <h2>${highway.routeNm } 휴게소 목록</h2>
-        </div>
-        <div class="mt-3">
-            <table>
-                <tr><th>휴게소명</th>
-                    <th>방향
-                        <select id="direction">
-                            <option value="">방향선택</option>
-                            <option value="0">상행</option>
-                            <option value="1">하행</option>
-                        </select>
-                    </th>
-                </tr>
-                <c:forEach var="r" items="${list }">
-                <tr>
-                    <td>
-                        <a href="${pageContext.request.contextPath }/restinfo?svarCd=${r.svarCd }" class="list-group-item list-group-item-action">${r.svarNm }</a>
-                    </td>
-                    <c:if test="${r.gudClssCd == 0}">
-                        <td>상행</td>
-                    </c:if>
-                    <c:if test="${r.gudClssCd == 1}">
-                        <td>하행</td>
-                    </c:if>
-                </c:forEach>
-            </table>
-        </div>
-        <nav class="mt-3" aria-label="Page navigation">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
+            <div class="col-6">
+                <h2>${highway.routeNm } 휴게소 목록</h2>
+                <div class="mt-3">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>휴게소명</th>
+                                <th>
+                                    <select id="direction" class="form-select form-select-sm">
+                                        <option selected>방향선택</option>
+                                        <option value="0">상행</option>
+                                        <option value="1">하행</option>
+                                    </select>
+                                </th>
+                            </tr>
+                        </thead>
+                        <c:forEach var="r" items="${list }">
+                        <tr>
+                            <td>
+                                <a href="${pageContext.request.contextPath }/restinfo?svarCd=${r.svarCd }" class="list-group-item list-group-item-action">${r.svarNm }</a>
+                            </td>
+                            <c:if test="${r.gudClssCd == 0}">
+                                <td>상행</td>
+                            </c:if>
+                            <c:if test="${r.gudClssCd == 1}">
+                                <td>하행</td>
+                            </c:if>
+                        </c:forEach>
+                    </table>
+                </div>
+                <nav class="mt-3" aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </body>
