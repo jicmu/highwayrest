@@ -15,11 +15,11 @@ public class myReview implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String loginNum = String.valueOf(request.getSession().getAttribute("loginNum"));
+        String memberNo = String.valueOf(request.getSession().getAttribute("memberNo"));
 
         ReviewService service = new ReviewService();
       
-        ArrayList<Review> mylist = service.getReviewByMember(memberNo);
+        ArrayList<Review> mylist = service.getReviewByMember(Integer.parseInt(memberNo));
         request.setAttribute("mylist", mylist);
 
 //        ArrayList<String> images = ImageFile.getImageFiles("C:\\Users\\RYU\\Desktop\\project\\photo\\" + r.getMemberNo() + "\\" + r.getReviewNo());
