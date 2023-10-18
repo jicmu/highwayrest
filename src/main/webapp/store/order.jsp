@@ -187,6 +187,7 @@
 
                             article = document.createElement("article");
                             article.classList = "card p-0 mb-3";
+                            article.setAttribute("ident", "article-" + p[0].ordersNo)
 
                             let cardHeader = `
                             <div class="card-header">
@@ -254,7 +255,7 @@
                                             <button class="btn btn-danger btn-deny" id="btn-deny-${'${p[0].ordersNo}'}">거절</button>
                                             <button class="btn btn-primary btn-accept" id="btn-accept-${'${p[0].ordersNo}'}">수락</button>
                                         </div>`;
-                            } else if (p.status == 1) {
+                            } else if (p[0].status == 1) {
                                 card += `<div class="btn-group" id="btn-group-${'${p[0].ordersNo}'}" ident="btn-group-${'${p[0].ordersNo}'}">
                                             <button class="btn btn-primary btn-finish" id="btn-finish-${'${p[0].ordersNo}'}">조리 완료</button>
                                         </div>`;
