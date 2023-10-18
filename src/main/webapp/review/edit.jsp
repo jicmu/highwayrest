@@ -19,6 +19,28 @@
             color: #999;
             font-size: .9em;
         }
+
+        /*빈 별*/
+        .rating .star {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            display: inline-block;
+            background: url('${pageContext.request.contextPath}/review/star.png') no-repeat;
+            background-size: 100%;
+            box-sizing: border-box;
+        }
+
+        /*1점*/
+        .rating .star.on {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            display: inline-block;
+            background: url('${pageContext.request.contextPath}/review/filledStar.png') no-repeat;
+            background-size: 100%;
+            box-sizing: border-box;
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -140,6 +162,21 @@
                     }
                 }
             )('preview_zone', 'btnAtt')
+
+            //별점
+            $('.rating > .star').click(function() {
+                //$().parent(): 클릭한 객체의 부모
+                //children('tag')
+                //removeClass('class'): 해당 태그에서 클래스 삭제
+                $(this).parent().children('span').removeClass('on');
+                //$('tag').prevAll('tag');: 선택한 요소의 이전 모든 형제요소를 선택함
+                $(this).addClass('on').prevAll('span').addClass('on');
+                //클릭이벤트가 일어날 때 마다 name이 star인 value값이 변경된다. 기본적으로는 1점 세팅.
+                var value = $(this).attr("value");//선택한 객체의 value
+                $("input[name=star]").val(value);
+                // $("").val(value);
+                // $(this).attr('star');
+            });
             });
     </script>
 </head>
@@ -153,6 +190,7 @@
                 <input type="hidden" value="${r.reviewNo}" name="reviewNo">
                 <input type="hidden" value="${r.restNo}" name="restNo">
                 <input type="hidden" value="${param.svarCd}" name="svarCd">
+                <input type="hidden" name="star" value="1">
 <%--                <tr>--%>
 <%--                    <!--주문 메뉴가 뜨는 게 좋지 않을까-->--%>
 <%--                    <th>주문 번호</th>--%>
@@ -163,8 +201,14 @@
 <%--                    <td><input type="number" value="${r.star}" name="star"></td>--%>
 <%--                </tr>--%>
                 <div class="mb-3">
-                    <label for="star" class="form-label">별점</label>
-                    <input type="number" value="${r.star}" id="star" name="star" value="${r.star}">
+                    <div>별점</div>
+                    <div class="rating">
+                        <span class="star on" value="1"> </span>
+                        <span class="star"  value="2"> </span>
+                        <span class="star" value="3"> </span>
+                        <span class="star" value="4"> </span>
+                        <span class="star" value="5"> </span>
+                    </div>
                 </div>
 <%--                <tr>--%>
 <%--                    <th>후기</th>--%>
