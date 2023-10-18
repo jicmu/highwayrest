@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="loginNum" value="${sessionScope.loginNum}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,8 +26,15 @@
                 for(let amount of amounts) {
                     sum += parseInt(amount.value);
                 }
+                var loginNum = "<c:out value='${loginNum}' />";
                 var orderform = document.getElementById("order");
-                if(sum == 0) {
+                if(loginNum.trim() === ""){
+                    var returnLogin = confirm("로그인 후 이용해주세요 \n로그인 페이지로 이동하시겠습니까?");
+                    if(returnLogin){
+                        location.href = '${pageContext.request.contextPath }/member/login';
+                    }
+                    orderform.addEventListener("submit", eventPreventDefault);
+                }else if(sum == 0) {
                     alert("주문할 메뉴를 1개 이상 선택해주세요");
                     orderform.addEventListener("submit", eventPreventDefault);
                 }else {
