@@ -9,6 +9,7 @@ import java.sql.Date;
 @Setter
 @ToString
 public class RestReviewDTO {
+    private String nickname;
     private String svarCd;
     private int reviewNo;
     private int memberNo;

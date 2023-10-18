@@ -208,26 +208,6 @@
                     <span class="star" value="4"> </span>
                     <span class="star" value="5"> </span>
                 </div>
-<%--                <div class="form-check form-check-inline">--%>
-<%--                    <input class="form-check-input" type="radio" name="star" id="one" value="1">--%>
-<%--                    <label class="form-check-label" for="one">★</label>--%>
-<%--                </div>--%>
-<%--                <div class="form-check form-check-inline">--%>
-<%--                    <input class="form-check-input" type="radio" name="star" id="two" value="2">--%>
-<%--                    <label class="form-check-label" for="two">★★</label>--%>
-<%--                </div>--%>
-<%--                <div class="form-check form-check-inline">--%>
-<%--                    <input class="form-check-input" type="radio" name="star" id="three" value="3">--%>
-<%--                    <label class="form-check-label" for="three">★★★</label>--%>
-<%--                </div>--%>
-<%--                <div class="form-check form-check-inline">--%>
-<%--                    <input class="form-check-input" type="radio" name="star" id="four" value="4">--%>
-<%--                    <label class="form-check-label" for="four">★★★★</label>--%>
-<%--                </div>--%>
-<%--                <div class="form-check form-check-inline">--%>
-<%--                    <input class="form-check-input" type="radio" name="star" id="five" value="5">--%>
-<%--                    <label class="form-check-label" for="five">★★★★★</label>--%>
-<%--                </div>--%>
 
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">후기</label>
