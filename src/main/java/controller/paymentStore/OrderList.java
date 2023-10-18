@@ -19,11 +19,12 @@ public class OrderList implements Handler {
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrderService orderService = new OrderService();
 
-        // TODO 세션으로 변경
-        String loginStore = (String) request.getSession().getAttribute("loginStore");
-        loginStore = "306";
+        String loginStore = request.getParameter("loginStore");
+        loginStore = "00306";
 
-        List<Order> orderList = orderService.findByRestNo(Integer.parseInt(loginStore));
+        List<Order> orderList = orderService.findByRestNo(loginStore);
+
+        request.setAttribute("loginStore", loginStore);
 
         request.setAttribute("orderList", orderList);
 
