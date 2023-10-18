@@ -18,7 +18,9 @@ public class sortReview implements Handler {
         ArrayList<RestReviewDTO> list = service.getAll(svarCd);
 
         String sort = request.getParameter("sort");
-        if(sort.equals("sortHighRate")){
+        if(sort.equals("sortRecent")){
+            list = service.getAll(svarCd);
+        }else if(sort.equals("sortHighRate")){
             list = service.getAllByHighRate(svarCd);
         }else if(sort.equals("sortLowRate")){
             list = service.getAllByLowRate(svarCd);

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class addReview implements Handler {
     String go = "/review/add.jsp";
@@ -92,6 +93,7 @@ public class addReview implements Handler {
         }
 
         String[] newFilesName = nDir.list();//이동한 파일 목록들 읽기
+        System.out.println(Arrays.toString(newFilesName));
         String[] imgs = new String[3];
         if (newFilesName != null) {
             for (int i = 0; i < newFilesName.length; i++) {//파일 수 만큼 반복
