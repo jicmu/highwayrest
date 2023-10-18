@@ -30,7 +30,7 @@ public class delReview implements Handler {
         }
 
         service.delReview(reviewNo);
-        return "redirect/listReview?svarCd=" + svarCd;
+        return "redirect/myReview";
     }
 
     @Override

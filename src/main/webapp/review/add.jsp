@@ -191,16 +191,16 @@
     </script>
 </head>
 <body>
-<h3>리뷰 작성</h3>
+<h3 class="mt-3">리뷰 작성</h3>
     <div class="container">
         <form action="${pageContext.request.contextPath}/addReview" id="f" name="f" style="border:none" method="post" enctype="multipart/form-data">
 
-                <input type="hidden" name="memberNo" value="1">
-                <input type="hidden" name="orderNo" value="125">
-                <input type="hidden" name="restNo" value="000306">
+                <input type="hidden" name="memberNo" value="${sessionScope.loginNum}">
+                <input type="hidden" name="orderNo" value="${orderNo}">
+                <input type="hidden" name="restNo" value="${restNo}">
                 <input type="hidden" name="star" value="1">
 
-                <div>별점</div>
+                <div class="text-start">별점</div>
                 <div class="rating">
                     <span class="star on" value="1"> </span>
                     <span class="star"  value="2"> </span>
@@ -209,12 +209,12 @@
                     <span class="star" value="5"> </span>
                 </div>
 
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">후기</label>
+                <div class="text-start">
+                    <label for="exampleFormControlTextarea1" class="form-label text-start">후기</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" cols="50" name="content" placeholder="후기를 작성해 주세요."></textarea>
                 </div>
 
-                <div id="preview_zone" placeholder="첨부한 사진을 미리 볼 수 있습니다."></div>
+                <div id="preview_zone" class="text-start" placeholder="첨부한 사진을 미리 볼 수 있습니다."></div>
                 <div class="input-group mb-3" id="image_preview">
                     <input type="file" class="form-control" id="btnAtt" name="file" accept="image/*" multiple>
                     <label class="input-group-text" for="btnAtt">첨부</label>
