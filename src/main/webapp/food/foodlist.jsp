@@ -70,6 +70,7 @@
                 <form class="d-flex" role="search" name="search" id="search" action="${pageContext.request.contextPath }/foodsearch" method="post">
                     <input type="hidden" name="searchType" value="3">
                     <input type="hidden" name="memberNo" value="${sessionScope.loginNum }">
+                    <input type="hidden" name="restNo" value="${restNo }">
                     <input type="hidden" id="searchWord" name="searchWord" value="">
                     <input class="form-control me-2" type="search" id="foodNm" name="name" placeholder="메뉴명">
                     <input class="btn btn-outline-success" type="submit" value="검색"></button>

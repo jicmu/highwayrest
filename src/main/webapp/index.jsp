@@ -60,7 +60,7 @@
                         <ul class="dropdown-menu dropdown-menu-lg-end">
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath }/member/edit?id=${sessionScope.loginId}">내정보</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath }/orders">주문내역</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath }/orders">주문목록</a></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath }/myReview">리뷰관리</a></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath }/member/out">로그아웃</a></li>
                         </ul>

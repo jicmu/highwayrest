@@ -27,10 +27,10 @@ public class RestFoodService extends Service {
         return list;
     }
 
-    public ArrayList<RestFood> getByName(String name){
+    public ArrayList<RestFood> getByName(String name, String stdRestCd){
         sqlSession = sqlSessionFactory.openSession();
         RestFoodDao dao = sqlSession.getMapper(RestFoodDao.class);
-        ArrayList<RestFood> list = dao.selectByName("%" + name + "%");
+        ArrayList<RestFood> list = dao.selectByName("%" + name + "%", stdRestCd);
 
         sqlSession.close();
 
