@@ -1,5 +1,5 @@
 .container.main {
-    height: calc(100vh - 111px - 80px);
+    height: calc(100vh - 111px);
     overflow: auto;
 }
 

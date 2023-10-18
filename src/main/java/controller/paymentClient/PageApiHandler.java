@@ -25,6 +25,14 @@ public class PageApiHandler implements Handler {
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrderService orderService = new OrderService();
 
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+
+        if (request.getSession().getAttribute("loginNum") == null) {
+            response.getWriter().write("<html><head><meta charset='utf-8'></head><body><script>alert('로그인이 필요합니다.'); history.go(-1);</script></body></html>");
+            return "responsebody/";
+        }
+
         int user = (int) request.getSession().getAttribute("loginNum");
         String page = request.getParameter("page");
         String amount = request.getParameter("amount");

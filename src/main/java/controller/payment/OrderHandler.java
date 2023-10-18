@@ -51,7 +51,9 @@ public class OrderHandler implements Handler {
 
         if (foodNos == null || foodCosts == null || amounts == null
                 || foodNos.length == 0 || foodCosts.length == 0 || amounts.length == 0) {
-            return "/payment/order.jsp";
+            request.setAttribute("view", "/payment/order.jsp");
+
+            return "/index.jsp";
         }
 
         List<OrderParamDTO> dtos = new ArrayList<>();
@@ -69,7 +71,9 @@ public class OrderHandler implements Handler {
 
         request.setAttribute("foodList", dtos);
 
-        return "/payment/order.jsp";
+        request.setAttribute("view", "/payment/order.jsp");
+
+        return "/index.jsp";
     }
 
     public String getPath() {
