@@ -3,6 +3,7 @@ package controller.paymentStore;
 import common.Handler;
 import orders.Order;
 import orders.OrderService;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;
@@ -22,9 +23,9 @@ public class PageStoreApiHandler implements Handler {
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrderService orderService = new OrderService();
 
-        // TODO 세션으로 변경
-        String loginStore = (String) request.getSession().getAttribute("loginStore");
-        loginStore = "306";
+        // TODO session에서 가져옴
+        String user = (String) request.getSession().getAttribute("loginStore");
+        user = "306";
 
         String page = request.getParameter("page");
         String amount = request.getParameter("amount");
@@ -32,10 +33,18 @@ public class PageStoreApiHandler implements Handler {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
 
-        List<Order> orders = orderService.findByRestNoWithPaging(Integer.parseInt(loginStore), Integer.parseInt(page), Integer.parseInt(amount));
+        List<Order> orders = orderService.findByRestNoWithPaging(Integer.parseInt(user), Integer.parseInt(page), Integer.parseInt(amount));
 
         Map<Integer, String> ordersMap = new HashMap<>();
 
+        int index = 0;
+        JSONArray[] jsonArrays = new JSONArray[orders.size()];
+
+        for (int i = 0; i < jsonArrays.length; i++) {
+            jsonArrays[i] = new JSONArray();
+        }
+
+        Map<String, Integer> checkMap = new HashMap<>();
         for (int i = 0; i < orders.size(); i++) {
             Order order = orders.get(i);
 
@@ -51,7 +60,23 @@ public class PageStoreApiHandler implements Handler {
             jsonObject.put("oDate", order.getODate().toString());
             jsonObject.put("menu", order.getMenu());
 
-            ordersMap.put(i, jsonObject.toJSONString());
+            if (checkMap.containsKey(order.getOrdersNo())) {
+                jsonArrays[checkMap.get(order.getOrdersNo())].add(jsonObject);
+            } else {
+                jsonArrays[index].add(jsonObject);
+                checkMap.put(order.getOrdersNo(), index);
+                index++;
+            }
+        }
+
+        int idx = 0;
+        for (JSONArray a : jsonArrays) {
+            if (a.isEmpty()) {
+                break;
+            }
+
+            ordersMap.put(idx, a.toJSONString());
+            idx++;
         }
 
         JSONObject ordersJson = new JSONObject(ordersMap);

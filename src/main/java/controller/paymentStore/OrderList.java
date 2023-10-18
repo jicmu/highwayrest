@@ -21,13 +21,15 @@ public class OrderList implements Handler {
 
         // TODO 세션으로 변경
         String loginStore = (String) request.getSession().getAttribute("loginStore");
-        loginStore = "0";
+        loginStore = "306";
 
         List<Order> orderList = orderService.findByRestNo(Integer.parseInt(loginStore));
 
         request.setAttribute("orderList", orderList);
 
-        return "/store/order.jsp";
+        request.setAttribute("view", "/store/order.jsp");
+
+        return "/index.jsp";
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
