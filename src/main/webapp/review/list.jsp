@@ -60,13 +60,14 @@
     <div class="row mt-3">
         <div class="d-grid gap-2 col-6 mx-auto mt-3">
             <c:forEach var="r" items="${list}">
-                <table class="table">
-                    <c:if test="${sessionScope.loginNum} == ${r.memberNo}}">
+                <c:if test="${sessionScope.loginNum == r.memberNo}">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end" role="group" aria-label="Small button group">
-                        <input type="button" value="수정" class="btn btn-outline-secondary"onclick="editReview(${r.reviewNo})">
-                        <input type="button" value="삭제" class="btn btn-outline-secondary"onclick="delReview(${r.reviewNo})">
+                        <input type="button" value="수정" class="btn btn-outline-secondary" onclick="editReview(${r.reviewNo})">
+                        <input type="button" value="삭제" class="btn btn-outline-secondary" onclick="delReview(${r.reviewNo})">
                     </div>
-                    </c:if>
+                </c:if>
+                <table class="table">
+
                     <tr>
                         <th class="table-light text-center align-middle">닉네임</th>
                         <td>
@@ -93,13 +94,14 @@
                                 <c:if test="${r.img2 != null}">
                                     <img src="${r.img2}" class="rounded" id="img2" style="height:100px;width: 100px ">
                                     <c:if test="${r.img3 != null}">
-                                        <img src="${r.img3}" class="rounded" id="img3" style="height:100px;width: 100px ">
+                                        <img src="${r.img3}" class="rounded" id="img3"
+                                             style="height:100px;width: 100px ">
                                     </c:if>
                                 </c:if>
                             </td>
                         </tr>
                     </c:if>
-<%--                    <hr/>--%>
+                        <%--                    <hr/>--%>
                 </table>
             </c:forEach>
         </div>

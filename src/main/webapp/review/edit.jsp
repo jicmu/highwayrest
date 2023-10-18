@@ -190,26 +190,24 @@
                 <input type="hidden" value="${param.svarCd}" name="svarCd">
                 <input type="hidden" name="star" value="1">
 
-                <div class="mb-3">
-                    <div>별점</div>
-                    <div class="rating">
+                    <div class="text-start">별점</div>
+                    <div class="rating text-start">
                         <span class="star on" value="1"> </span>
                         <span class="star"  value="2"> </span>
                         <span class="star" value="3"> </span>
                         <span class="star" value="4"> </span>
                         <span class="star" value="5"> </span>
                     </div>
-                </div>
 
-                <div class="mb-3">
-                    <label for="content" class="form-label">후기</label>
+                <div class="mb-3 text-start">
+                    <label for="content" class="form-label text-start">후기</label>
                     <textarea class="form-control" id="content" rows="10" cols="50" name="content">${r.content}</textarea>
                 </div>
 <%--                <tr>--%>
 <%--                    <th>사진</th>--%>
 <%--                    <td> <input type="file" name="file" id="file" accept="image/*" multiple></td>--%>
 <%--                </tr>--%>
-                <div id="preview_zone" placeholder="첨부한 사진을 미리 볼 수 있습니다."></div>
+                <div id="preview_zone" class="text-start" placeholder="첨부한 사진을 미리 볼 수 있습니다."></div>
                 <div class="input-group mb-3" id="image_preview">
                     <input type="file" class="form-control" id="btnAtt" name="file" accept="image/*" multiple>
                     <label class="input-group-text" for="btnAtt">첨부</label>
