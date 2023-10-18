@@ -16,67 +16,7 @@
         <div class="container main">
             <h1 class="p-1 pb-2 border-bottom border-muted">주문 확인</h1>
             <section id="orders" class="row">
-                <c:forEach items="${orderList}" var="o" varStatus="status">
-                    <article class="card p-0 mb-3">
-                        <div class="card-header">
-                            ${o.ordersNo}<input type="hidden" name="items" value="${o.ordersNo}">
-                            <div id="cancel-1" class="float-end text-muted" style="cursor: pointer;">
-                                ${o.restNo}
-                            </div>
-                        </div>
-                        <div>
-                            <div class="col-3 m-3 d-inline-block">
-                                <label for="menu-${o.ordersNo}">음식</label>
-                                <input class="form-control form-control-sm" type="text" id="menu-${o.ordersNo}"
-                                    name="menu" value="${o.menu}" readonly>
-                            </div>
-                            <div class="col-3 m-3 d-inline-block">
-                                <label for="quantity-${o.ordersNo}">수량</label>
-                                <input class="form-control form-control-sm" type="number"
-                                    id="quantity-${o.ordersNo}" name="quantity" value="${o.quantity}" readonly>
-                            </div>
-                            <div class="col-3 m-3 d-inline-block">
-                                <label for="price-${o.ordersNo}">총 가격</label>
-                                <input class="form-control form-control-sm" type="number" name="price"
-                                    id="price-${o.ordersNo}" value="${o.pay}" readonly>
-                            </div>
-                            <span id="status-container-${o.ordersNo}" ident="status-container-${o.ordersNo}" orderNo="status-container-${o.orderNo}">
-                                <c:choose>
-                                    <c:when test="${o.status eq 0}">
-                                        <span class="status-dot bg-primary" id="status-${o.ordersNo}"></span> 수락 대기
-                                    </c:when>
-                                    <c:when test="${o.status eq 1}">
-                                        <span class="status-dot bg-success" id="status-${o.ordersNo}"></span> 수락
-                                    </c:when>
-                                    <c:when test="${o.status eq 2}">
-                                        <span class="status-dot bg-danger" id="status-${o.ordersNo}"></span> 거부
-                                    </c:when>
-                                    <c:when test="${o.status eq 3}">
-                                        <span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소
-                                    </c:when>
-                                    <c:when test="${o.status eq 4}">
-                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 수령 완료
-                                        <span><a href="${pageContext.request.contextPath}/addReview?orderNo=${o.orderNo}">후기 작성</a></span>
-                                    </c:when>
-                                    <c:when test="${o.status eq 5}">
-                                        <span class="status-dot bg-info" id="status-${o.ordersNo}"></span> 조리 완료
-                                    </c:when>
-                                    <c:otherwise>
-                                        <span>알 수 없음</span>
-                                    </c:otherwise>
-                                </c:choose>
-                            </span>
-                        </div>
-                        <c:choose>
-                            <c:when test="${o.status eq 0}">
-                                <button class="btn btn-danger btn-cancel" id="btn-cancel-${o.ordersNo}" ident="btn-cancel-${o.ordersNo}" orderNo="btn-cancel-${o.orderNo}">주문 취소</button>
-                            </c:when>
-                            <c:when test="${o.status eq 5 }">
-                                <button class="btn btn-info btn-done" id="btn-done-${o.ordersNo}" ident="btn-done-${o.ordersNo}" orderNo="btn-done-${o.orderNo}">수령</button>
-                            </c:when>
-                        </c:choose>
-                    </article>
-                </c:forEach>
+                
             </section>
         </div>
     <%--    <%@ include file="footer.jsp" %>--%>
@@ -84,74 +24,198 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.querySelectorAll(".btn-cancel").forEach((element) => {
-            element.addEventListener("click", () => {
-                let xhr = new XMLHttpRequest();
+    // 취소, 수령 함수
+        let setEvent = () => {
+            document.querySelectorAll(".btn-done").forEach((element) => {
+                element.addEventListener("click", () => {
+                    let xhr = new XMLHttpRequest();
 
-                let cancelUrl = "${pageContext.request.contextPath}/api/cancel";
-                if (!confirm("같이 주문했던 음식도 취소됩니다. 취소하시겠습니까?")) {
-                    return;
-                }
+                    xhr.open("post", "${pageContext.request.contextPath}/api/done");
+                    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-                xhr.open("post", cancelUrl);
+                    let index = element.getAttribute("ident").replace("btn-done-", "");
+                    let orderNo = element.getAttribute("orderNo").replace("btn-done-", "");
 
-                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    let parameter = {
+                        ordersNo: index
+                    };
 
-                let index = element.getAttribute("ident").replace("btn-cancel-", "");
+                    xhr.send(JSON.stringify(parameter));
 
-                let parameter = {
-                        ordersNo: index,
-                };
+                    xhr.onload = () => {
+                        if (xhr.status == 200) {
+                            document.querySelectorAll("[ident=btn-done-" + index + "]").forEach((elem) => {
+                                elem.remove();
+                            });
 
-                xhr.send(JSON.stringify(parameter));
+                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
-                xhr.onload = () => {
-                    if (xhr.status == 200) {
-                        document.querySelectorAll("[ident=btn-cancel-" + index + "]").forEach((elem) => {
-                            elem.remove();
-                        });
-
-                        let status = document.querySelectorAll("[ident=status-container-" + index + "]");
-
-                        status.forEach((statusElem) => {
-                            statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${o.ordersNo}"></span> 취소'
-                        });
+                            status.forEach((statusElem) => {
+                                statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span>수령 완료<span><a href="${pageContext.request.contextPath}/addReview?' + orderNo + '">후기 작성</a></span>'
+                            });
+                        }
                     }
-                }
-            })
-        });
-
-        document.querySelectorAll(".btn-done").forEach((element) => {
-            element.addEventListener("click", () => {
-                let xhr = new XMLHttpRequest();
-
-                xhr.open("post", "${pageContext.request.contextPath}/api/done");
-                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-                let index = element.getAttribute("ident").replace("btn-done-", "");
-                let orderNo = element.getAttribute("orderNo").replace("btn-done-", "");
-
-                let parameter = {
-                    ordersNo: index
-                };
-
-                xhr.send(JSON.stringify(parameter));
-
-                xhr.onload = () => {
-                    if (xhr.status == 200) {
-                        document.querySelectorAll("[ident=btn-done-" + index + "]").forEach((elem) => {
-                            elem.remove();
-                        });
-
-                        let status = document.querySelectorAll("[ident=status-container-" + index + "]");
-
-                        status.forEach((statusElem) => {
-                            statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${o.ordersNo}"></span>수령 완료<span><a href="${pageContext.request.contextPath}/addReview?' + orderNo + '">후기 작성</a></span>'
-                        });
-                    }
-                }
+                });
             });
-        });
+
+            document.querySelectorAll(".btn-cancel").forEach((element) => {
+                element.addEventListener("click", () => {
+                    let xhr = new XMLHttpRequest();
+
+                    let cancelUrl = "${pageContext.request.contextPath}/api/cancel";
+                    if (!confirm("같이 주문했던 음식도 취소됩니다. 취소하시겠습니까?")) {
+                        return;
+                    }
+
+                    xhr.open("post", cancelUrl);
+
+                    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                    let index = element.getAttribute("ident").replace("btn-cancel-", "");
+
+                    let parameter = {
+                            ordersNo: index,
+                    };
+
+                    xhr.send(JSON.stringify(parameter));
+
+                    xhr.onload = () => {
+                        if (xhr.status == 200) {
+                            document.querySelectorAll("[ident=btn-cancel-" + index + "]").forEach((elem) => {
+                                elem.remove();
+                            });
+
+                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
+
+                            status.forEach((statusElem) => {
+                                statusElem.innerHTML = '<span class="status-dot bg-warning" id="status-${'${p.ordersNo}'}"></span> 취소'
+                            });
+                        }
+                    }
+                })
+            });
+        }
+    // /취소, 수령 함수
+
+        // 무한 스크롤
+            window.onload = () => {
+                let page = 1;
+
+                const io = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+
+                        let xhr = new XMLHttpRequest();
+
+                        xhr.open("get", "${pageContext.request.contextPath}/api/page?page=" + page++ + "&amount=" + 10);
+
+                        xhr.send();
+
+                        xhr.onload = () => {
+                            let parsed = JSON.parse(xhr.responseText);
+
+                            let sectionOrders = document.querySelector("section#orders");
+
+                            let article = document.createElement("article");
+                            for (let o in parsed) {
+                                let card = "";
+                                
+                                let p = JSON.parse(parsed[o]);
+
+                                article = document.createElement("article");
+                                article.classList = "card p-0 mb-3";
+
+                                let cardHeader = `
+                                <div class="card-header">
+                                    ${"${p[0].orderNo}"}
+                                    <input type="hidden" name="items" value="${'${p[0].ordersNo}'}">
+                                    <div id="cancel-1" class="float-end text-muted" style="cursor: pointer;">
+                                        ${'${p[0].restNo}'}
+                                    </div>
+                                </div>
+                                <div>`;
+
+                                card += cardHeader;
+
+                                let contentMain = "<div class='card-body'>";
+
+                                for (let a of p) {
+                                    contentMain += `
+                                        <div class="col-3 m-3 d-inline-block">
+                                            <label for="menu-${'${a.ordersNo}'}">음식</label>
+                                            <input class="form-control form-control-sm" type="text" id="menu-${'${a.ordersNo}'}"
+                                                name="menu" value="${'${a.menu}'}" readonly>
+                                        </div>
+                                        <div class="col-3 m-3 d-inline-block">
+                                            <label for="quantity-${'${a.ordersNo}'}">수량</label>
+                                            <input class="form-control form-control-sm" type="number"
+                                                id="quantity-${'${a.ordersNo}'}" name="quantity" value="${'${a.quantity}'}" readonly>
+                                        </div>
+                                        <div class="col-3 m-3 d-inline-block">
+                                            <label for="price-${'${a.ordersNo}'}">총 가격</label>
+                                            <input class="form-control form-control-sm" type="number" name="price"
+                                                id="price-${'${a.ordersNo}'}" value="${'${a.pay}'}" readonly>
+                                        </div>
+                                    `;
+                                }
+
+                                contentMain += "</div>";
+
+                                card += contentMain;
+
+                                card += "<div class='card-footer'>"
+
+                                card += `<span class="status" id="status-container-${'${p[0].ordersNo}'}" ident="status-container-${'${p[0].ordersNo}'}" orderNo="status-container-${'${p[0].orderNo}'}">`;
+
+                                if (p[0].status == 0) {
+                                    card += `<span class="status-dot bg-primary" id="status-${'${p[0].ordersNo}'}"></span> 수락 대기`;
+                                } else if (p[0].status == 1) {
+                                    card += `<span class="status-dot bg-success" id="status-${'${p[0].ordersNo}'}"></span> 수락`;
+                                } else if (p[0].status == 2) {
+                                    card += `<span class="status-dot bg-danger" id="status-${'${p[0].ordersNo}'}"></span> 거부`;
+                                } else if (p[0].status == 3) {
+                                    card += `<span class="status-dot bg-warning" id="status-${'${p[0].ordersNo}'}"></span> 취소`;
+                                } else if (p[0].status == 4) {
+                                    card += `<span class="status-dot bg-info" id="status-${'${p[0].ordersNo}'}"></span> 수령 완료<span><a href="${pageContext.request.contextPath}/addReview?orderNo=${'${p[0].orderNo}'}">후기 작성</a></span>`;
+                                } else if (p[0].status == 5) {
+                                    card += `<span class="status-dot bg-info" id="status-${'${p[0].ordersNo}'}"></span> 조리 완료`;
+                                } else {
+                                    card += '<span>알 수 없음</span>'
+                                }
+                                card += "</div>";
+
+                                card += "</div>";
+
+                                if (p[0].status == 0) {
+                                    card += `<button class="btn btn-danger btn-cancel" id="btn-cancel-${'${p[0].ordersNo}'}" ident="btn-cancel-${'${p[0].ordersNo}'}" orderNo="btn-cancel-${'${p[0].orderNo}'}">주문 취소</button>`;
+                                } else if (p[0].status == 5) {
+                                    card += `<button class="btn btn-info btn-done" id="btn-done-${'${p[0].ordersNo}'}" ident="btn-done-${'${p[0].ordersNo}'}" orderNo="btn-done-${'${p[0].orderNo}'}">수령</button>`;
+                                }
+
+                                article.innerHTML = article.innerHTML + card;
+
+                                section.append(article);
+
+                            }
+
+                            setEvent();
+
+                            observer.unobserve(entry.target);
+
+                            if (parsed[9] != null) {
+                                observer.observe(document.querySelector("article:nth-last-child(2)"));
+                            }
+                        };
+                        
+                    });
+                });
+
+                let section = document.querySelector("section");
+
+                io.observe(section);
+            }
+        // /무한 스크롤
+        setEvent();
     </script>
 </body>
 

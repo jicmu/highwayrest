@@ -17,6 +17,9 @@ public interface OrderDao {
     @Select("SELECT orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name FROM orders o INNER JOIN restfood r ON o.foodno = r.no WHERE memberNo = #{memberNo} ORDER BY odate DESC")
     List<Order> findByMember(@Param("memberNo") int memberNo);
 
+    @Select("SELECT orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name FROM (SELECT ROWNUM AS rn, orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name FROM (SELECT orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name  FROM orders o INNER JOIN restfood r ON o.foodno = r.no  WHERE memberNo = #{memberNo} ORDER BY odate DESC )) WHERE  ((#{page} - 1) * #{amount}) + 1 <= rn AND rn <= (#{page} * #{amount})")
+    List<Order> findByMemberWithPaging(@Param("memberNo") int memberNo, @Param("page") int page, @Param("amount") int amount);
+
     @Select("SELECT * FROM orders WHERE rest LIKE '%#{rest}%' ORDER BY odate DESC")
     List<Order> findByRest(@Param("rest") String rest);
 
@@ -35,7 +38,7 @@ public interface OrderDao {
     @Select("SELECT * FROM orders WHERE ordersNo = #{ordersNo}")
     List<Order> findByOrdersNo(@Param("orderNo") String ordersNo);
 
-    @Select("SELECT SUM(pay) FROM orders WHERE ordersNo = #{ordersNo} AND status = 0 GROUP BY ordersNo")
+    @Select("SELECT SUM(pay) FROM orders WHERE ordersNo = #{ordersNo} GROUP BY ordersNo")
     Integer findTotalPrice(@Param("ordersNo") String ordersNo);
 
     @Select("SELECT name AS menu FROM restFood WHERE no = #{foodNo}")
@@ -43,4 +46,7 @@ public interface OrderDao {
 
     @Select("SELECT orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name FROM orders o INNER JOIN restfood r ON o.foodno = r.no WHERE orderNo = #{orderNo}")
     Order findByOrderNo(@Param("orderNo") String orderNo);
+
+    @Select("SELECT orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name FROM (SELECT ROWNUM AS rn, orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name FROM (SELECT orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name  FROM orders o INNER JOIN restfood r ON o.foodno = r.no  WHERE restno = #{restno} ORDER BY odate DESC )) WHERE  ((#{page} - 1) * #{amount}) + 1 <= rn AND rn <= (#{page} * #{amount})")
+    List<Order> findByRestNoWithPaging(@Param("restno") int restno, @Param("page") int page, @Param("amount") int amount);
 }

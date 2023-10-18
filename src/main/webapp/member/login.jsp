@@ -31,7 +31,7 @@
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script src="src/main/webapp/WEB-INF/apikey.js"></script>
     <script type="text/javascript">
-        Kakao.init(config.apikey);
+        Kakao.init(apikey);
         function kakaoLogin() {
             Kakao.Auth.login({
                 success: function () {

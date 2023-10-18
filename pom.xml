@@ -96,6 +96,12 @@
       <artifactId>commons-net</artifactId>
       <version>3.9.0</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/net.nurigo/sdk -->
+    <dependency>
+      <groupId>net.nurigo</groupId>
+      <artifactId>sdk</artifactId>
+      <version>4.3.0</version>
+    </dependency>
     <!-- 로깅 영역 -->
   </dependencies>
   <build>

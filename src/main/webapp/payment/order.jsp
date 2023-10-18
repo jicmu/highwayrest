@@ -6,7 +6,6 @@
     <title>Edit</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<c:url value='/common/css/common.css' />" type="text/css">
-
     <link rel="stylesheet" href="<c:url value='/common/css/payment.css' />" type="text/css">
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -28,7 +27,7 @@
                                         ${f.stdRestCd}<input type="hidden" name="stdRestCd" value="${f.stdRestCd}">
                                     </div>
                                 </div>
-                                <div>
+                                <div class="card-body">
                                     <div class="col-3 m-3 d-inline-block">
                                         <label for="quantity-${status.index}">수량</label>
                                         <select name="quantity" id="quantity-${status.index}" class="form-select form-select-sm">

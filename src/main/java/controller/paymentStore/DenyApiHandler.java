@@ -42,8 +42,6 @@ public class DenyApiHandler implements Handler {
             String ordersNo = (String) parsed.get("ordersNo");
 
             int accept = orderService.deny(ordersNo);
-
-            System.out.println(accept);
         } catch (ParseException e) {
             e.printStackTrace();
         }
