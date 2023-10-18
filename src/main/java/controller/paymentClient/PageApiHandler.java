@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PageApiHandler implements Handler {
 
@@ -39,6 +36,14 @@ public class PageApiHandler implements Handler {
 
         Map<Integer, String> ordersMap = new HashMap<>();
 
+        int index = 0;
+        JSONArray[] jsonArrays = new JSONArray[orders.size()];
+
+        for (int i = 0; i < jsonArrays.length; i++) {
+            jsonArrays[i] = new JSONArray();
+        }
+
+        Map<String, Integer> checkMap = new HashMap<>();
         for (int i = 0; i < orders.size(); i++) {
             Order order = orders.get(i);
 
@@ -54,7 +59,23 @@ public class PageApiHandler implements Handler {
             jsonObject.put("oDate", order.getODate().toString());
             jsonObject.put("menu", order.getMenu());
 
-            ordersMap.put(i, jsonObject.toJSONString());
+            if (checkMap.containsKey(order.getOrdersNo())) {
+                jsonArrays[checkMap.get(order.getOrdersNo())].add(jsonObject);
+            } else {
+                jsonArrays[index].add(jsonObject);
+                checkMap.put(order.getOrdersNo(), index);
+                index++;
+            }
+        }
+
+        int idx = 0;
+        for (JSONArray a : jsonArrays) {
+            if (a.isEmpty()) {
+                break;
+            }
+
+            ordersMap.put(idx, a.toJSONString());
+            idx++;
         }
 
         JSONObject ordersJson = new JSONObject(ordersMap);

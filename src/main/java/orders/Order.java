@@ -14,7 +14,7 @@ import java.sql.Date;
 public class Order {
     private Integer orderNo;
     private Integer foodNo;
-    private Integer restNo;
+    private String restNo;
     private Integer pay;
     private Integer quantity;
     private Integer memberNo;

@@ -40,21 +40,20 @@ public class addReview implements Handler {
         MultipartRequest mr = new MultipartRequest(request, path, Size.MidSize.getValue(), "utf-8",
                 new DefaultFileRenamePolicy());
 
-//       MultipartRequest mr = ImageFile.fileUpload(path, Size.BigSize, request);
-
         String content = mr.getParameter("content");
         int memberNo = Integer.parseInt(mr.getParameter("memberNo"));
         int orderNo = Integer.parseInt(mr.getParameter("orderNo"));
         int star = Integer.parseInt(mr.getParameter("star"));
+        String restNo = mr.getParameter("restNo");
 
         ReviewService service = new ReviewService();
         int reviewNo = service.getSeq();
 
         //해당 폴더가 없으면 중첩된 폴더 생성: memberNo 안에 fileDate 중첩된 폴더 생성
-        String nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\"  + reviewNo;
+        String nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + File.separator  + reviewNo;
         String osName1 = System.getProperty("os.name");
         if (osName1.contains("win")) {
-            nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + "\\" + reviewNo;
+            nPath = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + memberNo + File.separator + reviewNo;
         } else if (osName1.contains("mac")) {
             nPath = "";
         } else if (osName1.contains("nix") || osName1.contains("nux")) {
@@ -92,12 +91,12 @@ public class addReview implements Handler {
             }
         }
 
-        String[] newFileNames = nDir.list();//이동한 파일 목록들 읽기
+        String[] newFilesName = nDir.list();//이동한 파일 목록들 읽기
         String[] imgs = new String[3];
-        if (newFileNames != null) {
-            for (int i = 0; i < newFileNames.length; i++) {//파일 수 만큼 반복
-                if (newFileNames[i] != null) {
-                    imgs[i] = String.valueOf(newFileNames[i]);
+        if (newFilesName != null) {
+            for (int i = 0; i < newFilesName.length; i++) {//파일 수 만큼 반복
+                if (newFilesName[i] != null) {
+                    imgs[i] = String.valueOf(newFilesName[i]);
                 }
             }
         }
@@ -108,7 +107,7 @@ public class addReview implements Handler {
             }
         }
 
-        service.addReview(new Review(reviewNo, memberNo, null, content, star, orderNo, imgs[0], imgs[1], imgs[2]));
+        service.addReview(new Review(reviewNo, memberNo, null, content, star, orderNo, imgs[0], imgs[1], imgs[2], restNo));
         return "/listReview";
     }
 

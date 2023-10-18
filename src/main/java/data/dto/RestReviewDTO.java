@@ -3,11 +3,13 @@ package data.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.sql.Date;
 @AllArgsConstructor
 @Builder
 @Getter
+@ToString
 public class RestReviewDTO {
     private String svarCd;
     private int reviewNo;
