@@ -17,7 +17,7 @@ public class ResetPwdHandler implements Handler {
         String id = request.getParameter("id");
         Member m = service.getMember(id);
         request.setAttribute("m", m);
-        request.setAttribute("view", "/member/resetpwd.jsp");
+        request.setAttribute("view", "/member/resetPwd.jsp");
         return "/index.jsp";
     }
 

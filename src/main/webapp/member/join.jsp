@@ -177,7 +177,7 @@
     </script>
 </head>
 <body>
-<h3>회원가입</h3>
+<h3 class="mt-3">회원가입</h3>
 <div class="row justify-content-center">
     <div class="col-lg-6">
         <form action="${pageContext.request.contextPath}/member/join" method="post" name="f" id="form">

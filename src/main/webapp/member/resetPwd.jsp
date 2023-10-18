@@ -45,7 +45,7 @@
     </script>
 </head>
 <body>
-<h3>비밀번호 변경</h3>
+<h3 class="mt-3">비밀번호 변경</h3>
 <div class="row justify-content-center">
     <div class="col-lg-6">
         <form action="${pageContext.request.contextPath}/member/reset?id=${id}" method="post" name="f" id="form">
