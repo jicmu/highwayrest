@@ -61,9 +61,11 @@
         <div class="d-grid gap-2 col-6 mx-auto mt-3">
             <c:forEach var="r" items="${myList}">
                 <table class="table">
+                    <!-- 작성자와 로그인한 회원이 동일할 때-->
                     <tr>
                         <th class="table-light text-center align-middle">휴게소 번호</th>
                         <td>${restNo}
+                            <!-- 수정/삭제 버튼 -->
                             <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                 <input type="button" value="수정" class="btn btn-outline-secondary"onclick="editReview(${r.reviewNo})">
                                 <input type="button" value="삭제" class="btn btn-outline-secondary"onclick="delReview(${r.reviewNo})">
