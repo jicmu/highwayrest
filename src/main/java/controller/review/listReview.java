@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class listReview implements Handler {
-    String go = "/review/list.jsp";
+    String go = "/index.jsp";
 
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

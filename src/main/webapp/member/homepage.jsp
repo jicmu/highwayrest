@@ -11,11 +11,16 @@
 <body>
     <div class="containor mt-5">
         <div class="row justify-content-center">
-            <h2>제공 서비스, 사용 안내 등등...</h2>
-        </div>
-        <div class="row justify-content-center mt-5">
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button class="btn btn-primary" type="button" onclick="location.href='${pageContext.request.contextPath }/highwaylist'">시작하기</button>
+                <h1>고속 주문</h1>
+                <hr>
+                <div class="mt-3 text-start">
+                    <h5>고속도로 휴게소 음식 예약 서비스</h5>
+                    <h5>고속도로 / 휴게소 검색으로 음식 주문도 빠르고 간편하게!</h5>
+                    <h5></h5>
+                </div>
+                <hr>
+                <button class="btn btn-secondary mt-3" type="button" onclick="location.href='${pageContext.request.contextPath }/highwaylist'">시작하기</button>
             </div>
         </div>
     </div>

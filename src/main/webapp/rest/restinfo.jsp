@@ -72,10 +72,10 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col-6">
+            <div class="col-lg-6">
                 <div id="map" style="width:450px;height:500px;"></div>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 mt-3">
                 <h2>${highwayrest.svarNm } 상세 정보</h2>
                 <form style="display:none">
                     <input type="hidden" id="svarNm" value="${highwayrest.svarNm}">
