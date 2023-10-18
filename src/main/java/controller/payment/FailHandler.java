@@ -14,7 +14,9 @@ public class FailHandler implements Handler {
     }
 
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return "/payment/fail.jsp";
+        request.setAttribute("view", "/payment/fail.jsp");
+
+        return "/index.jsp";
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

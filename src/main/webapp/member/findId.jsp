@@ -57,7 +57,7 @@
     </script>
 </head>
 <body>
-<h3>아이디 찾기</h3>
+<h3 class="mt-3">아이디 찾기</h3>
 <div class="row justify-content-center">
     <div class="col-lg-6">
         <form action="${pageContext.request.contextPath}/member/findId" method="post" name="f" id="form">
@@ -70,13 +70,13 @@
             </div>
             <div class="mb-3 text-start">
                 <div class="d-flex gap-2">
-                    <input type="text" id="tel" name="tel" placeholder="가입 시 등록한 전화번호" autofocus>
+                    <input type="text" id="tel" name="tel" class="form-control" laceholder="가입 시 등록한 전화번호" autofocus>
                     <input type="button" id="telChk" class="check" value="인증하기" onclick="handleTelChk()">
                 </div>
             </div>
             <div class="mb-3 text-start">
                 <div class="d-flex gap-2">
-                    <input type="text" id="tel2" name="tel2" placeholder="인증번호 입력" disabled required/>
+                    <input type="text" id="tel2" name="tel2" class="form-control" placeholder="인증번호 입력" disabled required/>
                     <input type="button" id="telChk2" class="check" value="본인인증" onclick="checkNumber()">
                 </div>
             </div>

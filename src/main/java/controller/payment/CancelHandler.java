@@ -14,7 +14,9 @@ public class CancelHandler implements Handler {
     }
 
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return "/payment/cancel.jsp";
+        request.setAttribute("view", "/payment/cancel.jsp");
+
+        return "/index.jsp";
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

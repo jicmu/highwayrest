@@ -98,10 +98,10 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col-6">
+            <div class="col-lg-6">
                 <div id="map" style="width:450px;height:500px;"></div>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 mt-3">
                 <h2>${highway.routeNm } 휴게소 목록</h2>
                 <div class="mt-3">
                     <table class="table table-hover">
