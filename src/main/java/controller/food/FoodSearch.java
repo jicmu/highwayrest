@@ -21,12 +21,20 @@ public class FoodSearch implements Handler {
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int searchType = Integer.parseInt(request.getParameter("searchType"));
-        int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+        String num = request.getParameter("memberNo");
         String searchWord = request.getParameter("searchWord");
         String name = request.getParameter("name");
 
-        SearchService searchService = new SearchService();
-        searchService.addSearch(new Search(0, searchType, memberNo, null, searchWord));
+        if(num.isEmpty()){
+            num = "0";
+        }
+
+        int memberNo = Integer.parseInt(num);
+
+        if(memberNo != 0){
+            SearchService searchService = new SearchService();
+            searchService.addSearch(new Search(0, searchType, memberNo, null, searchWord));
+        }
 
         RestFoodService restFoodService = new RestFoodService();
         ArrayList<RestFood> list = restFoodService.getByName(name);
