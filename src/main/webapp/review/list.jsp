@@ -61,12 +61,12 @@
         <div class="d-grid gap-2 col-6 mx-auto mt-3">
             <c:forEach var="r" items="${list}">
                 <table class="table">
-                    <!-- 작성자와 로그인한 회원이 동일할 때-->
-                    <!-- 수정/삭제 버튼 -->
+                    <c:if test="${sessionScope.loginNum} == ${r.memberNo}}">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end" role="group" aria-label="Small button group">
                         <input type="button" value="수정" class="btn btn-outline-secondary"onclick="editReview(${r.reviewNo})">
                         <input type="button" value="삭제" class="btn btn-outline-secondary"onclick="delReview(${r.reviewNo})">
                     </div>
+                    </c:if>
                     <tr>
                         <th class="table-light text-center align-middle">닉네임</th>
                         <td>
@@ -105,8 +105,5 @@
         </div>
     </div>
 </div>
-<%--    <%@ include file="footer.jsp" %>--%>
-<%@ include file="/common/footer.jsp" %>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"/>
 </body>
 </html>

@@ -1,14 +1,12 @@
 package controller.review;
 
 import common.Handler;
-import data.dto.RestReviewDTO;
 import service.review.ReviewService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class sortReview implements Handler {
     @Override
@@ -17,15 +15,15 @@ public class sortReview implements Handler {
         String svarCd = request.getParameter("svarCd");
 
         String sort = request.getParameter("sort");
-        if(sort.equals("sortRecent")){
-            list = service.getAll(svarCd);
-        }else if(sort.equals("sortHighRate")){
-            list = service.getAllByHighRate(svarCd);
-        }else if(sort.equals("sortLowRate")){
-            list = service.getAllByLowRate(svarCd);
-        }
-
-        request.setAttribute("list", list);
+//        if(sort.equals("sortRecent")){
+//            list = service.getAll(svarCd);
+//        }else if(sort.equals("sortHighRate")){
+//            list = service.getAllByHighRate(svarCd);
+//        }else if(sort.equals("sortLowRate")){
+//            list = service.getAllByLowRate(svarCd);
+//        }
+//
+//        request.setAttribute("list", list);
         return "/review/list.jsp";
     }
 

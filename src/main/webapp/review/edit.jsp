@@ -181,25 +181,15 @@
     </script>
 </head>
 <body>
-<div id="wrapper">
-    <%@ include file="/common/header.jsp" %>
     <div class="container">
-        <h3>후기 수정</h3>
+        <h3 class="mt-3">후기 수정</h3>
         <form action="${pageContext.request.contextPath}/editReview" method="post" enctype="multipart/form-data">
             <table border="1">
                 <input type="hidden" value="${r.reviewNo}" name="reviewNo">
                 <input type="hidden" value="${r.restNo}" name="restNo">
                 <input type="hidden" value="${param.svarCd}" name="svarCd">
                 <input type="hidden" name="star" value="1">
-<%--                <tr>--%>
-<%--                    <!--주문 메뉴가 뜨는 게 좋지 않을까-->--%>
-<%--                    <th>주문 번호</th>--%>
-<%--                    <td>${r.orderNo}</td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>별점</th>--%>
-<%--                    <td><input type="number" value="${r.star}" name="star"></td>--%>
-<%--                </tr>--%>
+
                 <div class="mb-3">
                     <div>별점</div>
                     <div class="rating">
@@ -210,10 +200,7 @@
                         <span class="star" value="5"> </span>
                     </div>
                 </div>
-<%--                <tr>--%>
-<%--                    <th>후기</th>--%>
-<%--                    <td><textarea cols="50" rows="30" name="content">${r.content}</textarea></td>--%>
-<%--                </tr>--%>
+
                 <div class="mb-3">
                     <label for="content" class="form-label">후기</label>
                     <textarea class="form-control" id="content" rows="10" cols="50" name="content">${r.content}</textarea>
@@ -227,19 +214,13 @@
                     <input type="file" class="form-control" id="btnAtt" name="file" accept="image/*" multiple>
                     <label class="input-group-text" for="btnAtt">첨부</label>
                 </div>
-<%--                </tr>--%>
+
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button type="submit" class="btn btn-outline-dark" id="submit">수정</button>
                 </div>
-<%--                <tr>--%>
-<%--                    <th>수정하기</th>--%>
-<%--                    <td><input type="submit" value="수정"></td>--%>
-<%--                </tr>--%>
+
             </table>
         </form>
     </div>
-</div>
-<%@ include file="/common/footer.jsp" %>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"/>
 </body>
 </html>

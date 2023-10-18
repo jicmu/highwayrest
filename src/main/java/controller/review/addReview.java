@@ -5,6 +5,8 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import common.Handler;
 import common.Size;
 import data.entity.Review;
+import orders.Order;
+import orders.OrderService;
 import service.review.ReviewService;
 
 import javax.servlet.ServletException;
@@ -15,13 +17,18 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class addReview implements Handler {
-    String go = "/review/add.jsp";
+    String go = "/index.jsp";
 
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //int orderNo = Integer.parseInt(request.getParameter("orderNo"));
+        int orderNo = Integer.parseInt(request.getParameter("orderNo"));
+        OrderService oservice = new OrderService();
+        Order o = oservice.findByOrderNo(orderNo);
+        String restNo = o.getRestNo();
 
         request.setAttribute("view", "/review/add.jsp");
+        request.setAttribute("orderNo", orderNo);
+        request.setAttribute("restNo", restNo);
 
         return go;
     }
@@ -46,6 +53,10 @@ public class addReview implements Handler {
         int orderNo = Integer.parseInt(mr.getParameter("orderNo"));
         int star = Integer.parseInt(mr.getParameter("star"));
         String restNo = mr.getParameter("restNo");
+
+        System.out.println(memberNo);
+        System.out.println(orderNo);
+        System.out.println(restNo);
 
         ReviewService service = new ReviewService();
         int reviewNo = service.getSeq();
@@ -110,7 +121,7 @@ public class addReview implements Handler {
         }
 
         service.addReview(new Review(reviewNo, memberNo, null, content, star, orderNo, imgs[0], imgs[1], imgs[2], restNo));
-        return "/listReview";
+        return "/myReview";
     }
 
     public String getPath() {

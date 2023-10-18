@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class editReview implements Handler {
-    String go = "/review/edit.jsp";
+    String go = "/index.jsp";
 
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -98,7 +98,7 @@ public class editReview implements Handler {
 
         service.editReview(new Review(reviewNo, 0, null, content, star, 0, imgs[0], imgs[1], imgs[2], restNo));
 
-        return "redirect/listReview?svarCd=" + svarCd;
+        return "redirect/myReview";
     }
 
     @Override
