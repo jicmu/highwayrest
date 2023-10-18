@@ -25,141 +25,140 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-    // 취소, 수령 함수
-    let setEvent = () => {
-                document.querySelectorAll(".btn-deny").forEach((element) => {
-                    element.addEventListener("click", () => {
-                        let xhr = new XMLHttpRequest();
+    // setEvent
+        let setEvent = () => {
+            document.querySelectorAll(".btn-deny").forEach((element) => {
+                element.addEventListener("click", () => {
+                    let xhr = new XMLHttpRequest();
 
-                        xhr.open("post", "${pageContext.request.contextPath}/api/deny");
+                    xhr.open("post", "${pageContext.request.contextPath}/api/deny");
 
-                        let index = element.id.replace("btn-deny-", "");
+                    let index = element.id.replace("btn-deny-", "");
 
-                        let parameter = {
-                            ordersNo: index
-                        };
+                    let parameter = {
+                        ordersNo: index
+                    };
 
-                        xhr.send(JSON.stringify(parameter));
+                    xhr.send(JSON.stringify(parameter));
 
-                        xhr.onload = () => {
-                            if (xhr.status == 200) {
-                                document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
-                                    elem.remove();
-                                });
+                    xhr.onload = () => {
+                        if (xhr.status == 200) {
+                            document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
+                                elem.remove();
+                            });
 
-                                let status = document.querySelectorAll("[ident=status-container-" + index + "]");
+                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
-                                status.forEach((statusElem) => {
-                                    statusElem.innerHTML = '<span class="status-dot bg-danger" id="status-${'${p.ordersNo}'}"></span> 거부';
-                                });
-                            }
+                            status.forEach((statusElem) => {
+                                statusElem.innerHTML = '<span class="status-dot bg-danger" id="status-${'${p.ordersNo}'}"></span> 거부';
+                            });
                         }
-                    })
-                });
+                    }
+                })
+            });
 
-                document.querySelectorAll(".btn-finish").forEach((element) => {
-                    element.addEventListener("click", () => {
-                        let xhr = new XMLHttpRequest();
+            document.querySelectorAll(".btn-finish").forEach((element) => {
+                element.addEventListener("click", () => {
+                    let xhr = new XMLHttpRequest();
 
-                        xhr.open("post", "${pageContext.request.contextPath}/api/finish");
+                    xhr.open("post", "${pageContext.request.contextPath}/api/finish");
 
-                        let index = element.id.replace("btn-finish-", "");
+                    let index = element.id.replace("btn-finish-", "");
 
-                        let parameter = {
-                            ordersNo: index
-                        };
+                    let parameter = {
+                        ordersNo: index
+                    };
 
-                        xhr.send(JSON.stringify(parameter));
+                    xhr.send(JSON.stringify(parameter));
 
-                        xhr.onload = () => {
-                            if (xhr.status == 200) {
-                                document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
-                                    elem.remove();
-                                });
+                    xhr.onload = () => {
+                        if (xhr.status == 200) {
+                            document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
+                                elem.remove();
+                            });
 
-                                let status = document.querySelectorAll("[ident=status-container-" + index + "]");
+                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
-                                status.forEach((statusElem) => {
-                                    statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span> 조리 완료';
-                                });
-                            }
+                            status.forEach((statusElem) => {
+                                statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span> 조리 완료';
+                            });
                         }
-                    })
-                });
+                    }
+                })
+            });
 
-                document.querySelectorAll(".btn-accept").forEach((element) => {
-                    element.addEventListener("click", () => {
-                        let xhr = new XMLHttpRequest();
+            document.querySelectorAll(".btn-accept").forEach((element) => {
+                element.addEventListener("click", () => {
+                    let xhr = new XMLHttpRequest();
 
-                        xhr.open("post", "${pageContext.request.contextPath}/api/accept");
-                        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    xhr.open("post", "${pageContext.request.contextPath}/api/accept");
+                    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-                        let index = element.id.replace("btn-accept-", "");
+                    let index = element.id.replace("btn-accept-", "");
 
-                        let parameter = {
-                            ordersNo: index
-                        };
+                    let parameter = {
+                        ordersNo: index
+                    };
 
-                        xhr.send(JSON.stringify(parameter));
+                    xhr.send(JSON.stringify(parameter));
 
-                        xhr.onload = () => {
-                            if (xhr.status == 200) {
-                                document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
-                                    elem.remove();
-                                });
+                    xhr.onload = () => {
+                        if (xhr.status == 200) {
+                            document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
+                                elem.remove();
+                            });
 
-                                let status = document.querySelectorAll("[ident=status-container-" + index + "]");
+                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
-                                status.forEach((statusElem) => {
-                                    statusElem.innerHTML = '<span class="status-dot bg-success" id="status-${'${p.ordersNo}'}"></span> 수락'
-                                });
+                            status.forEach((statusElem) => {
+                                statusElem.innerHTML = '<span class="status-dot bg-success" id="status-${'${p.ordersNo}'}"></span> 수락'
+                            });
 
-                                document.querySelectorAll("[ident=article-" + index + "]").forEach((element) => {
-                                    let successBtnArea = document.createElement("div");
-                                    successBtnArea.classList = "btn-group";
-                                    successBtnArea.id= "btn-group-" + index;
-                                    successBtnArea.setAttribute("ident", "btn-group-" + index);
-                                    successBtnArea.innerHTML = '<button class="btn btn-primary btn-finish" id="btn-finish-' + index + '">조리 완료</button>';
+                            document.querySelectorAll("[ident=article-" + index + "]").forEach((element) => {
+                                let successBtnArea = document.createElement("div");
+                                successBtnArea.classList = "btn-group";
+                                successBtnArea.id= "btn-group-" + index;
+                                successBtnArea.setAttribute("ident", "btn-group-" + index);
+                                successBtnArea.innerHTML = '<button class="btn btn-primary btn-finish" id="btn-finish-' + index + '">조리 완료</button>';
 
-                                    element.append(successBtnArea);
-                                });
+                                element.append(successBtnArea);
+                            });
 
-                                 document.querySelectorAll(".btn-finish").forEach((element) => {
-                                    element.addEventListener("click", () => {
-                                        let xhr = new XMLHttpRequest();
+                             document.querySelectorAll(".btn-finish").forEach((element) => {
+                                element.addEventListener("click", () => {
+                                    let xhr = new XMLHttpRequest();
 
-                                        xhr.open("post", "${pageContext.request.contextPath}/api/finish");
+                                    xhr.open("post", "${pageContext.request.contextPath}/api/finish");
 
-                                        let index = element.id.replace("btn-finish-", "");
+                                    let index = element.id.replace("btn-finish-", "");
 
-                                        let parameter = {
-                                            ordersNo: index
-                                        };
+                                    let parameter = {
+                                        ordersNo: index
+                                    };
 
-                                        xhr.send(JSON.stringify(parameter));
+                                    xhr.send(JSON.stringify(parameter));
 
-                                        xhr.onload = () => {
-                                            if (xhr.status == 200) {
-                                                document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
-                                                    elem.remove();
-                                                });
+                                    xhr.onload = () => {
+                                        if (xhr.status == 200) {
+                                            document.querySelectorAll("[ident=btn-group-" + index + "]").forEach((elem) => {
+                                                elem.remove();
+                                            });
 
-                                                let status = document.querySelectorAll("[ident=status-container-" + index + "]");
+                                            let status = document.querySelectorAll("[ident=status-container-" + index + "]");
 
-                                                status.forEach((statusElem) => {
-                                                    statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span> 조리 완료';
-                                                });
-                                            }
+                                            status.forEach((statusElem) => {
+                                                statusElem.innerHTML = '<span class="status-dot bg-info" id="status-${'${p.ordersNo}'}"></span> 조리 완료';
+                                            });
                                         }
-                                    })
-                                });
-                            }
+                                    }
+                                })
+                            });
                         }
-                    })
-                });
-            }
-
-            // /취소, 수령 함수 끝
+                    }
+                })
+            });
+        }
+            // /setEvent
 
         // 무한 스크롤
         window.onload = () => {
@@ -251,9 +250,14 @@
                             card += "</div>";
 
                             if (p[0].status == 0) {
-                                card += `<button class="btn btn-danger btn-cancel" id="btn-cancel-${'${p[0].ordersNo}'}" ident="btn-cancel-${'${p[0].ordersNo}'}" orderNo="btn-cancel-${'${p[0].orderNo}'}">주문 취소</button>`;
-                            } else if (p[0].status == 5) {
-                                card += `<button class="btn btn-info btn-done" id="btn-done-${'${p[0].ordersNo}'}" ident="btn-done-${'${p[0].ordersNo}'}" orderNo="btn-done-${'${p[0].orderNo}'}">수령</button>`;
+                                card += `<div class="btn-group" id="btn-group-${'${p[0].ordersNo}'}" ident="btn-group-${'${p[0].ordersNo}'}">
+                                            <button class="btn btn-danger btn-deny" id="btn-deny-${'${p[0].ordersNo}'}">거절</button>
+                                            <button class="btn btn-primary btn-accept" id="btn-accept-${'${p[0].ordersNo}'}">수락</button>
+                                        </div>`;
+                            } else if (p.status == 1) {
+                                card += `<div class="btn-group" id="btn-group-${'${p[0].ordersNo}'}" ident="btn-group-${'${p[0].ordersNo}'}">
+                                            <button class="btn btn-primary btn-finish" id="btn-finish-${'${p[0].ordersNo}'}">조리 완료</button>
+                                        </div>`;
                             }
 
                             article.innerHTML = article.innerHTML + card;
