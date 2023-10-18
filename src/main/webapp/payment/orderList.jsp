@@ -130,7 +130,7 @@
                                     ${"${p[0].orderNo}"}
                                     <input type="hidden" name="items" value="${'${p[0].ordersNo}'}">
                                     <div id="cancel-1" class="float-end text-muted" style="cursor: pointer;">
-                                        ${'${p[0].restNo}'}
+                                        <a href="${pageContext.request.contextPath}/restinfo?svarCd=${'${p[0].restNo}'}"> ${'${p[0].restNo}'}</a>
                                     </div>
                                 </div>
                                 <div>`;
