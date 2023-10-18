@@ -182,7 +182,7 @@
 </head>
 <body>
     <div class="container">
-        <h3 class="mt-3">후기 수정</h3>
+        <h3 class="mt-3">리뷰 수정</h3>
         <form action="${pageContext.request.contextPath}/editReview" method="post" enctype="multipart/form-data">
             <table border="1">
                 <input type="hidden" value="${r.reviewNo}" name="reviewNo">
