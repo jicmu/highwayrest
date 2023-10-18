@@ -74,6 +74,9 @@
     <c:if test="${view != null}">
         <jsp:include page="${view}"/>
     </c:if>
+    <c:if test="${view == null}">
+        <jsp:include page="/member/homepage.jsp"/>
+    </c:if>
 </div>
 </body>
 </html>
