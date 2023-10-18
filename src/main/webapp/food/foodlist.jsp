@@ -71,7 +71,7 @@
         </div>
 
         <form action="${pageContext.request.contextPath }/order" method="post" id="order" name="order">
-            <input type="hidden" name="restNo" value="${stdRestCd }">
+            <input type="hidden" name="restNo" value="${restNo }">
             <div class="row">
                 <table class="table table-hover text-center" id="food-table">
                     <thead class="table-light">
