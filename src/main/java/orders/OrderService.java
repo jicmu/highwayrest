@@ -65,7 +65,7 @@ public class OrderService {
         return ordersNo;
     }
 
-    public List<Order> findByRestNo(@Param("restNo") int restNo) {
+    public List<Order> findByRestNo(@Param("restNo") String restNo) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         OrderDao dao = sqlSession.getMapper(OrderDao.class);

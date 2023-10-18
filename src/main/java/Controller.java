@@ -39,9 +39,13 @@ public class Controller extends HttpServlet {
             if(go.startsWith("redirect")) {
                 String path = go.replace("redirect/", "");
                 response.sendRedirect(path);
-            } else if (go.startsWith("responsebody")) {
+            } else if(go.startsWith("responsebody")) {
                 String[] path = go.split("/");
                 response.getWriter().append(path[1]);//{flag:true}
+            } else if(go.startsWith("response/")) {
+                System.out.println("go: " + go);
+            } else if(go == null) {
+                System.out.println("restapi: " + go);
             } else {
                 RequestDispatcher dis = request.getRequestDispatcher(go);
                 dis.forward(request, response);
@@ -55,12 +59,15 @@ public class Controller extends HttpServlet {
         String go = "";
         if(handler != null) {
             go = handler.doPost(request, response);
+
             if(go.startsWith("redirect")) {
                 String path = go.replace("redirect/", "");
                 response.sendRedirect(request.getContextPath() + "/" + path);
             } else if (go.startsWith("responsebody")) {
                 String[] path = go.split("/");
                 response.getWriter().append(path[1]);//{flag:true}
+            } else if(go.startsWith("response/")) {
+                System.out.println("go: " + go);
             } else {
                 RequestDispatcher dis = request.getRequestDispatcher(go);
                 dis.forward(request, response);

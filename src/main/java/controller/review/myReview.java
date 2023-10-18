@@ -19,8 +19,8 @@ public class myReview implements Handler {
 
         ReviewService service = new ReviewService();
       
-        ArrayList<Review> mylist = service.getReviewByMember(memberNo);
-        request.setAttribute("mylist", mylist);
+//        ArrayList<Review> mylist = service.getReviewByMember(memberNo);
+//        request.setAttribute("mylist", mylist);
 
 //        ArrayList<String> images = ImageFile.getImageFiles("C:\\Users\\RYU\\Desktop\\project\\photo\\" + r.getMemberNo() + "\\" + r.getReviewNo());
 //        request.setAttribute("images", images);
