@@ -19,6 +19,37 @@
             color: #999;
             font-size: .9em;
         }
+
+        .rating {
+            width: 100%;
+            box-sizing: border-box;
+            display: inline-flex;
+            float: left;
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+        /*빈 별*/
+        .rating .star {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            display: inline-block;
+            background: url('${pageContext.request.contextPath}/review/star.png') no-repeat;
+            background-size: 100%;
+            box-sizing: border-box;
+        }
+
+        /*1점*/
+        .rating .star.on {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            display: inline-block;
+            background: url('${pageContext.request.contextPath}/review/filledStar.png') no-repeat;
+            background-size: 100%;
+            box-sizing: border-box;
+        }
+
     </style>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -140,20 +171,51 @@
                     }
                 }
             )('preview_zone', 'btnAtt')
+
+            //별점
+            // $('.rating > .star').click(function() {
+            //     //$().parent(): 클릭한 객체의 부모
+            //     //children('tag')
+            //     //removeClass('class'): 해당 태그에서 클래스 삭제
+            //     $(this).parent().children('span').removeClass('on');
+            //     //$('tag').prevAll('tag');: 선택한 요소의 이전 모든 형제요소를 선택함
+            //     $(this).addClass('on').prevAll('span').addClass('on');
+            //     //클릭이벤트가 일어날 때 마다 name이 star인 value값이 변경된다. 기본적으로는 1점 세팅.
+            //     var value = $(this).val();//선택한 객체의 value
+            //     $("").val(value);
+            //     // $(this).attr('star');
+            //     console.log(value);
+
+                // <div className="rating">
+                //     <span className="star on" value="1"> </span>
+                //     <span className="star"  value="2"> </span>
+                //     <span className="star" value="3"> </span>
+                //     <span className="star" value="4"> </span>
+                //     <span className="star" value="5"> </span>
+                // </div>
+                // <input type="hidden" name="star" value="1">
+            // });
         });
     </script>
 </head>
 <body>
-<div id="wrapper">
-    <%@ include file="/common/header.jsp" %>
+<h3>리뷰 작성</h3>
     <div class="container">
         <form action="${pageContext.request.contextPath}/addReview" id="f" name="f" style="border:none" method="post" enctype="multipart/form-data">
 
                 <input type="hidden" name="memberNo" value="1">
                 <input type="hidden" name="orderNo" value="125">
                 <input type="hidden" name="restNo" value="000306">
+                <input type="hidden" name="star" value="1">
 
                 <div>별점</div>
+<%--                <div class="rating">--%>
+<%--                    <span class="star on" value="1"> </span>--%>
+<%--                    <span class="star"  value="2"> </span>--%>
+<%--                    <span class="star" value="3"> </span>--%>
+<%--                    <span class="star" value="4"> </span>--%>
+<%--                    <span class="star" value="5"> </span>--%>
+<%--                </div>--%>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="star" id="one" value="1">
                     <label class="form-check-label" for="one">★</label>
@@ -191,8 +253,6 @@
                 </div>
         </form>
     </div>
-</div>
-<%@ include file="/common/footer.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"/>
 </body>
 </html>

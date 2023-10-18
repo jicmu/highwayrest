@@ -33,7 +33,7 @@ public interface OrderDao {
     int setStatusByOrderNo(Order order);
 
     @Select("SELECT orderno, foodno, restno, pay, quantity, memberno, ordersno, status, odate, name FROM orders o INNER JOIN restfood r ON o.foodno = r.no WHERE restno = #{restNo} ORDER BY odate DESC")
-    List<Order> findByRestNo(@Param("restNo") int restNo);
+    List<Order> findByRestNo(@Param("restNo") String restNo);
 
     @Select("SELECT * FROM orders WHERE ordersNo = #{ordersNo}")
     List<Order> findByOrdersNo(@Param("orderNo") String ordersNo);

@@ -1,14 +1,12 @@
 package data.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Date;
 @AllArgsConstructor
 @Builder
 @Getter
+@Setter
 @ToString
 public class RestReviewDTO {
     private String svarCd;

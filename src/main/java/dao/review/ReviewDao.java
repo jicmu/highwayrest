@@ -14,19 +14,19 @@ public interface ReviewDao {
             "FROM highwayrest h, orders o, review r\n" +
             "WHERE h.svarcd = o.restno\n" +
             "AND o.orderno = r.orderno\n" +
-            "AND r.restno = #{svarCd} ORDER BY wDate DESC")
+            "AND r.restno = #{svarCd} ORDER BY reviewNo DESC")
     ArrayList<RestReviewDTO> selectAllByDate(@Param("svarCd") String svarCd);//전체 후기 최신순 정렬
 
 //    @Select("SELECT * FROM review WHERE restNo=#{restNo} ORDER BY wDate DESC")
 //    ArrayList<Review> selectAllByDate(@Param("restNo") String restNo);//전체 후기 최신순 정렬
 
-    @Select("SELECT h.svarcd, r.reviewno, r.memberno, TO_CHAR(r.wdate, 'yyyy-MM-dd') AS wdate, r.content, r.star, r.orderno, r.img1, r.img2, r.img3, r.restno\n FROM review r, highwayrest h, orders o WHERE h.svarCd=o.restNo AND o.orderNo=r.orderNo ORDER BY r.star DESC, r.wDate DESC")
+    @Select("SELECT h.svarcd, r.reviewno, r.memberno, TO_CHAR(r.wdate, 'yyyy-MM-dd') AS wdate, r.content, r.star, r.orderno, r.img1, r.img2, r.img3, r.restno\n FROM review r, highwayrest h, orders o WHERE h.svarCd=o.restNo AND o.orderNo=r.orderNo ORDER BY r.star DESC, r.reviewNo DESC")
     ArrayList<RestReviewDTO> selectByHighRate(@Param("svarCd") String svarCd);//별점이 높고 최근에 작성한 리뷰순
 
 //    @Select("SELECT * FROM review WHERE restNo=#{restNo} FROM review WHERE restNo=#{restNo}  ORDER BY r.star DESC, r.wDate DESC")
 //    ArrayList<Review> selectByHighRate(@Param("restNo") String restNo);//별점이 높고 최근에 작성한 리뷰순
 
-    @Select("SELECT h.svarcd, r.reviewno, r.memberno, TO_CHAR(r.wdate, 'yyyy-MM-dd') AS wdate, r.content, r.star, r.orderno, r.img1, r.img2, r.img3, r.restno\n FROM review r, highwayrest h, orders o WHERE h.svarCd=o.restNo AND o.orderNo=r.orderNo ORDER BY r.star ASC, r.wDate DESC")
+    @Select("SELECT h.svarcd, r.reviewno, r.memberno, TO_CHAR(r.wdate, 'yyyy-MM-dd') AS wdate, r.content, r.star, r.orderno, r.img1, r.img2, r.img3, r.restno\n FROM review r, highwayrest h, orders o WHERE h.svarCd=o.restNo AND o.orderNo=r.orderNo ORDER BY r.star ASC, r.reviewNo DESC")
     ArrayList<RestReviewDTO> selectByLowRate(@Param("svarCd") String svarCd);//별점 낮고 최근에 작성한 리뷰순
 
 //    @Select("SELECT * FROM review WHERE restNo=#{restNo} ORDER BY r.star ASC, r.wDate DESC")
