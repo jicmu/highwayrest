@@ -19,13 +19,23 @@ public class OrderListHandler implements Handler {
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrderService orderService = new OrderService();
 
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+
+        if (request.getSession().getAttribute("loginNum") == null) {
+            response.getWriter().write("<html><head><meta charset='utf-8'></head><body><script>alert('로그인이 필요합니다.'); history.go(-1);</script></body></html>");
+            return "responsebody/";
+        }
+
         String loginNum = String.valueOf(request.getSession().getAttribute("loginNum"));
 
         List<Order> orderList = orderService.getMyOrders(Integer.parseInt(loginNum));
 
         request.setAttribute("orderList", orderList);
 
-        return "/payment/orderList.jsp";
+        request.setAttribute("view", "/payment/orderList.jsp");
+
+        return "/index.jsp";
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
