@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-    <title>Edit</title>
+    <title>주문</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="<c:url value='/common/css/common.css' />" type="text/css"> -->
     <link rel="stylesheet" href="<c:url value='/common/css/payment.css' />" type="text/css">
