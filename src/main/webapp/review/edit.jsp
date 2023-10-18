@@ -152,6 +152,7 @@
             <table border="1">
                 <input type="hidden" value="${r.reviewNo}" name="reviewNo">
                 <input type="hidden" value="${r.restNo}" name="restNo">
+                <input type="hidden" value="${param.svarCd}" name="svarCd">
 <%--                <tr>--%>
 <%--                    <!--주문 메뉴가 뜨는 게 좋지 않을까-->--%>
 <%--                    <th>주문 번호</th>--%>
@@ -163,7 +164,7 @@
 <%--                </tr>--%>
                 <div class="mb-3">
                     <label for="star" class="form-label">별점</label>
-                    <input type="number" value="${r.star}" id="star" name="content" value="${r.star}">
+                    <input type="number" value="${r.star}" id="star" name="star" value="${r.star}">
                 </div>
 <%--                <tr>--%>
 <%--                    <th>후기</th>--%>
@@ -184,7 +185,7 @@
                 </div>
 <%--                </tr>--%>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-outline-dark" id="submit">작성</button>
+                    <button type="submit" class="btn btn-outline-dark" id="submit">수정</button>
                 </div>
 <%--                <tr>--%>
 <%--                    <th>수정하기</th>--%>

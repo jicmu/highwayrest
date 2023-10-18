@@ -2,7 +2,6 @@ package controller.review;
 
 import common.Handler;
 import common.ImageFile;
-import data.entity.RestFood;
 import data.entity.Review;
 import orders.Order;
 import orders.OrderService;
@@ -22,7 +21,6 @@ public class myReview implements Handler {
 
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String memberNo = String.valueOf(request.getSession().getAttribute("loginNum"));
 
         ReviewService reviewService = new ReviewService();

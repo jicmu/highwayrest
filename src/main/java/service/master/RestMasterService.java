@@ -45,4 +45,14 @@ public class RestMasterService extends Service {
         return list;
     }
 
+    public void changeStatus(int status, String id) {
+        sqlSession = sqlSessionFactory.openSession();
+        RestMasterDao dao = sqlSession.getMapper(RestMasterDao.class);
+        System.out.println("service|id: " + id + " / status: " + status);
+        dao.setStatus(status, id);
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
 }
