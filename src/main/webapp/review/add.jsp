@@ -28,6 +28,7 @@
             flex-direction: row;
             justify-content: flex-start;
         }
+
         /*빈 별*/
         .rating .star {
             width: 20px;
@@ -173,28 +174,19 @@
             )('preview_zone', 'btnAtt')
 
             //별점
-            // $('.rating > .star').click(function() {
-            //     //$().parent(): 클릭한 객체의 부모
-            //     //children('tag')
-            //     //removeClass('class'): 해당 태그에서 클래스 삭제
-            //     $(this).parent().children('span').removeClass('on');
-            //     //$('tag').prevAll('tag');: 선택한 요소의 이전 모든 형제요소를 선택함
-            //     $(this).addClass('on').prevAll('span').addClass('on');
-            //     //클릭이벤트가 일어날 때 마다 name이 star인 value값이 변경된다. 기본적으로는 1점 세팅.
-            //     var value = $(this).val();//선택한 객체의 value
-            //     $("").val(value);
-            //     // $(this).attr('star');
-            //     console.log(value);
-
-                // <div className="rating">
-                //     <span className="star on" value="1"> </span>
-                //     <span className="star"  value="2"> </span>
-                //     <span className="star" value="3"> </span>
-                //     <span className="star" value="4"> </span>
-                //     <span className="star" value="5"> </span>
-                // </div>
-                // <input type="hidden" name="star" value="1">
-            // });
+            $('.rating > .star').click(function() {
+                //$().parent(): 클릭한 객체의 부모
+                //children('tag')
+                //removeClass('class'): 해당 태그에서 클래스 삭제
+                $(this).parent().children('span').removeClass('on');
+                //$('tag').prevAll('tag');: 선택한 요소의 이전 모든 형제요소를 선택함
+                $(this).addClass('on').prevAll('span').addClass('on');
+                //클릭이벤트가 일어날 때 마다 name이 star인 value값이 변경된다. 기본적으로는 1점 세팅.
+                var value = $(this).attr("value");//선택한 객체의 value
+                $("input[name=star]").val(value);
+                // $("").val(value);
+                // $(this).attr('star');
+            });
         });
     </script>
 </head>
@@ -209,32 +201,12 @@
                 <input type="hidden" name="star" value="1">
 
                 <div>별점</div>
-<%--                <div class="rating">--%>
-<%--                    <span class="star on" value="1"> </span>--%>
-<%--                    <span class="star"  value="2"> </span>--%>
-<%--                    <span class="star" value="3"> </span>--%>
-<%--                    <span class="star" value="4"> </span>--%>
-<%--                    <span class="star" value="5"> </span>--%>
-<%--                </div>--%>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="star" id="one" value="1">
-                    <label class="form-check-label" for="one">★</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="star" id="two" value="2">
-                    <label class="form-check-label" for="two">★★</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="star" id="three" value="3">
-                    <label class="form-check-label" for="three">★★★</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="star" id="four" value="4">
-                    <label class="form-check-label" for="four">★★★★</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="star" id="five" value="5">
-                    <label class="form-check-label" for="five">★★★★★</label>
+                <div class="rating">
+                    <span class="star on" value="1"> </span>
+                    <span class="star"  value="2"> </span>
+                    <span class="star" value="3"> </span>
+                    <span class="star" value="4"> </span>
+                    <span class="star" value="5"> </span>
                 </div>
 
                 <div class="mb-3">
