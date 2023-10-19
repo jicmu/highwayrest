@@ -107,6 +107,7 @@ public class PaymentKakaoApprove implements Handler {
                 String amount = (String) parsedItems.get(o);
                 String quantity = (String) parsedQuantities.get(o);
                 String foodNo = (String) parsedFoodNos.get(o);
+                String memberNo = (String) request.getSession().getAttribute("loginNum");
 
 
                 orderService.order(Order.builder()
@@ -114,7 +115,7 @@ public class PaymentKakaoApprove implements Handler {
                         .restNo(stdRestCd)
                         .pay(Integer.parseInt(amount))
                         .quantity(Integer.parseInt(quantity))
-                        .memberNo(1) // session에서 가져와야함
+                        .memberNo(Integer.parseInt(memberNo))
                         .ordersNo((String) parsedApproved.get("tid"))
                         .build()
                 );
