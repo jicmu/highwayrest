@@ -65,8 +65,8 @@
                         <th class="table-light text-center align-middle">휴게소 번호</th>
                         <td>${restNo}
                             <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                <input type="button" value="수정" class="btn btn-outline-secondary" onclick="editReview(${r.reviewNo})">
-                                <input type="button" value="삭제" class="btn btn-outline-secondary" onclick="delReview(${r.reviewNo})">
+                                <input type="button" value="수정" class="btn btn-outline-secondary"onclick="editReview(${r.reviewNo})">
+                                <input type="button" value="삭제" class="btn btn-outline-secondary"onclick="delReview(${r.reviewNo})">
                             </div>
                         </td>
                     </tr>
