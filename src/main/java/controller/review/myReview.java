@@ -37,7 +37,7 @@ public class myReview implements Handler {
 //            images.put(r.getReviewNo(), ImageFile.getImageFiles(path));
 //        }
 //        request.setAttribute("images", images);
-        request.setAttribute("view","/review/myList.jsp");
+        request.setAttribute("view","/review/mylist.jsp");
 
         return "/index.jsp";
     }
