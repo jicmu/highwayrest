@@ -16,6 +16,6 @@ public interface RestFoodDao {
     @Select("select * from restfood where stdRestCd = #{stdRestCd}")
     ArrayList<RestFood> selectBySCd(@Param("stdRestCd") String stdRestCd);
 
-    @Select("select * from restfood where name like #{name}")
-    ArrayList<RestFood> selectByName(@Param("name") String name);
+    @Select("select * from restfood where name like #{name} and stdRestCd = #{stdRestCd}")
+    ArrayList<RestFood> selectByName(@Param("name") String name, @Param("stdRestCd") String stdRestCd);
 }
