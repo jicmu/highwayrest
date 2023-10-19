@@ -13,7 +13,7 @@ const restChange = (value) => {
                 foodlist.innerHTML = txt;
                 for (let item of list) {
                     txt += "<div class='form-check form-check-inline'>";
-                    txt += "    <input name='food' class='form-check-input' type='checkbox' id='inlineCheckbox" + cnt + "' value='" + item.foodNm + "/" + item.stdRestCd + "'>";
+                    txt += "    <input name='food' class='form-check-input' type='checkbox' id='inlineCheckbox" + cnt + "' value='" + item.foodNm + "/" + item.stdRestCd + "/" + item.foodCost + "'>";
                     txt += "    <label class='form-check-label' for='inlineCheckbox" + cnt + "'>" + cnt + "/" + item.foodNm + "</label>";
                     txt += "</div>"
                     cnt++;

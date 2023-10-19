@@ -17,7 +17,7 @@ import java.util.List;
 public class OrderList implements Handler {
 
     public OrderList() {
-        System.out.println("OrderList 생성!");
+        System.out.println("data.entity.OrderList 생성!");
     }
 
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,24 +26,24 @@ public class OrderList implements Handler {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
 
-        String loginStoreStr = request.getParameter("loginStore");
+        String loginNum = request.getParameter("loginNum");
+        System.out.println("loginNum: " + loginNum);
 
-        if (loginStoreStr == null || loginStoreStr.isEmpty()) {
-            response.getWriter().write("<html><head><meta charset='utf-8'></head><body><script>alert('파라미터가 필요합니다.'); history.go(-1);</script></body></html>");
-            return "responsebody/";
-        }
+//        if (loginStoreStr == null || loginStoreStr.isEmpty()) {
+//            response.getWriter().write("<html><head><meta charset='utf-8'></head><body><script>alert('파라미터가 필요합니다.'); history.go(-1);</script></body></html>");
+//            return "responsebody/";
+//        }
 
-        String loginStore = loginStoreStr;
+//        String loginStore = loginStoreStr;
 
-        List<Order> orderList = orderService.findByRestNo(loginStore);
+        List<Order> orderList = orderService.findByRestNo(loginNum);
 
-        request.setAttribute("loginStore", loginStore);
+        request.setAttribute("loginStore", loginNum);
 
         request.setAttribute("orderList", orderList);
 
-        request.setAttribute("view", "/store/order.jsp");
-
-        return "/index.jsp";
+        request.setAttribute("view", "/store/orderlist.jsp");
+        return "/store/order.jsp";
     }
 
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

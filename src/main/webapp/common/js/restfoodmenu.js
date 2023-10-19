@@ -1,7 +1,7 @@
 const selectRest = (value) => {
     if(value != -1) {
         $.ajax({
-            url: "http://localhost:8080/highwayrest/food/menu",
+            url: "http://localhost/highwayrest/food/menu",
             type: "get",
             datatype: "json",
             data: {"svarCd" : value},

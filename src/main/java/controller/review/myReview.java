@@ -21,6 +21,7 @@ public class myReview implements Handler {
 
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("통과!");
         String memberNo = String.valueOf(request.getSession().getAttribute("loginNum"));
 
         ReviewService reviewService = new ReviewService();
@@ -35,13 +36,13 @@ public class myReview implements Handler {
 
         request.setAttribute("restNo", restNo);request.setAttribute("myList", myList);
 
-        HashMap<Integer, ArrayList<String>> images = new HashMap<>();
-        for (Review r : myList) {
-            String path = "src\\main\\java\\controller\\yeonann\\pic" + r.getMemberNo()+ "\\" + r.getReviewNo();
-            images.put(r.getReviewNo(), ImageFile.getImageFiles(path));
-        }
-        request.setAttribute("images", images);
-        request.setAttribute("view","/review/myList.jsp");
+//        HashMap<Integer, ArrayList<String>> images = new HashMap<>();
+//        for (Review r : myList) {
+//            String path = "src\\main\\java\\controller\\yeonann\\pic" + r.getMemberNo()+ "\\" + r.getReviewNo();
+//            images.put(r.getReviewNo(), ImageFile.getImageFiles(path));
+//        }
+//        request.setAttribute("images", images);
+        request.setAttribute("view","/review/mylist.jsp");
 
         return "/index.jsp";
     }
