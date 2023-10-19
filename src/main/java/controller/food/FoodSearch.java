@@ -22,6 +22,7 @@ public class FoodSearch implements Handler {
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int searchType = Integer.parseInt(request.getParameter("searchType"));
         String num = request.getParameter("memberNo");
+        String restNo = request.getParameter("restNo");
         String searchWord = request.getParameter("searchWord");
         String name = request.getParameter("name");
 
@@ -37,7 +38,7 @@ public class FoodSearch implements Handler {
         }
 
         RestFoodService restFoodService = new RestFoodService();
-        ArrayList<RestFood> list = restFoodService.getByName(name);
+        ArrayList<RestFood> list = restFoodService.getByName(name, restNo);
 
         request.setAttribute("list", list);
         request.setAttribute("view", "/food/foodlist.jsp");
