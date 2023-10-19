@@ -13,5 +13,5 @@ const restOrder = (value) => {
     //     })
     // }
 
-    window.location.href="http://localhost/highwayrest/store/orders?loginNum=" + value;
+    window.location.href="http://49.50.163.148/highwayrest/store/orders?loginNum=" + value;
 }
