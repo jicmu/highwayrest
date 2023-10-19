@@ -21,13 +21,13 @@ public class delReview implements Handler {
         ReviewService service = new ReviewService();
         Review r = service.getReviewByReviewNo(reviewNo);
 
-        String path = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + r.getMemberNo() + File.separator + r.getReviewNo();
+//        String path = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + r.getMemberNo() + File.separator + r.getReviewNo();
         //사진 삭제
 
-        File delDir = new File(path);//삭제할 폴더
-        if(delDir.exists()){
-            FileUtils.deleteDirectory(delDir);
-        }
+//        File delDir = new File(path);//삭제할 폴더
+//        if(delDir.exists()){
+//            FileUtils.deleteDirectory(delDir);
+//        }
 
         service.delReview(reviewNo);
         return "redirect/myReview";

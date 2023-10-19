@@ -38,8 +38,8 @@ public interface ReviewDao {
 //    @Select("SELECT * FROM review WHERE restNo=#{restNo} ORDER BY r.star ASC, r.wDate DESC")
 //    ArrayList<Review> selectByLowRate(@Param("restNo") String restNo);//별점 낮고 최근에 작성한 리뷰순
 
-    @Select("SELECT * FROM review WHERE memberNo=#{memberNo}")
-    ArrayList<Review> selectByMember(@Param("memberNo") int memberNo);//멤버별 후기
+    @Select("SELECT * FROM review WHERE memberNo=#{memberNo} ORDER BY reviewNo DESC")
+    ArrayList<Review> selectByMember(@Param("memberNo") int memberNo);//멤버별 후기->수정
 
     @Select("SELECT * FROM review WHERE reviewNo=#{reviewNo}")
     Review selectByReviewNo(@Param("reviewNo") int reviewNo);
