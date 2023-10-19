@@ -37,7 +37,7 @@ public class addReview implements Handler {
         String path = "C:\\Users\\user\\Desktop\\project\\photo\\";
         String osName = System.getProperty("os.name");
         if (osName.contains("win")) {
-            path = "C:\\Users\\RYU\\Desktop\\project\\photo";
+            path = "C:\\Users\\user\\Desktop\\project\\photo";
         } else if (osName.contains("mac")) {
             path = "";
         } else if (osName.contains("nix") || osName.contains("nux")) {

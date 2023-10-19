@@ -5,29 +5,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>후기 게시판</title>
+    <title>리뷰 게시판</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<c:url value="/common/css/common.css" />" type="text/css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("#photoReview").change(function () {
-                if ($("photoReview").is(":checked")) {
-                    if (f.img.value == null) {
-                        f.style.display = 'none';
-                    }
-                }
-            });
-        });
-
-        $(function () {
-            $("#sort").change(function () {
-                let sort = $(this).val();
-                location.href = "/highwayrest/sortReview?sort=" + sort + "&svarCd=${svarCd}";
-            });
-        });
 
         const editReview = (reviewNo) => {
             location.href = "/highwayrest/editReview?reviewNo=" + reviewNo;
@@ -50,13 +34,7 @@
             <h3>리뷰 관리</h3>
         </div>
     </div>
-    <div style="float:right">
-        <select class="form-select form-select-sm" name="sort" id="sort">
-            <option value="sortRecent" selected>최신순</option>
-            <option value="sortHighRate">별점높은순</option>
-            <option value="sortLowRate">별점낮은순</option>
-        </select>
-    </div>
+
     <div class="row mt-3">
         <div class="d-grid gap-2 col-6 mx-auto mt-3">
             <c:forEach var="r" items="${myList}">
@@ -82,20 +60,6 @@
                         <th class="table-light text-center align-middle">후기</th>
                         <td>${r.content}</td>
                     </tr>
-                    <c:if test="${r.img1 != null}">
-                        <tr>
-                            <th class="table-light text-center align-middle">사진</th>
-                            <td>
-                                <img src="${r.img1}" class="rounded" id="img1" style="height:100px;width: 100px ">
-                                <c:if test="${r.img2 != null}">
-                                    <img src="${r.img2}" class="rounded" id="img2" style="height:100px;width: 100px ">
-                                    <c:if test="${r.img3 != null}">
-                                        <img src="${r.img3}" class="rounded" id="img3" style="height:100px;width: 100px ">
-                                    </c:if>
-                                </c:if>
-                            </td>
-                        </tr>
-                    </c:if>
                 </table>
             </c:forEach>
         </div>

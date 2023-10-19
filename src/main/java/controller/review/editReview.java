@@ -26,7 +26,7 @@ public class editReview implements Handler {
         Review r = service.getReviewByReviewNo(reviewNo);
         request.setAttribute("r", r);
 
-        ArrayList<String> images = ImageFile.getImageFiles("C:\\Users\\user\\Desktop\\project\\photo\\" + r.getMemberNo() + "\\" + r.getReviewNo());
+        ArrayList<String> images = ImageFile.getImageFiles("C:\\Users\\user\\Desktop\\project\\photo\\" + r.getMemberNo() + File.separator + r.getReviewNo());
         request.setAttribute("images", images);
 
         request.setAttribute("view", "/review/edit.jsp");
@@ -41,7 +41,6 @@ public class editReview implements Handler {
         String oPath = "C:\\Users\\user\\Desktop\\project\\photo\\";
 
         MultipartRequest mr = new MultipartRequest(request, oPath, Size.MidSize.getValue(), "utf-8", new DefaultFileRenamePolicy());
-        String svarCd = mr.getParameter("svarCd");
 
         int reviewNo = Integer.parseInt(mr.getParameter("reviewNo"));
         String content = mr.getParameter("content");

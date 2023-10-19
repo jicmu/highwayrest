@@ -29,15 +29,10 @@ public class myReview implements Handler {
             restNo = myOrder.getRestNo();
         }
 
-        request.setAttribute("restNo", restNo);request.setAttribute("myList", myList);
+        request.setAttribute("restNo", restNo);
+        request.setAttribute("myList", myList);
 
-//        HashMap<Integer, ArrayList<String>> images = new HashMap<>();
-//        for (Review r : myList) {
-//            String path = "src\\main\\java\\controller\\yeonann\\pic" + r.getMemberNo()+ "\\" + r.getReviewNo();
-//            images.put(r.getReviewNo(), ImageFile.getImageFiles(path));
-//        }
-//        request.setAttribute("images", images);
-        request.setAttribute("view","/review/mylist.jsp");
+        request.setAttribute("view","/review/myList.jsp");
 
         return "/index.jsp";
     }

@@ -16,7 +16,6 @@ public class delReview implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-//        String svarCd = request.getParameter("svarCd");
 
         ReviewService service = new ReviewService();
         Review r = service.getReviewByReviewNo(reviewNo);
