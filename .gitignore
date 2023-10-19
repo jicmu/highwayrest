@@ -326,17 +326,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # Test File Folder
-src/main/java/controller/master/**
-src/main/java/example/**
-src/main/java/dao/example/**
-src/main/java/service/example/**
-src/main/java/controller/yeonann/**
-src/main/webapp/master/**
-src/test/**
-src/main/resources/mf/**
-src/main/java/data/testentity/**
-src/main/java/controller/test/**
-src/main/java/data/testdto/**
 
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,intellij,eclipse,visualstudiocode,java
