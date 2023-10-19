@@ -84,20 +84,20 @@
                         <th class="table-light text-center align-middle">후기</th>
                         <td>${r.content}</td>
                     </tr>
-                    <c:if test="${r.img1 != null}">
-                        <tr>
-                            <th class="table-light text-center align-middle">사진</th>
-                            <td>
-                                <img src="${r.img1}" class="rounded" id="img1" style="height:100px;width: 100px ">
-                                <c:if test="${r.img2 != null}">
-                                    <img src="${r.img2}" class="rounded" id="img2" style="height:100px;width: 100px ">
-                                    <c:if test="${r.img3 != null}">
-                                        <img src="${r.img3}" class="rounded" id="img3" style="height:100px;width: 100px ">
-                                    </c:if>
-                                </c:if>
-                            </td>
-                        </tr>
-                    </c:if>
+<%--                    <c:if test="${r.img1 != null}">--%>
+<%--                        <tr>--%>
+<%--                            <th class="table-light text-center align-middle">사진</th>--%>
+<%--                            <td>--%>
+<%--                                <img src="${r.img1}" class="rounded" id="img1" style="height:100px;width: 100px ">--%>
+<%--                                <c:if test="${r.img2 != null}">--%>
+<%--                                    <img src="${r.img2}" class="rounded" id="img2" style="height:100px;width: 100px ">--%>
+<%--                                    <c:if test="${r.img3 != null}">--%>
+<%--                                        <img src="${r.img3}" class="rounded" id="img3" style="height:100px;width: 100px ">--%>
+<%--                                    </c:if>--%>
+<%--                                </c:if>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                    </c:if>--%>
                 </table>
             </c:forEach>
         </div>

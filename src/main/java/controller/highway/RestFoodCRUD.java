@@ -35,7 +35,7 @@ public class RestFoodCRUD implements Handler {
 
         request.setAttribute("OK", "OK");
 
-        return "/highway/master/restfood.jsp";
+        return "redirect/master/login";
     }
 
     @Override

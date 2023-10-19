@@ -41,9 +41,6 @@ public class HighwayCRUD implements Handler {
         // 휴게소
         String[] highwayrest = request.getParameter("highwayrest").split("/");
         HighwayRestService service2 = new HighwayRestService();
-        for(String str : highwayrest) {
-            System.out.println("휴게소 정보: " + str);
-        }
         service2.addHighwayRest(new HighwayRest(0, highwayrest[0], highwayrest[1], Integer.parseInt(highwayrest[2]), highwayrest[3], highwayrest[4], highwayrest[5].replaceAll(",", " ")));
 
         // 휴게소 마스터
@@ -53,10 +50,10 @@ public class HighwayCRUD implements Handler {
 
         if(status == 1) {
             request.setAttribute("status", "1");
-            return "/master/login.jsp";
+            return "redirect/master/login";
         } else {
             request.setAttribute("status", "0");
-            return "/master/login.jsp";
+            return "redirect/master/login";
         }
     }
 
