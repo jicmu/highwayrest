@@ -12,15 +12,6 @@
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("#photoReview").change(function () {
-                if ($("photoReview").is(":checked")) {
-                    if (f.img.value == null) {
-                        f.style.display = 'none';
-                    }
-                }
-            });
-        });
 
         $(function () {
             $("#sort").change(function () {
@@ -93,15 +84,14 @@
                                 <img src="${r.img1}" class="rounded" id="img1" style="height:100px;width: 100px ">
                                 <c:if test="${r.img2 != null}">
                                     <img src="${r.img2}" class="rounded" id="img2" style="height:100px;width: 100px ">
-                                    <c:if test="${r.img3 != null}">
-                                        <img src="${r.img3}" class="rounded" id="img3"
-                                             style="height:100px;width: 100px ">
-                                    </c:if>
+                                </c:if>
+                                <c:if test="${r.img3 != null}">
+                                    <img src="${r.img3}" class="rounded" id="img3"
+                                         style="height:100px;width: 100px ">
                                 </c:if>
                             </td>
                         </tr>
                     </c:if>
-                        <%--                    <hr/>--%>
                 </table>
             </c:forEach>
         </div>

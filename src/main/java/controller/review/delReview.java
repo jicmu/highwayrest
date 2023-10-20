@@ -16,18 +16,16 @@ public class delReview implements Handler {
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-        String svarCd = request.getParameter("svarCd");
 
         ReviewService service = new ReviewService();
         Review r = service.getReviewByReviewNo(reviewNo);
 
-//        String path = "C:\\Users\\RYU\\Desktop\\project\\photo\\" + r.getMemberNo() + File.separator + r.getReviewNo();
-        //사진 삭제
+        String path = "C:\\Users\\user\\Desktop\\project\\photo\\" + r.getMemberNo() + File.separator + r.getReviewNo();
 
-//        File delDir = new File(path);//삭제할 폴더
-//        if(delDir.exists()){
-//            FileUtils.deleteDirectory(delDir);
-//        }
+        File delDir = new File(path);
+        if(delDir.exists()){
+            FileUtils.deleteDirectory(delDir);
+        }
 
         service.delReview(reviewNo);
         return "redirect/myReview";
