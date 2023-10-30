@@ -59,39 +59,39 @@
 <table>
     <tbody>
         <tr>
-            <th>고속도로 선택 및 휴게소 선택</th>
+            <th style="width:400px; padding: 0; margin: 0">고속도로 선택 및 휴게소 선택</th>
         </tr>
         <tr>
-            <td style="text-align: center" align="center">
+            <td align="left">
                 <img src="https://github.com/yoojungkook/highwayrest/assets/141127270/57f409d8-c208-468f-949e-e1aeebd5631f" style="width: 200px; height: 300px;" />
                 <img src="https://github.com/yoojungkook/highwayrest/assets/141127270/d27ca936-d132-4f9d-a46b-c51840fa1aae" style="width: 200px; height: 300px;" />
                 <img src="https://github.com/yoojungkook/highwayrest/assets/141127270/734ceb2e-dac1-4ac1-83d5-f814bc491763" style="width: 200px; height: 300px;" />  
             </td>
         </tr>
         <tr>
-            <th>휴게소 주문</th>
+            <th style="width:400px; padding: 0; margin: 0">휴게소 주문</th>
         </tr>
         <tr>
-            <td align="center;">
+            <td align="left">
                 <img src="https://github.com/yoojungkook/highwayrest/assets/141127270/5bd3d083-d338-430f-9485-119d53f5a933" style="width: 200px; height: 300px;" />
-                <img src="https://github.com/yoojungkook/highwayrest/assets/141127270/7dc1eb9b-f3d7-4f19-b76d-04abd33d9cc0" style="width: 200px; height: 300px;" /><br/>
+                <img src="https://github.com/yoojungkook/highwayrest/assets/141127270/7dc1eb9b-f3d7-4f19-b76d-04abd33d9cc0" style="width: 200px; height: 300px;" />
                 <img src="https://github.com/yoojungkook/highwayrest/assets/141127270/e5bb5e41-aaa9-4299-92b1-433b6a93d574" style="width: 200px; height: 300px;" />
                 <img src="https://github.com/yoojungkook/highwayrest/assets/141127270/6b69c141-7dc7-4eae-a249-aa825ce10e11" style="width: 200px; height: 300px;" />
             </td>
         </tr>
         <tr>
-            <th>회원정보 변경</th>
+            <th style="width:400px; padding: 0; margin: 0">회원정보 변경</th>
         </tr>
         <tr>
-            <td align="center">
+            <td align="left">
                 <img src="https://github.com/yoojungkook/highwayrest/assets/141127270/078dc589-6704-41f7-83b4-99401f148ad6" style="width: 200px; height: 300px;" />
             </td>
         </tr>
         <tr>
-            <th>주문 리뷰</th>
+            <th style="width:400px; padding: 0; margin: 0">주문 리뷰</th>
         </tr>
         <tr>
-            <td align="center">
+            <td align="left">
                 <img src="https://github.com/yoojungkook/highwayrest/assets/141127270/23f9177e-9e51-490b-9d92-2f40cb0a0d88" style="width: 200px; height: 300px;" />
                 <img src="https://github.com/yoojungkook/highwayrest/assets/141127270/013bd41a-60a0-4b08-84c4-30e454fadfd7" style="width: 200px; height: 300px;" />
                 <img src="https://github.com/yoojungkook/highwayrest/assets/141127270/21ec2381-01d2-44a0-bef5-8efc3a3eeedc" style="width: 200px; height: 300px;" />
