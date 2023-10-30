@@ -59,7 +59,7 @@
 <table>
     <tbody>
         <tr>
-            <th style="width:400px; padding: 0; margin: 0">고속도로 선택 및 휴게소 선택</th>
+            <th style="width: 100%; padding: 0; margin: 0">고속도로 선택 및 휴게소 선택</th>
         </tr>
         <tr>
             <td align="left">
@@ -69,7 +69,7 @@
             </td>
         </tr>
         <tr>
-            <th style="width:400px; padding: 0; margin: 0">휴게소 주문</th>
+            <th style="width: 100%; padding: 0; margin: 0">휴게소 주문</th>
         </tr>
         <tr>
             <td align="left">
@@ -80,7 +80,7 @@
             </td>
         </tr>
         <tr>
-            <th style="width:400px; padding: 0; margin: 0">회원정보 변경</th>
+            <th style="width: 100%; padding: 0; margin: 0">회원정보 변경</th>
         </tr>
         <tr>
             <td align="left">
@@ -88,7 +88,7 @@
             </td>
         </tr>
         <tr>
-            <th style="width:400px; padding: 0; margin: 0">주문 리뷰</th>
+            <th style="width: 100%; padding: 0; margin: 0">주문 리뷰</th>
         </tr>
         <tr>
             <td align="left">
